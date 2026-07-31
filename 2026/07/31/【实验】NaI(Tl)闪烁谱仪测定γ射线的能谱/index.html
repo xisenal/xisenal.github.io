@@ -1,0 +1,456 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱 | 西瓜の驿站</title><meta name="author" content="Xisense WYX"><meta name="copyright" content="Xisense WYX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要： 本实验利用NaI(Tl)闪烁谱仪对\(\gamma\)射线能谱进行了测量与分析。通过测量\(^{137}\)Cs和\(^{60}\)Co标准放射源的能谱，确定了闪烁谱仪的能量刻度关系，并对谱仪的能量分辨率和线性特性进行了检验。在此基础上，利用多道分析器测量了不同几何条件及混合放射源情况下的\(\gamma\)能谱，对全能峰、康普顿平台及反散射峰的形成机制及其变化规律进行了分析。实验结果表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱">
+<meta property="og:url" content="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/index.html">
+<meta property="og:site_name" content="西瓜の驿站">
+<meta property="og:description" content="摘要： 本实验利用NaI(Tl)闪烁谱仪对\(\gamma\)射线能谱进行了测量与分析。通过测量\(^{137}\)Cs和\(^{60}\)Co标准放射源的能谱，确定了闪烁谱仪的能量刻度关系，并对谱仪的能量分辨率和线性特性进行了检验。在此基础上，利用多道分析器测量了不同几何条件及混合放射源情况下的\(\gamma\)能谱，对全能峰、康普顿平台及反散射峰的形成机制及其变化规律进行了分析。实验结果表">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xisenal.github.io/img/cover_default.jpg">
+<meta property="article:published_time" content="2026-07-31T06:45:38.000Z">
+<meta property="article:modified_time" content="2026-07-31T07:39:49.768Z">
+<meta property="article:author" content="Xisense WYX">
+<meta property="article:tag" content="实验">
+<meta property="article:tag" content="近代物理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xisenal.github.io/img/cover_default.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱",
+  "url": "https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/",
+  "image": "https://xisenal.github.io/img/cover_default.jpg",
+  "datePublished": "2026-07-31T06:45:38.000Z",
+  "dateModified": "2026-07-31T07:39:49.768Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Xisense WYX",
+      "url": "https://xisenal.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/watermelon.png"><link rel="canonical" href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?1"><link rel="stylesheet" href="/css/cat.css?1"><link rel="stylesheet" href="/css/wave.css?1"><link rel="stylesheet" href="/css/cursor.css?1"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover_default.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/watermelon.png" alt="Logo"><span class="site-name">西瓜の驿站</span></a><a class="nav-page-title" href="/"><span class="site-name">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-31T06:45:38.000Z" title="发表于 2026-07-31 14:45:38">2026-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-31T07:39:49.768Z" title="更新于 2026-07-31 15:39:49">2026-07-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C/">近代物理实验</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">10.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>32分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p><strong>摘要：</strong> 本实验利用NaI(Tl)闪烁谱仪对\(\gamma\)射线能谱进行了测量与分析。通过测量\(^{137}\)Cs和\(^{60}\)Co标准放射源的能谱，确定了闪烁谱仪的能量刻度关系，并对谱仪的能量分辨率和线性特性进行了检验。在此基础上，利用多道分析器测量了不同几何条件及混合放射源情况下的\(\gamma\)能谱，对全能峰、康普顿平台及反散射峰的形成机制及其变化规律进行了分析。实验结果表明，NaI(Tl)闪烁谱仪具有良好的能量线性关系，能够较好地实现\(\gamma\)射线能量测量与能谱分析，加深了对\(\gamma\)射线与物质相互作用及闪烁探测器工作原理的理解。</p>
+</blockquote>
+<p><strong>关键词：</strong> NaI闪烁谱仪，光电效应，康普顿散射，放射性物质能谱</p>
+<p><a href='/pdf/NaI_Tl_闪烁谱仪测定γ射线的能谱__近物实验2__发布版.pdf' target='_blank' title='NaI(Tl)闪烁谱仪测定γ射线的能谱'>获取实验报告的PDF文件（仅供参考）</a></p>
+<h1 id="引言"><a class="headerlink" href="#引言"></a>引言</h1>
+<p>\(\qquad\) 闪烁探测器是最早发展起来的一类电离辐射探测器之一，在核物理、医学成像以及环境辐射监测等领域具有重要应用。自1948年发现NaI(Tl)晶体具有优良的闪烁性能以来，卤化物闪烁体得到了迅速发展，并推动了无机闪烁探测技术的进步<sup>[1]</sup>。由于NaI(Tl)晶体具有较高的发光效率和较高的有效原子序数，其对\(\gamma\)射线具有较高的探测效率，因此很快被应用于\(\gamma\)能谱测量，并成为闪烁谱仪中最常用的探测材料之一<sup>[2]</sup>。</p>
+<p>\(\qquad\) 与半导体探测器相比，NaI(Tl)闪烁探测器具有成本低、探测效率高、可以制备成大体积晶体以及技术成熟等优点，因此在许多需要高探测效率而对能量分辨率要求不是极高的场合中仍然被广泛使用<sup>[3]</sup>。尽管高纯锗（HPGe）探测器具有更高的能量分辨率，但其需要低温工作、成本较高，而NaI(Tl)探测器在常温下即可工作，结构简单，易于维护，因此在教学实验和工程应用中具有明显优势<sup>[3]</sup>。</p>
+<p>\(\qquad\) 目前，NaI(Tl)闪烁谱仪已广泛应用于核辐射测量、核素识别、环境放射性监测、医学成像以及空间探测等领域。例如，在核安全与环境监测中，NaI(Tl)探测器常用于放射性核素的快速识别；在医学领域中，其被广泛应用于\(\gamma\)相机和核医学成像系统中；在高能物理与空间科学中，大体积闪烁探测器可用于宇宙射线与\(\gamma\)射线探测<sup>[4]</sup>。近年来，随着硅光电倍增器（SiPM）和数字信号处理技术的发展，NaI(Tl)闪烁谱仪在保持高探测效率和低成本优势的同时，其系统体积进一步减小，应用范围也进一步扩大<sup>[5]</sup>。</p>
+<p>\(\qquad\) 综上所述，NaI(Tl)闪烁谱仪由于其高探测效率、成本低、技术成熟等优点，在\(\gamma\)射线能谱测量中仍然占据重要地位。本实验采用NaI(Tl)闪烁谱仪测量\(\gamma\)射线能谱，通过对能谱的分析实现能量刻度和能量分辨率的测定，从而加深对闪烁探测器工作原理及\(\gamma\)能谱测量方法的理解。</p>
+<h1 id="实验原理"><a class="headerlink" href="#实验原理"></a>实验原理</h1>
+<h2 id="闪烁谱仪的基本原理"><a class="headerlink" href="#闪烁谱仪的基本原理"></a>闪烁谱仪的基本原理</h2>
+<p>\(\qquad\) NaI(Tl)闪烁谱仪测量\(\gamma\)射线能谱的原理包括\(\gamma\)射线与物质的相互作用、闪烁探测器的工作原理以及能谱形成机制等内容。</p>
+<p>\(\qquad\) 当\(\gamma\)射线进入探测器晶体后，主要通过光电效应、康普顿散射和电子对产生三种过程与物质相互作用。</p>
+<h3 id="光电效应"><a class="headerlink" href="#光电效应"></a>光电效应</h3>
+<p>\(\qquad\) 在光电效应中，入射\(\gamma\)光子将全部能量传递给原子内层电子，使电子逸出成为光电子，其动能为</p>
+<p>\[
+E_e=h\nu-E_b
+\]</p>
+<p>\(\qquad\) 其中\(E_b\)为电子束缚能。当\(h\nu\gg E_b\)时，可近似认为</p>
+<p>\[
+E_e\approx h\nu
+\]</p>
+<p>\(\qquad\) 因此光电效应对应于能谱中的全能峰。</p>
+<h3 id="康普顿散射"><a class="headerlink" href="#康普顿散射"></a>康普顿散射</h3>
+<p>\(\qquad\) 康普顿散射是\(\gamma\)光子与近自由电子的非弹性散射过程。散射后光子能量为</p>
+<p>\[
+h\nu'=\frac{h\nu}{1+\alpha(1-\cos\theta)}
+\]</p>
+<p>\(\qquad\) 其中</p>
+<p>\[
+\alpha=\frac{h\nu}{m_ec^2}
+\]</p>
+<p>\(\qquad\) 反冲电子获得的能量为</p>
+<p>\[
+E_e=h\nu-h\nu'
+\]</p>
+<p>\(\qquad\) 当散射角\(\theta=180^\circ\)时，反冲电子能量最大，称为康普顿边，其最大能量为</p>
+<p>\[
+E_{e,\max}=\frac{2\alpha}{1+2\alpha}h\nu
+\]</p>
+<p>\(\qquad\) 康普顿电子能量连续分布，因此在能谱中形成康普顿平台。</p>
+<h3 id="电子对效应"><a class="headerlink" href="#电子对效应"></a>电子对效应</h3>
+<p>\(\qquad\) 当\(\gamma\)射线能量大于\(2m_ec^2=1.022\,\mathrm{MeV}\)时，可能发生电子对产生：</p>
+<p>\[
+\gamma\rightarrow e^-+e^+
+\]</p>
+<p>\(\qquad\) 正电子在物质中很快与电子湮灭，产生两个\(0.511\,\mathrm{MeV}\)的\(\gamma\)光子。</p>
+<p>\(\qquad\) NaI(Tl)闪烁探测器利用闪烁体将射线能量转换为光信号，再通过光电倍增管转换为电信号。当带电粒子在闪烁体中运动时，使晶体分子激发和电离，退激时发出闪烁光。发光强度与粒子在晶体中损失的能量成正比，即</p>
+<p>\[
+L\propto E
+\]</p>
+<p>\(\qquad\) 光电倍增管输出电脉冲幅度与入射光子数成正比，因此输出脉冲幅度\(V\)与入射粒子能量\(E\)成正比：</p>
+<p>\[
+V\propto E
+\]</p>
+<p>\(\qquad\) 由于探测过程存在统计涨落，对于单能\(\gamma\)射线，其输出脉冲幅度呈高斯分布。能量分辨率定义为</p>
+<p>\[
+R=\frac{\Delta E}{E}=\frac{\Delta V}{V}
+\]</p>
+<p>\(\qquad\) 其中\(\Delta E\)为半高宽（FWHM）对应的能量宽度。</p>
+<p>\(\qquad\) 在一定能量范围内，\(\gamma\)射线能量与多道分析器道址（或脉冲幅度）之间满足线性关系：</p>
+<p>\[
+E=GX+E_0
+\]</p>
+<p>\(\qquad\) 其中\(X\)为全能峰对应的道址，\(G\)为系统增益，\(E_0\)为截距。通过已知能量的标准源（如\(^{137}\)Cs和\(^{60}\)Co）进行刻度，可以得到能量刻度曲线，从而实现未知\(\gamma\)射线能量的测量。</p>
+<p>\(\qquad\) 因此，通过测量\(\gamma\)射线在NaI(Tl)闪烁体中产生的脉冲幅度分布，并进行能量刻度，即可得到\(\gamma\)射线能谱，并可进一步分析全能峰、康普顿平台及反散射峰等谱结构，从而研究\(\gamma\)射线与物质的相互作用规律以及谱仪的能量分辨率和线性特性。</p>
+<h2 id="闪烁探测器对-137-Cs单能-gamma射线的响应"><a class="headerlink" href="#闪烁探测器对-137-Cs单能-gamma射线的响应"></a>闪烁探测器对\(^{137}\)Cs单能\(\gamma\)射线的响应</h2>
+<p>\(\qquad\) \(^{137}\)Cs的\(\gamma\)能谱如图1所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033ytInMMkLzSZMFydQtqi.png" alt="fig1.png"></p>
+<center>图1：<sup>137</sup>Cs的γ能谱</center>
+<p>\(\qquad\) \(^{137}\)Cs只放出\(0.662\,\mathrm{MeV}\)的\(\gamma\)射线，不会产生正负电子对，与闪烁体的相互作用只有光电效应和康普顿散射两种。对于光电效应，会在\(E=0.662\,\mathrm{MeV}\)的位置产生光电峰（即1号峰位置）。1号峰左侧的平台对应着康普顿散射的贡献。当康普顿散射产生的散射光子未逸出晶体，仍然被闪烁体吸收，同时光电子也对这个脉冲有贡献时，由于上述过程在极短时间内完成，二者的脉冲贡献叠加在一起，导致\(E_c+h\nu'=h\nu\)，也会在1号峰位置处有贡献。二者加起来称为全能峰。</p>
+<p>\(\qquad\) 对于2号峰，这是由于\(\gamma\)射线穿过闪烁体，打到光电倍增管后发生了\(180^\circ\)康普顿散射，反散射的光子\(h\nu'\)又返回晶体，与晶体发生光电效应导致的。返回的光子能量为\(0.184\,\mathrm{MeV}\)，形成2号峰，也就是反散射峰。\(\gamma\)射线在原衬底材料上的反散射也会对反散射峰有贡献。</p>
+<h1 id="实验仪器"><a class="headerlink" href="#实验仪器"></a>实验仪器</h1>
+<p>\(\qquad\) 本实验采用NaI(Tl)闪烁谱仪测量\(\gamma\)射线能谱。整个实验系统由闪烁探测器、高压电源、射极跟随器、线性放大器、单道脉冲幅度分析器、多道脉冲分析器、示波器以及标准放射源等部分组成，各部分共同完成从\(\gamma\)射线探测到能谱获取的全过程。实验仪器如图2所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033ytInffC95pVDVLPtu8c.png" alt="fig2.png"></p>
+<center>图2：实验仪器基本组成</center>
+<p>\(\qquad\) 闪烁探测器是整个系统的核心部分，由NaI(Tl)闪烁体和光电倍增管组成。NaI(Tl)是一种无机闪烁体，具有较高的原子序数和密度，对\(\gamma\)射线具有较强的吸收能力。当\(\gamma\)射线进入晶体后，通过光电效应或康普顿散射产生次级带电粒子，这些粒子在晶体中运动时使原子激发并发出波长约为\(410\,\mathrm{nm}\)的闪烁光。闪烁光的总光子数与入射粒子在晶体中损失的能量成正比，从而实现能量到光信号的转换。</p>
+<p>\(\qquad\) 光电倍增管用于将微弱的闪烁光信号转换为电信号并进行放大。闪烁光照射在光阴极上产生光电子，这些光电子在多级倍增极（打拿极）之间逐级加速并发生二次电子发射，经过\(n\)级倍增后，总增益可达</p>
+<p>\[
+G\approx\delta^n
+\]</p>
+<p>\(\qquad\) 其中\(\delta\)为单级二次发射系数。最终在阳极形成电压脉冲，其幅度与入射光强成正比。闪烁体与光电倍增管之间通过光学耦合剂（如硅脂）连接，以减少界面反射损失，提高光收集效率。</p>
+<p>\(\qquad\) 高压电源为光电倍增管提供稳定的工作电压（通常为几百至上千伏）。光电倍增管的增益对高压非常敏感，近似满足指数关系，因此要求高压电源具有良好的稳定性（电压波动一般小于\(0.1\%\)），否则会引起输出脉冲幅度变化，从而影响能量刻度的准确性。</p>
+<p>\(\qquad\) 射极跟随器通常设置在探测器输出端，其作用是降低输出阻抗，实现阻抗匹配，并减小外界噪声对信号的影响，使信号能够稳定传输到后级电子学系统。</p>
+<p>\(\qquad\) 线性放大器用于对探测器输出的电脉冲进行放大，其放大倍数通常在\(10\sim10^3\)范围内可调。放大器应具有良好的线性、低噪声和高稳定性，以保证输出脉冲幅度与入射\(\gamma\)射线能量之间保持线性关系，同时提高信号的信噪比，便于后续分析。</p>
+<p>\(\qquad\) 单道脉冲幅度分析器（SCA）用于选择一定幅度范围内的脉冲信号进行计数。其工作原理是设定一个阈值\(V\)和道宽\(\Delta V\)，仅当输入脉冲幅度满足</p>
+<p>\[
+V\leq V_{\text{in}}\leq V+\Delta V
+\]</p>
+<p>\(\qquad\) 时，该脉冲才被计数。通过逐步改变阈值，可以扫描得到脉冲幅度分布，从而获得\(\gamma\)射线能谱。</p>
+<p>\(\qquad\) 多道脉冲分析器（MCA）可以将不同幅度的脉冲自动分配到不同的道址中，实现脉冲幅度的数字化记录。每个道对应一定的幅度区间，记录该区间内脉冲出现的次数，从而一次性获得完整的能谱分布，大大提高了测量效率和精度。</p>
+<p>\(\qquad\) 示波器用于实时观察探测器输出脉冲的波形，包括脉冲的幅度、宽度及噪声情况。在实验过程中，通过示波器可以调节光电倍增管高压和放大器参数，使系统处于最佳工作状态。</p>
+<p>\(\qquad\) 实验中采用\(^{137}\)Cs和\(^{60}\)Co作为标准\(\gamma\)射线源。其中\(^{137}\)Cs主要发射\(0.662\,\mathrm{MeV}\)的\(\gamma\)射线，而\(^{60}\)Co发射\(1.17\,\mathrm{MeV}\)和\(1.33\,\mathrm{MeV}\)的\(\gamma\)射线。这些已知能量的\(\gamma\)射线可用于建立能量刻度曲线，从而实现未知能量的测量。</p>
+<p>\(\qquad\) 综上，各电子学模块协同工作，实现了从\(\gamma\)射线入射、能量沉积、光信号产生、电信号放大到能谱获取的完整测量过程。</p>
+<h1 id="实验步骤"><a class="headerlink" href="#实验步骤"></a>实验步骤</h1>
+<ol>
+<li>
+<p>打开高压电源、线性放大器、单道脉冲幅度分析器、多道脉冲分析器以及示波器，仪器预热约15～20分钟，使光电倍增管和电子学系统达到稳定工作状态。在预热过程中检查各仪器连接是否正确，包括闪烁探测器输出与放大器输入端的连接、放大器输出与分析器输入端的连接等。</p>
+</li>
+<li>
+<p>将\(^{137}\)Cs放射源放置在NaI(Tl)闪烁探测器前适当位置，通过示波器分别观察线性放大器输入端和输出端的脉冲波形。调节光电倍增管的高压，使脉冲幅度随高压变化明显但不出现饱和或噪声过大的情况；再调节线性放大器的放大倍数和成形时间，使输出脉冲波形平滑、幅度稳定、噪声较小，从而使谱仪处于较好的能量分辨状态。确定合适的工作高压后保持高压不再改变。</p>
+</li>
+<li>
+<p>在保持高压不变的条件下，进一步调节线性放大器的放大倍数，使\(^{137}\)Cs发出的\(0.662\,\mathrm{MeV}\) \(\gamma\)射线的全能峰位于单道分析器测量范围的中间区域。设置单道脉冲幅度分析器的阈值和道宽，改变阈值电压，逐点测量不同道址处的计数率，得到\(^{137}\)Cs的\(\gamma\)能谱分布。同时在无放射源条件下测量环境本底计数，并从测量谱中扣除本底的影响。根据全能峰的半高宽计算谱仪的能量分辨率。</p>
+</li>
+<li>
+<p>在能量刻度实验中，调整线性放大器增益，使\(^{137}\)Cs的\(0.662\,\mathrm{MeV}\)全能峰以及\(^{60}\)Co的\(1.17\,\mathrm{MeV}\)和\(1.33\,\mathrm{MeV}\)全能峰均落在多道分析器的合适道址范围内。分别测量\(^{137}\)Cs和\(^{60}\)Co的能谱，记录各全能峰对应的道址位置，同时记录反散射峰位置。利用已知\(\gamma\)射线能量与对应道址数据，采用最小二乘法进行线性拟合，得到能量与道址之间的关系曲线，即能量刻度曲线。</p>
+</li>
+<li>
+<p>将单道脉冲幅度分析器切换为多道脉冲分析器，分别测量\(^{137}\)Cs单源能谱以及\(^{137}\)Cs与\(^{60}\)Co混合源能谱，并测量本底谱。比较单源谱与混合源谱的差异，分析谱仪的能量分辨率、线性范围以及系统稳定性。</p>
+</li>
+<li>
+<p>若存在未知放射源，可在相同实验条件下测量其\(\gamma\)射线能谱，根据已建立的能量刻度曲线，将未知峰对应的道址换算为\(\gamma\)射线能量，从而实现未知放射源的能量测量与核素识别。</p>
+</li>
+</ol>
+<h1 id="数据分析与讨论"><a class="headerlink" href="#数据分析与讨论"></a>数据分析与讨论</h1>
+<h2 id="利用单道分析器绘制-137-Cs的-gamma能谱"><a class="headerlink" href="#利用单道分析器绘制-137-Cs的-gamma能谱"></a>利用单道分析器绘制\(^{137}\)Cs的\(\gamma\)能谱</h2>
+<p>\(\qquad\) 首先利用示波器，调节放大器的放大倍数，使得全能峰对应的电压约在\(7\,\mathrm{V}\)左右，此时读出放大倍数为\(50\times(0.5+0.650)=57.50\)。再使用定标器，取道宽为\(0.1\,\mathrm{V}\)，下阈值电压从\(6.6\,\mathrm{V}\)到\(7.2\,\mathrm{V}\)，每隔\(0.1\,\mathrm{V}\)进行一次单道计数。将数据点进行样条拟合并寻峰可得到如图3所示结果。前面放大器倍数的调节就是基于图3所得到的数据进行的。</p>
+<p><img src="https://pic.imgdd.cc/i/033ytIn3qIlVkWPz1NT5YR.png" alt="fig3.png"></p>
+<center>图3：<sup>137</sup>Cs全能峰附近的γ能谱</center>
+<p>\(\qquad\) 直接通过SciPy库函数找到对应的极值点，即全能峰位置为\(6.879\,\mathrm{V}\)，峰值大小为\(10595\)。下一步保持放大器倍数不变，将下阈值电压从\(8.0\,\mathrm{V}\)降至\(0.8\,\mathrm{V}\)，单道间隔仍为\(0.1\,\mathrm{V}\)，可以绘制出\(^{137}\)Cs的\(\gamma\)能谱，如图4所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033ytImmyl5LyDE1TpTv4V.png" alt="fig4.png"></p>
+<center>图4：<sup>137</sup>Cs的γ能谱</center>
+<p>\(\qquad\) 从上图中可以明显看到反散射峰和全能峰。计算可得反散射峰的位置为\(2.01\,\mathrm{V}\)，峰值为\(3849\)；全能峰的位置为\(6.878\,\mathrm{V}\)，峰值为\(10598\)。图中为了简洁没有标注准确数字，但是实际上可以通过程序计算出\(10598\)这个数值，计算代码可以参考附录B。</p>
+<h2 id="闪烁体谱仪的能量线性关系检验"><a class="headerlink" href="#闪烁体谱仪的能量线性关系检验"></a>闪烁体谱仪的能量线性关系检验</h2>
+<p>\(\qquad\) 除了\(^{137}\)Cs以外，还需要\(^{60}\)Co的两个全能峰（\(1.17\,\mathrm{MeV}\)和\(1.33\,\mathrm{MeV}\)）对其进行标定。但由于这两个全能峰的能量过高，如果保持放大倍数不变，它们对应的脉冲电压会超过\(10\,\mathrm{V}\)，这是定标器下阈值电压的最大值。所以将线性放大器的放大倍数变为原来的一半，可以计算\(28.75=20\times(0.5+0.94)\)。此时需要重新测量\(^{137}\)Cs的反散射峰和全能峰的位置，以及\(^{60}\)Co的两个光电峰的位置。经过简单计算，可以估算出\(^{137}\)Cs的反散射峰和全能峰的位置应该在\(1.00\,\mathrm{V}\)和\(3.45\,\mathrm{V}\)左右，\(^{60}\)Co的两个光电峰的位置分别为\(6.00\,\mathrm{V}\)和\(6.80\,\mathrm{V}\)左右。实际测量结果如图5所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033ytInfrTQk8F8Nptuhvr.png" alt="fig5.png"></p>
+<center>图5：<sup>137</sup>Cs和<sup>60</sup>Co寻峰图</center>
+<p>\(\qquad\) 计算得到\(^{137}\)Cs的反散射峰和全能峰的位置分别为\(1.04\,\mathrm{V}\)和\(3.40\,\mathrm{V}\)，\(^{60}\)Co的两个光电峰的位置分别为\(5.86\,\mathrm{V}\)和\(6.70\,\mathrm{V}\)。将这四个电压值作为横轴，其对应的四个能量（\(0.184\,\mathrm{MeV}\)、\(0.662\,\mathrm{MeV}\)、\(1.17\,\mathrm{MeV}\)、\(1.33\,\mathrm{MeV}\)）作为纵轴，可以作出该闪烁体谱仪对应的能量刻度曲线，如图6所示。将其作最小二乘拟合得到</p>
+<p>\[
+E(X)=0.203\times X-0.028
+\]</p>
+<p>\(\qquad\) 其中能量的单位为\(\mathrm{MeV}\)，\(X\)的单位为\(\mathrm{V}\)，回归系数\(r=0.99996\)，线性程度非常好。</p>
+<p><img src="https://pic.imgdd.cc/i/033ytInI4hQuFLEb6dkxoM.png" alt="fig6.png"></p>
+<center>图6：闪烁体谱仪的能量刻度曲线</center>
+<h2 id="多道分析器绘制-137-Cs和-60-Co能谱"><a class="headerlink" href="#多道分析器绘制-137-Cs和-60-Co能谱"></a>多道分析器绘制\(^{137}\)Cs和\(^{60}\)Co能谱</h2>
+<p>\(\qquad\) 由于多道分析器采用量程为\(6\,\mathrm{V}\)的1024道模式，所以为了画出\(^{60}\)Co的完整能谱，我们需要调整放大倍数。这样一来，上面使用的拟合公式就不再适用了。一方面，我们可以读出当前的放大倍数，进一步计算出新放大倍数下的斜率；另一方面，我们可以重新测量\(^{60}\)Co的完整能谱，然后通过第一、第二能峰对多道分析数据的横轴进行标定，标定结果如图7所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033ytInaIvV3UtbCp6adrs.png" alt="fig7.png"></p>
+<center>图7：使用<sup>60</sup>Co的完整能谱对多道分析数据进行标定</center>
+<p>\(\qquad\) 标定完成后，我们测量了以下四种情况下的能谱：Cs靠近探头、Cs远离探头、Co靠近探头、Cs和Co放在一起远离探头。结果如图8所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033ytIno94hpS4Y8ZExCbd.png" alt="fig8.png"></p>
+<center>图8：从左向右、从上到下分别为Co靠近探头、Cs靠近探头、Cs远离探头、Cs和Co放在一起远离探头</center>
+<p>\(\qquad\) 与之前的数据作图不同的是，为使实验数据的展示更加清晰且具有物理意义，未直接对原始高密度数据点进行逐点样条（spline）分析，而是采用了分箱（binning）的方法对能谱进行重构。具体而言，将能量区间划分为若干小区间，对每个区间内的计数进行加权统计，其数学形式可表示为</p>
+<p>\[
+H_i=\sum_{j\in\text{bin}_i}N_j
+\]</p>
+<p>\(\qquad\) 其中\(H_i\)为第\(i\)个能量区间内的总计数，\(N_j\)为原始数据中对应能量点的计数值。对应的能量取为各区间的中心值</p>
+<p>\[
+E_i=\frac{E_{i,\text{left}}+E_{i,\text{right}}}{2}
+\]</p>
+<p>\(\qquad\) 该方法等效于对实验数据进行离散化统计处理，能够有效降低统计涨落带来的视觉噪声，同时保持能谱的主要结构特征（如康普顿边和特征峰）。最终采用阶梯图（step plot）进行绘制，使结果更符合核谱学中常用的能谱表示方式。</p>
+<p>\(\qquad\) 通过图8，我们对于\(^{137}\)Cs和\(^{60}\)Co的放射特性就可以有一个相对完整的认识。下面主要分析反散射峰的性质，包括反散射峰的峰位和相对峰高度。由图9中的能谱可以对反散射峰的峰位及相对峰高进行比较分析。首先，从峰位位置来看，\(^{137}\)Cs放射源在靠近探测器与远离探测器两种几何条件下，其反散射峰对应的能量位置基本一致，说明探测系统的能量刻度未发生改变，反散射峰位置在统计误差范围内保持稳定。然而，当\(^{137}\)Cs与\(^{60}\)Co放置在一起测量时，谱图中反散射峰位置相较于单独\(^{137}\)Cs时略向高能方向偏移，这可能是由于多个相近反散射峰叠加，以及两个放射源同时存在时探测器计数率升高所导致的脉冲堆积（pile-up）效应，使部分脉冲幅度叠加，从而使测得的峰位向高能方向移动。</p>
+<p>\(\qquad\) 其次，从反散射峰的相对峰高来看，可以观察到从“Cs靠近探测器”到“Cs远离探测器”，再到“Cs与Co一起远离探测器”，反散射峰的相对峰高逐渐增大。这里的相对峰高可表示为</p>
+<p>\[
+R=\frac{N_{\text{peak}}}{N_{\text{total}}}
+\]</p>
+<p>\(\qquad\) 其中\(N_{\text{peak}}\)为反散射峰区域内的计数，\(N_{\text{total}}\)为总计数。</p>
+<p><img src="https://pic.imgdd.cc/i/033ytInoLM47eMzBwzOIIp.png" alt="fig9.png"></p>
+<center>图9：多道分析器绘制的上述4种情况下的能谱</center>
+<h3 id="反散射峰峰位分析"><a class="headerlink" href="#反散射峰峰位分析"></a>反散射峰峰位分析</h3>
+<p>\(\qquad\) 关于反散射峰的形成机制，已在实验原理部分进行了说明。对于\(^{137}\)Cs放射源，无论其靠近探测器还是远离探测器，\(\gamma\)光子的初始能量并未发生改变，康普顿散射过程的运动学关系保持不变，因此反散射峰对应的能量位置在两种几何条件下应保持一致，实验中观测到的峰位差异在统计误差范围内可以忽略。</p>
+<p>\(\qquad\) 当\(^{137}\)Cs与\(^{60}\)Co同时存在时，谱中反散射峰将包含多个\(\gamma\)能量对应的贡献。对于\(^{60}\)Co，其两条主要\(\gamma\)射线能量分别为\(E_1\)与\(E_2\)，对应的反散射峰能量可由康普顿散射公式给出：</p>
+<p>\[
+\begin{aligned}
+E_{\mathrm{Co},1}
+&amp;=\frac{E_1}{1+2\frac{E_1}{m_ec^2}}
+\approx0.210\,\mathrm{MeV},\\
+E_{\mathrm{Co},2}
+&amp;=\frac{E_2}{1+2\frac{E_2}{m_ec^2}}
+\approx0.214\,\mathrm{MeV}.
+\end{aligned}
+\]</p>
+<p>\(\qquad\) 可以看出，两者之间的能量差仅约为\(0.004\,\mathrm{MeV}\)。而\(^{137}\)Cs的反散射峰能量约为\(0.184\,\mathrm{MeV}\)，与上述两个峰分别相差约\(0.026\,\mathrm{MeV}\)和\(0.030\,\mathrm{MeV}\)。</p>
+<p>\(\qquad\) 考虑探测系统的能量分辨率，可通过\(^{137}\)Cs全能峰的半高宽估计，其相对能量分辨率约为\(15\%\)。在约\(0.2\,\mathrm{MeV}\)附近，对应的能量展宽约为</p>
+<p>\[
+\Delta E\sim0.03\,\mathrm{MeV}
+\]</p>
+<p>\(\qquad\) 因此，上述三个反散射峰之间的间隔与探测器分辨本领处于同一量级，在实验条件下难以分辨，将叠加形成一个展宽的单峰，其峰位相对于单一\(^{137}\)Cs情形会向高能方向发生偏移。这与实验观测结果一致。</p>
+<h3 id="反散射峰相对峰高度分析"><a class="headerlink" href="#反散射峰相对峰高度分析"></a>反散射峰相对峰高度分析</h3>
+<p>\(\qquad\) 对于反散射峰相对峰高的变化，需要从几何条件及散射贡献两方面进行分析。理想情况下，若仅考虑放射源与探测器之间的直接作用，则改变源与探测器的距离只会整体改变探测效率，使全能峰与反散射峰按相同比例变化，其相对峰高应基本保持不变。</p>
+<p>\(\qquad\) 然而在实际实验中，当\(^{137}\)Cs远离探测器放置于铁架台等支撑结构附近时，\(\gamma\)射线不仅在周围空气中发生散射，还会在金属支撑结构中发生额外的康普顿散射。这些散射后的光子有较大概率以接近\(180^\circ\)方向进入探测器，从而显著增强反散射峰的计数。因此，相较于“靠近探测器”的情形，“远离探测器”时反散射峰的相对峰高有所增加。</p>
+<p>\(\qquad\) 当\(^{137}\)Cs与\(^{60}\)Co同时存在时，情况进一步复杂。\(^{60}\)Co发射的高能\(\gamma\)射线（约\(1.17\,\mathrm{MeV}\)和\(1.33\,\mathrm{MeV}\)）在周围介质中更容易产生多次散射，其反散射贡献在低能区（约\(0.2\,\mathrm{MeV}\)附近）叠加到\(^{137}\)Cs的反散射峰上，从而进一步提高该能区的计数。此外，多源同时存在还会提高整体计数率，增强多次散射及脉冲堆积的概率，也会在一定程度上抬高该区域的谱强度。</p>
+<p>\(\qquad\) 综上，反散射峰相对峰高从“Cs靠近探测器”到“Cs远离探测器”，再到“Cs与Co同时存在”的情况下逐渐升高，主要来源于环境散射贡献的增加以及多源叠加效应的共同作用。</p>
+<h1 id="结论"><a class="headerlink" href="#结论"></a>结论</h1>
+<p>\(\qquad\) 本实验利用NaI(Tl)闪烁谱仪对\(\gamma\)射线能谱进行了系统测量与分析，完成了从谱仪工作条件调节、能量刻度建立到能谱结构分析的全过程。实验中首先通过示波器调节光电倍增管高压及线性放大器参数，使探测系统工作在稳定且具有较好能量分辨率的状态；随后利用单道分析器测量了\(^{137}\)Cs的能谱，确定了全能峰及反散射峰的位置，并计算了谱仪的能量分辨率。在能量刻度实验中，利用\(^{137}\)Cs和\(^{60}\)Co的已知\(\gamma\)射线能量建立了能量与脉冲幅度之间的线性关系，结果表明该闪烁谱仪在实验能区内具有良好的线性响应特性。</p>
+<p>\(\qquad\) 在多道分析器测量中，分别测量了不同放射源及不同几何条件下的能谱，并对谱结构进行了分析。实验结果表明，全能峰位置主要由入射\(\gamma\)射线能量决定，与放射源距离变化关系不大；而反散射峰的峰位由康普顿散射过程决定，在不同几何条件下基本保持不变，但其相对峰高会受到环境散射、放射源位置以及多源叠加等因素影响。当多个放射源同时存在时，由于多次散射及脉冲堆积效应，可能导致谱峰展宽甚至峰位出现一定偏移。</p>
+<p>\(\qquad\) 通过本实验，加深了对\(\gamma\)射线与物质相互作用过程（光电效应、康普顿散射等）的理解，掌握了闪烁谱仪的基本结构、工作原理及能谱测量方法，理解了能量分辨率、能量刻度及谱结构分析在核辐射测量中的意义。实验结果表明，NaI(Tl)闪烁谱仪虽然能量分辨率不及半导体探测器，但具有探测效率高、结构简单、工作稳定等优点，在\(\gamma\)能谱测量及放射性核素识别中具有重要应用价值。</p>
+<h1 id="参考文献"><a class="headerlink" href="#参考文献"></a>参考文献</h1>
+<p>[1] VANECEK V, DECKA K, MIHOKOVA E, et al. Advanced halide scintillators: From the bulk to nano[A]. 2024.</p>
+<p>[2] HAWRAMI R, FARSONI A, SABET H, et al. Growth and evaluation of improved CsI:Tl and NaI:Tl scintillators[J]. Crystals, 2022, 12(11): 1517.</p>
+<p>[3] AUTHOR A. Enhanced gamma-ray spectrum transformation: NaI(Tl) scintillator to HPGe semiconductor via machine learning[J]. European Physical Journal Plus, 2025, 140: 113.</p>
+<p>[4] AUTHOR B. Machine learning application in NaI(Tl) gamma-ray spectroscopy for radionuclide identification: A systematic review[J]. Radiation Measurements and Protection, 2025.</p>
+<p>[5] AUTHOR C. NaI(Tl) scintillator read out with SiPM array for gamma spectrometer[J]. Nuclear Instruments and Methods in Physics Research A, 2017, 851: 118-124.</p>
+<h1 id="附录A：思考题"><a class="headerlink" href="#附录A：思考题"></a>附录A：思考题</h1>
+<h2 id="实验过程思考题"><a class="headerlink" href="#实验过程思考题"></a>实验过程思考题</h2>
+<ol>
+<li><strong>为什么要作能量刻度？本实验如何作能量刻度？如果放射源不够多，如何作刻度？</strong></li>
+</ol>
+<p>\(\qquad\) 在使用NaI(Tl)闪烁谱仪测量\(\gamma\)射线能谱时，多道分析器给出的谱线横坐标是道址（channel number），而不是直接对应的能量值。不同能量的\(\gamma\)射线在闪烁体中产生的光子数不同，经光电倍增管和线性放大器后形成的脉冲幅度也不同，多道分析器正是按照脉冲幅度的大小将信号分配到不同的道址中。因此，道址与\(\gamma\)射线能量之间存在一定的对应关系，但这种关系需要通过已知能量的射线进行标定，这一过程称为能量刻度。只有完成能量刻度后，才能将测得的能谱从“道址谱”转换为“能量谱”，从而确定各个峰所对应的实际能量，并对光电峰、康普顿边、反散射峰等结构进行分析。</p>
+<p>\(\qquad\) 本实验中通常选用若干具有已知\(\gamma\)射线能量的标准放射源（如\(^{137}\)Cs、\(^{60}\)Co等），测量其能谱，并在能谱中找出对应的光电峰位置，记录其道址数。由于在一定能量范围内，NaI(Tl)闪烁谱仪的输出脉冲幅度与入射\(\gamma\)射线能量近似成线性关系，因此可以假设能量\(E\)与道址\(N\)之间满足线性关系：</p>
+<p>\[
+E=aN+b
+\]</p>
+<p>\(\qquad\) 利用多个已知能量\(E\)与对应道址\(N\)的数据点进行线性拟合，即可得到刻度系数\(a\)和\(b\)，从而建立能量刻度关系，实现由道址到能量的转换。</p>
+<p>\(\qquad\) 如果实验中可用的放射源数量不够多，无法提供足够多的已知能量点进行刻度，可以在同一能谱中选取多个具有已知能量且容易辨认的特征峰来增加刻度点数。例如可以选取光电峰、康普顿边、反散射峰以及特征X射线峰等，这些峰的位置对应的能量是已知或可以通过理论计算得到的。通过选取这些特征点，同样可以建立道址与能量之间的对应关系，从而完成能量刻度。</p>
+<ol start="2">
+<li><strong>如何从示波器上观察\(^{137}\)Cs脉冲波形图及判断谱仪能量分辨率的好坏？</strong></li>
+</ol>
+<p>\(\qquad\) 将线性放大器的输出信号接入示波器输入端，调节示波器的时间刻度至ns量级、电压刻度至合适范围，并选择合适的触发方式，使波形能够稳定显示。此时在示波器上可以观察到由闪烁体探测到\(\gamma\)射线后经光电倍增管和放大器输出的电压脉冲波形，其波形通常表现为上升沿较快、下降沿较慢的脉冲信号。通过观察脉冲的幅度和形状，可以判断探测系统工作是否正常，例如是否存在噪声过大、脉冲饱和或放大倍数不合适等问题。</p>
+<p>\(\qquad\) 谱仪能量分辨率的好坏通常通过能谱中光电峰的半高宽（FWHM）与峰位道址之比来衡量，即</p>
+<p>\[
+R=\frac{\Delta E}{E}\approx\frac{\Delta N}{N}
+\]</p>
+<p>\(\qquad\) 其中\(\Delta N\)为光电峰的半高宽，\(N\)为光电峰对应的道址数。该比值越小，说明谱峰越尖锐，谱仪对不同能量射线的分辨能力越强，即能量分辨率越好；反之，若峰较宽，则说明能量分辨率较差。</p>
+<ol start="3">
+<li><strong>测量能谱时，每个点的测量时间如何选取？主要考虑什么因素？为了较精确地确定\(\gamma\)谱仪的能量分辨率，应该怎么办？</strong></li>
+</ol>
+<p>\(\qquad\) 在测量能谱时，每个测量点的测量时间主要由计数的统计误差决定。由于放射性计数服从泊松分布，其相对统计误差为\(1/\sqrt{N}\)，其中\(N\)为计数值。因此，为了减小统计误差，需要适当延长测量时间以增加计数。例如，若希望某一峰位处的统计误差小于\(1\%\)，则需要该处计数\(N>10^4\)，因此应根据源强和计数率选择合适的测量时间，使重要峰位具有足够的计数统计。</p>
+<p>\(\qquad\) 测量时间的选取还需要综合考虑放射源活度、探测效率、道宽选择、电压稳定性以及实验总时间等因素。在保证统计误差足够小的前提下，应尽量避免测量时间过长，以提高实验效率。</p>
+<p>\(\qquad\) 为了较精确地确定\(\gamma\)谱仪的能量分辨率，应重点测量光电峰附近的能谱，并适当延长该区域的测量时间，以获得统计涨落较小、峰形平滑的谱线。同时应合理选择道宽和阈值，使谱峰能够被充分展开而不过度展宽，然后通过测量光电峰的半高宽（FWHM）与峰位道址之比来计算能量分辨率，从而得到较为准确的结果。</p>
+<ol start="4">
+<li><strong>进入单道脉冲幅度分析器的全能峰所对应的脉冲幅度应选多大？如何选择道宽和确定阈值的改变量？</strong></li>
+</ol>
+<p>\(\qquad\) 进入单道脉冲幅度分析器的全能峰所对应的脉冲幅度一般应调在分析器量程的一半稍偏大的位置。这样既可以避免脉冲幅度过小而受到噪声影响，又可以防止脉冲过大而超出量程造成饱和，从而保证测量具有较好的线性和稳定性。</p>
+<p>\(\qquad\) 道宽的选择需要综合考虑能量分辨率和测量时间。如果道宽选得过小，则每个道中的计数较少，统计误差较大，测量时间需要很长；如果道宽选得过大，则会使谱峰展宽，影响能量分辨率的测量。因此一般选择与谱仪能量分辨率相当或略小的道宽，使其既能分辨谱峰结构，又能保证足够的计数率。</p>
+<p>\(\qquad\) 阈值改变量的选择应根据需要测量的能谱精细程度来确定。如果希望较精细地测量谱峰形状和半高宽，则阈值步进应取得较小；如果只是粗略测量谱的分布范围，则可以适当增大阈值步进，以减少测量点数并缩短实验时间。因此阈值改变量通常应小于或接近所选道宽，以保证扫描得到的能谱具有足够的分辨能力。</p>
+<ol start="5">
+<li><strong>反散射峰是怎样形成的？如何从实验上减小这一效应？</strong></li>
+</ol>
+<p>\(\qquad\) 反散射峰是由于\(\gamma\)射线在探测器周围的物质（如探测器外壳、光电倍增管外壳、屏蔽材料或实验台等）中首先发生康普顿散射，散射后的\(\gamma\)射线以接近\(180^\circ\)的方向反向进入闪烁体，并在闪烁体中通过光电效应被全部吸收而形成的。由于\(\gamma\)射线在反向散射过程中损失了一部分能量，因此反散射峰出现在全能峰左侧较低能量处，其位置由康普顿散射公式决定，具有相对固定的能量。</p>
+<p>\(\qquad\) 在实验上，为了减小反散射峰的影响，可以尽量减少探测器周围的散射物质，例如减小放射源与探测器周围材料的接触面积，或使放射源远离墙壁、桌面等容易产生散射的物体；也可以在探测器周围放置适当的吸收材料（如铅屏蔽），减少散射\(\gamma\)射线再次进入探测器的概率。此外，还可以选择康普顿散射截面较小的光电倍增管光阴极材料和衬底材料，从而在一定程度上减弱反散射峰的强度。</p>
+<h2 id="实验报告思考题"><a class="headerlink" href="#实验报告思考题"></a>实验报告思考题</h2>
+<ol>
+<li><strong>若有一\(\gamma\)射线源具有单一能量为\(2\,\mathrm{MeV}\)的\(\gamma\)射线，试预言其谱形</strong></li>
+</ol>
+<p><img src="https://pic.imgdd.cc/i/033ytIo0WerVMY51MtsTth.png" alt="fig10.png"></p>
+<center>图10：Python程序模拟的指定γ射线的能谱</center>
+<p>\(\qquad\) 对于能量为\(2\,\mathrm{MeV}\)的单能\(\gamma\)射线，全能峰将出现在\(2\,\mathrm{MeV}\)对应的位置，这是由\(\gamma\)射线完全在闪烁体中被吸收形成的光电峰。除此之外，由于\(\gamma\)射线在探测器或周围物质中可能发生康普顿散射，会在能谱中形成康普顿展宽。反散射光子的能量可由公式计算：</p>
+<p>\[
+E_r=\frac{E}{1+2\frac{E}{m_ec^2}}\approx0.226\,\mathrm{MeV}
+\]</p>
+<p>\(\qquad\) 它表示散射角为\(180^\circ\)时散射光子剩余能量的位置。康普顿电子的最大沉积能量，即康普顿边对应的能量，为\(E-E_r\approx1.774\,\mathrm{MeV}\)。整体谱形特征为一个位于\(2\,\mathrm{MeV}\)的全能峰，其左侧存在延伸至康普顿边的连续康普顿平台，并在低能端可能出现约\(0.226\,\mathrm{MeV}\)的反散射峰。</p>
+<p>\(\qquad\) 如图10所示，我使用Python程序对这个物理过程进行模拟。经过尝试，最后采用面向直方图的分块模拟方法生成\(\gamma\)射线能谱，否则会出现大规模内存占用导致电脑操作系统崩溃。总事件数被分块生成，并直接累加到指定能量区间的直方图上。谱形由三部分组成：全能峰（位于\(E_0\)）、反散射峰（位于\(E_{\mathrm{back}}=E_0/(1+2E_0/m_ec^2)\)）和康普顿展宽。康普顿部分基于Klein--Nishina微分截面对散射角进行拒绝采样，计算沉积能\(E_{\mathrm{dep}}=E_0-E'\)。为了模拟能量分辨率，每个事件按\(\mathrm{FWHM}(E)=k\sqrt{E}\)加高斯展宽。块内事件生成后在区间\([E_{\min},E_{\max}]\)内作直方图并累加，总谱通过<code>plt.step</code>绘制。最终谱线清晰显示全能峰、康普顿边及反散射峰，符合\(2\,\mathrm{MeV}\) \(\gamma\)射线的物理特征，同时在恒定内存下高效完成模拟。</p>
+<h1 id="附录B：数据处理使用的代码"><a class="headerlink" href="#附录B：数据处理使用的代码"></a>附录B：数据处理使用的代码</h1>
+<p>\(\qquad\) 本实验主要使用Python语言的代码进行数据分析，基于NumPy、Matplotlib、SciPy以及Pandas等库函数对实验数据进行分析和提取。数据处理使用的所有代码已上传至GitHub，可以通过<a target="_blank" rel="noopener" href="https://github.com/xisenal/PKU-modern-physical-experiment-code/tree/main/NaI_experiment2">NaI_experiment2</a>进行查看和运行。此外，本项目使用MIT开源协议，非营利性组织可以自行查看、改写和使用。</p>
+<p>\(\qquad\) 为了获取代码，可以在希望保存代码的文件夹中打开终端，使用以下指令将实验中使用的代码拉取至本地：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/xisenal/PKU-modern-physical-experiment-code.git</span><br></pre></td></tr></table></figure>
+<p>\(\qquad\) 在本实验的文件夹中，我已经对代码使用的依赖库进行了<code>.venv</code>虚拟环境配置，在终端进入虚拟环境后就可以执行相关Python文件。当然，也可以使用以下命令直接在本地安装相应的依赖库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy matplotlib pandas scipy</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xisenal.github.io">Xisense WYX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/">https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xisenal.github.io" target="_blank">西瓜の驿站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%9E%E9%AA%8C/">实验</a><a class="post-meta__tags" href="/tags/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86/">近代物理</a></div><div class="post-share"><div class="social-share" data-image="/img/cover_default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/30/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91He-Ne%E6%B0%94%E4%BD%93%E6%BF%80%E5%85%89%E5%99%A8%E6%94%BE%E7%94%B5%E6%9D%A1%E4%BB%B6/" title="【实验】He-Ne气体激光器放电条件"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-30</div><div class="info-item-2">【实验】He-Ne气体激光器放电条件</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验研究了He-Ne气体激光器在不同气体配比与总压强条件下的放电特性。通过测量激光输出功率随工作电流变化的关系，发现功率随电流先增大后减小，且峰值对应的电流随总压强增加而减小。同时，氦氖配比对输出功率存在明显影响，氖比例较高时功率较大。实验结果与粒子数反转及能量转移理论相一致，为理解He-Ne激光器的工作条件及动力学机制提供了实验依据。 关键词： He-Ne激光，真空环境，配气 获取实验报告的PDF文件（仅供参考） 引言 激光（Laser）是基于受激辐射原理实现光放大的相干光源，其理论基础可以追溯到20世纪中期。1958年，Schawlow和Townes在经典论文《Infrared and Optical Masers》中提出将微波波段的maser原理推广到光学频段，从而提出了光学激射器（laser）的基本概念[1]。这一理论工作奠定了激光器发展的基础。...</div></div></div></a><a class="pagination-related" href="/2025/01/19/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E7%94%A8%E4%BC%A0%E8%BE%93%E5%BC%8F%E8%B0%90%E6%8C%AF%E8%85%94%E8%A7%82%E6%B5%8B%E9%93%81%E7%A3%81%E5%85%B1%E6%8C%AF/" title="【实验】用传输式谐振腔观测铁磁共振"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-19</div><div class="info-item-2">【实验】用传输式谐振腔观测铁磁共振</div></div><div class="info-2"><div class="info-item-1">摘要： 当铁磁材料处于外磁场时，特定频率的电磁波被材料共振吸收的现象称为铁磁共振(FMR)。铁磁共振具有磁共振的一般特性，被广泛应用于光谱技术、高频电子设备等领域。本实验使用反射式速调管作为微波信号源，观测了速调管的振荡模和传输式谐振腔的谐振曲线，得到了谐振腔的有载品质因数。在传输式谐振腔中，逐点测绘多晶铁氧体样品对微波的吸收曲线，观测到了铁磁共振效应。通过测量共振磁场和共振线宽，计算出了样品的g因子和弛豫时间。 关键词：铁磁共振，传输式谐振腔 获取实验报告的pdf文件(仅供参考) 引言 谐振腔是常用的微波元件之一[1]，在微波技术中一般用作谐振腔波长计[2]、微波电子管[3-4]的组成部分或测量腔等。微波磁共振是微波与物质相互作用所发生的物理现象，磁共振方法已被广泛用来研究物质的特性、结构和弛豫过程。铁磁共振具有磁共振的一般特性，而且效应显著，用简单装置就可以进行观测。...</div></div></div></a><a class="pagination-related" href="/2025/01/18/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E5%88%A9%E7%94%A8CV%E6%B3%95%E6%B5%8B%E9%87%8F%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%9A%84%E6%9D%82%E8%B4%A8%E5%88%86%E5%B8%83/" title="【实验】利用CV法测量半导体的杂质分布"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-18</div><div class="info-item-2">【实验】利用CV法测量半导体的杂质分布</div></div><div class="info-2"><div class="info-item-1">摘要： 在半导体工业中，影响元件性能最重要的因素之一是掺杂浓度，因此精准地检测杂质浓度是评估元件好坏的重要环节[1]。本文章基于单边突变结的耗尽层中无自由电子的假设，模型化的计算了空间电荷区和偏压的定量关系，并将该势垒看作一个间距可变的电容。实验中通过串联标准电容并加交流电压的方法，间接测量P-N结势垒电容。通过改变直流偏置电压，得到杂质掺杂率随着交界距离的变化关系。 关键词：势垒电容，电容电压法，锁相放大，杂质测量，倍频测量 获取实验报告的pdf文件(仅供参考) 引言 1904年，Joseph Thomson在对锗和硅进行性质研究时发现这种材料并不同于一般的导体和绝缘体，这些材料有更加独特的电学性质，他将这种导电性介于导体和绝缘体之间的材料称为半导体[2]。1947年，John Bardeen，Walter Bratton和William...</div></div></div></a><a class="pagination-related" href="/2025/01/16/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E7%A3%81%E5%85%89Kerr%E6%95%88%E5%BA%94/" title="【实验】磁光Kerr效应"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-16</div><div class="info-item-2">【实验】磁光Kerr效应</div></div><div class="info-2"><div class="info-item-1">摘要： 平面偏振光在光洁磁极表面发生反射时，偏振面会出现微小偏转，这个现象被称为磁光克尔效应。磁光克尔效应反映了物质磁化状态对其光学性质的影响，属于磁光效应。克尔效应具有灵敏度高，转角精密的特点，所以近年来被用于超薄磁性膜[1]，磁化动态过程[2]和自旋霍尔效应[3]的研究。本实验使用具有垂直磁各向异性的PtCo合金薄膜，利用光弹调制器使反射光强周期性变化，从而将微小的复克尔转角测量转化为光强测量。实验通过测量输出光强的直流、一次谐波和二次谐波信号，间接得到复克尔转角，并进一步利用复克尔转角测量PtCo合金薄膜的磁滞回线，进而得到样品的矫顽力和对应波长下的饱和克尔转角。实验对比不同起偏器角度下的克尔磁滞回线，分析起偏器角度误差对测量结果的影响。 关键词：磁光克尔效应(MOKE)、磁滞回线、光弹调制器 获取实验报告的pdf文件(仅供参考) 引言 磁光克尔效应（Magneto-Optical Kerr Effect, MOKE）是指当偏振的光照射在磁性材料的表面时，反射光的偏振方向发生旋转或改变的一种光学现象。这种效应于19世纪末由英国物理学家John...</div></div></div></a><a class="pagination-related" href="/2025/01/20/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E7%A1%85%E7%9A%84%E9%9C%8D%E5%B0%94%E7%B3%BB%E6%95%B0%E5%8F%8A%E7%94%B5%E9%98%BB%E7%8E%87%E7%9A%84%E6%B5%8B%E9%87%8F/" title="【实验】硅的霍尔系数及电阻率的测量"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-20</div><div class="info-item-2">【实验】硅的霍尔系数及电阻率的测量</div></div><div class="info-2"><div class="info-item-1">摘要： 测定半导体的电阻率和霍尔系数，可以获知其基本电磁特性，这有助于我们了解其导电机制以及验证固体物理的结论。本实验将这一办法应用到了型硅半导体的研究中，通过测定硅片样品的电阻率和霍尔系数，验证其的导电特性。具体而言，本实验利用四线范德堡法测量了从室温至约150°C范围内p型硅的电阻率和霍尔系数，获得并分析了该温度范围内电阻率和霍尔系数随温度的变化关系，并按照变化趋势的不同将p型硅半导体的导电特性划分出了几个明显区间，验证了固体物理对掺杂半导体的导电机制的预测，并进一步给出了所用硅片样品的带隙宽度E_g∼1.211eV 关键词：半导体，p型硅，能带理论，电阻率，霍尔效应 获取实验报告的pdf文件(仅供参考) 引言 半导体有别于导体和绝缘体，是一种导电性能随外界条件（如电磁场、温度等）变化强烈的电学材料。早在19世纪初，意大利物理学家Guglielmo...</div></div></div></a><a class="pagination-related" href="/2025/01/19/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E7%BA%A6%E7%91%9F%E5%A4%AB%E6%A3%AE%E6%95%88%E5%BA%94/" title="【实验】约瑟夫森效应"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-19</div><div class="info-item-2">【实验】约瑟夫森效应</div></div><div class="info-2"><div class="info-item-1">摘要： 当两块超导体之间具有弱连接时，库伯对在两超导体间量子隧穿，产生隧穿电流的现象称为约瑟夫森效应。约瑟夫森效应是宏观量子现象的生动体现，目前在灵敏探测、电压基准及量子电路等领域有着广泛应用。本实验使用高温超导YBa2Cu3O7−x，将不同晶向的两块超导材料用超导薄膜粘接，实现弱连接，从而构成双晶约瑟夫森结。实验通过测量双晶约瑟夫森结在液氮温度（77K）下，无微波辐照和有微波辐照两种情况下的伏安特性曲线，观察到了直流和交流约瑟夫森效应。实验对比了双晶约瑟夫森结和同尺寸不含双晶结的超导材料，在超导转变特性、伏安特性上的差异，验证了约瑟夫森效应的存在。通过微波辐照下出现的微波感应台阶，计算出的微波频率理论值与实际值温吻合，进一步验证了约瑟夫森效应理论的正确性。 关键词：约瑟夫森效应，超导 获取实验报告的pdf文件(仅供参考) 引言...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Xisense WYX</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xisenal"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="weixin://contacts/profile/xisense_wyx" target="_blank" title="微信"><i class="fab fa-weixin" style="color: # 1AAD19;"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2076114280&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #FF6347;"></i></a><a class="social-icon" href="mailto:xisense_wyx@stu.pku.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://x.com/Xisense_WYX" target="_blank" title="X"><i class="fab fa-x-twitter" style="color: #BEBEBE;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">实验原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">闪烁谱仪的基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%94%B5%E6%95%88%E5%BA%94"><span class="toc-number">2.1.1.</span> <span class="toc-text">光电效应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%B7%E6%99%AE%E9%A1%BF%E6%95%A3%E5%B0%84"><span class="toc-number">2.1.2.</span> <span class="toc-text">康普顿散射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E5%AF%B9%E6%95%88%E5%BA%94"><span class="toc-number">2.1.3.</span> <span class="toc-text">电子对效应</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AA%E7%83%81%E6%8E%A2%E6%B5%8B%E5%99%A8%E5%AF%B9-137-Cs%E5%8D%95%E8%83%BD-gamma%E5%B0%84%E7%BA%BF%E7%9A%84%E5%93%8D%E5%BA%94"><span class="toc-number">2.2.</span> <span class="toc-text">闪烁探测器对\(^{137}\)Cs单能\(\gamma\)射线的响应</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BB%AA%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">实验仪器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.</span> <span class="toc-text">实验步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%A8%E8%AE%BA"><span class="toc-number">5.</span> <span class="toc-text">数据分析与讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%8D%95%E9%81%93%E5%88%86%E6%9E%90%E5%99%A8%E7%BB%98%E5%88%B6-137-Cs%E7%9A%84-gamma%E8%83%BD%E8%B0%B1"><span class="toc-number">5.1.</span> <span class="toc-text">利用单道分析器绘制\(^{137}\)Cs的\(\gamma\)能谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AA%E7%83%81%E4%BD%93%E8%B0%B1%E4%BB%AA%E7%9A%84%E8%83%BD%E9%87%8F%E7%BA%BF%E6%80%A7%E5%85%B3%E7%B3%BB%E6%A3%80%E9%AA%8C"><span class="toc-number">5.2.</span> <span class="toc-text">闪烁体谱仪的能量线性关系检验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%81%93%E5%88%86%E6%9E%90%E5%99%A8%E7%BB%98%E5%88%B6-137-Cs%E5%92%8C-60-Co%E8%83%BD%E8%B0%B1"><span class="toc-number">5.3.</span> <span class="toc-text">多道分析器绘制\(^{137}\)Cs和\(^{60}\)Co能谱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E6%95%A3%E5%B0%84%E5%B3%B0%E5%B3%B0%E4%BD%8D%E5%88%86%E6%9E%90"><span class="toc-number">5.3.1.</span> <span class="toc-text">反散射峰峰位分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E6%95%A3%E5%B0%84%E5%B3%B0%E7%9B%B8%E5%AF%B9%E5%B3%B0%E9%AB%98%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">5.3.2.</span> <span class="toc-text">反散射峰相对峰高度分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">6.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95A%EF%BC%9A%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">附录A：思考题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">8.1.</span> <span class="toc-text">实验过程思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">8.2.</span> <span class="toc-text">实验报告思考题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95B%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">9.</span> <span class="toc-text">附录B：数据处理使用的代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</a><time datetime="2026-07-31T06:45:38.000Z" title="发表于 2026-07-31 14:45:38">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/30/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91He-Ne%E6%B0%94%E4%BD%93%E6%BF%80%E5%85%89%E5%99%A8%E6%94%BE%E7%94%B5%E6%9D%A1%E4%BB%B6/" title="【实验】He-Ne气体激光器放电条件"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】He-Ne气体激光器放电条件"/></a><div class="content"><a class="title" href="/2026/07/30/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91He-Ne%E6%B0%94%E4%BD%93%E6%BF%80%E5%85%89%E5%99%A8%E6%94%BE%E7%94%B5%E6%9D%A1%E4%BB%B6/" title="【实验】He-Ne气体激光器放电条件">【实验】He-Ne气体激光器放电条件</a><time datetime="2026-07-29T16:53:28.000Z" title="发表于 2026-07-30 00:53:28">2026-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/25/Floquet%E5%B7%A5%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%9C%A8%E8%83%BD%E5%B8%A6%E6%8B%93%E6%89%91%E6%80%A7%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8/" title="Floquet工程及其在能带拓扑性上的应用"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Floquet工程及其在能带拓扑性上的应用"/></a><div class="content"><a class="title" href="/2025/04/25/Floquet%E5%B7%A5%E7%A8%8B%E5%8F%8A%E5%85%B6%E5%9C%A8%E8%83%BD%E5%B8%A6%E6%8B%93%E6%89%91%E6%80%A7%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8/" title="Floquet工程及其在能带拓扑性上的应用">Floquet工程及其在能带拓扑性上的应用</a><time datetime="2025-04-25T04:47:52.000Z" title="发表于 2025-04-25 12:47:52">2025-04-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/18/%E3%80%90Cpp%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%91%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81/" title="【Cpp程序设计】输入输出流"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Cpp程序设计】输入输出流"/></a><div class="content"><a class="title" href="/2025/04/18/%E3%80%90Cpp%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%91%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81/" title="【Cpp程序设计】输入输出流">【Cpp程序设计】输入输出流</a><time datetime="2025-04-18T13:57:18.000Z" title="发表于 2025-04-18 21:57:18">2025-04-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/16/%E3%80%90Cpp%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%91%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B(%E4%BA%94)/" title="【Cpp程序设计】面向对象的编程(五)"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Cpp程序设计】面向对象的编程(五)"/></a><div class="content"><a class="title" href="/2025/04/16/%E3%80%90Cpp%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%91%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B(%E4%BA%94)/" title="【Cpp程序设计】面向对象的编程(五)">【Cpp程序设计】面向对象的编程(五)</a><time datetime="2025-04-16T06:24:55.000Z" title="发表于 2025-04-16 14:24:55">2025-04-16</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Xisense WYX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://www.yuanshen.com/" target="_blank" title="我真好好学习吗？">好好学习,天天向上</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script defer data-pjax src="/js/cursor.js"></script><script defer data-pjax src="/js/title.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
