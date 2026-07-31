@@ -1,0 +1,644 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【实验】扫描电子显微镜 | 西瓜の驿站</title><meta name="author" content="Xisense WYX"><meta name="copyright" content="Xisense WYX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要： 本实验利用KYKY-EM3200型扫描电子显微镜对样品表面形貌进行了观察，并研究了聚光镜电流对SEM成像质量的影响。实验中在固定加速电压\(30\,\mathrm{kV}\)条件下，改变聚光镜电流并分别在不同放大倍率下获取样品表面图像。通过对比不同实验参数下的成像结果，分析了聚光镜电流对图像衬度、分辨率以及信噪比的影响规律。为了更加定量地评价图像质量，实验进一步利用Python对SEM图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【实验】扫描电子显微镜">
+<meta property="og:url" content="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/index.html">
+<meta property="og:site_name" content="西瓜の驿站">
+<meta property="og:description" content="摘要： 本实验利用KYKY-EM3200型扫描电子显微镜对样品表面形貌进行了观察，并研究了聚光镜电流对SEM成像质量的影响。实验中在固定加速电压\(30\,\mathrm{kV}\)条件下，改变聚光镜电流并分别在不同放大倍率下获取样品表面图像。通过对比不同实验参数下的成像结果，分析了聚光镜电流对图像衬度、分辨率以及信噪比的影响规律。为了更加定量地评价图像质量，实验进一步利用Python对SEM图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xisenal.github.io/img/cover_default.jpg">
+<meta property="article:published_time" content="2026-07-31T10:33:13.000Z">
+<meta property="article:modified_time" content="2026-07-31T10:41:19.494Z">
+<meta property="article:author" content="Xisense WYX">
+<meta property="article:tag" content="实验">
+<meta property="article:tag" content="近代物理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xisenal.github.io/img/cover_default.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【实验】扫描电子显微镜",
+  "url": "https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/",
+  "image": "https://xisenal.github.io/img/cover_default.jpg",
+  "datePublished": "2026-07-31T10:33:13.000Z",
+  "dateModified": "2026-07-31T10:41:19.494Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Xisense WYX",
+      "url": "https://xisenal.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/watermelon.png"><link rel="canonical" href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【实验】扫描电子显微镜',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?1"><link rel="stylesheet" href="/css/cat.css?1"><link rel="stylesheet" href="/css/wave.css?1"><link rel="stylesheet" href="/css/cursor.css?1"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover_default.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/watermelon.png" alt="Logo"><span class="site-name">西瓜の驿站</span></a><a class="nav-page-title" href="/"><span class="site-name">【实验】扫描电子显微镜</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【实验】扫描电子显微镜</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-31T10:33:13.000Z" title="发表于 2026-07-31 18:33:13">2026-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-31T10:41:19.494Z" title="更新于 2026-07-31 18:41:19">2026-07-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C/">近代物理实验</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">9.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>30分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p><strong>摘要：</strong> 本实验利用KYKY-EM3200型扫描电子显微镜对样品表面形貌进行了观察，并研究了聚光镜电流对SEM成像质量的影响。实验中在固定加速电压\(30\,\mathrm{kV}\)条件下，改变聚光镜电流并分别在不同放大倍率下获取样品表面图像。通过对比不同实验参数下的成像结果，分析了聚光镜电流对图像衬度、分辨率以及信噪比的影响规律。为了更加定量地评价图像质量，实验进一步利用Python对SEM图像进行了数字图像处理，采用全局灰度衬度、基于Sobel算子的边缘衬度、Laplacian方差清晰度以及基于Gaussian高通残差的信噪比等指标，对不同聚光镜电流条件下的图像质量进行了分析。结果表明，较大的聚光镜电流能够增强电子束会聚能力，提高图像边缘分辨率，但同时也会导致高频噪声增强，从而降低图像信噪比。综合实验结果可以看出，SEM成像质量实际上是在图像分辨率与噪声之间的折中，在本实验条件下聚光镜电流取\(I=500\sim600\)时能够获得较优的综合成像效果。本实验进一步说明了数字图像处理方法在现代实验分析中的重要作用。</p>
+</blockquote>
+<p><strong>关键词：</strong> 扫描电子显微镜，聚光镜电流，图像衬度，图像分辨率，信噪比，数字图像处理</p>
+<p><a href='/pdf/扫描电子显微镜__近物实验6__发布版.pdf' target='_blank' title='扫描电子显微镜'>获取实验报告的PDF文件（仅供参考）</a></p>
+<h1 id="引言"><a class="headerlink" href="#引言"></a>引言</h1>
+<p>\(\qquad\) 扫描电子显微镜（scanning electron microscope，SEM）是一种利用聚焦电子束扫描样品表面，并通过探测电子束与样品相互作用所产生信号来获得材料表面形貌与成分信息的重要微观表征技术。由于电子的德布罗意波长远小于可见光波长，电子显微技术能够突破传统光学显微镜的衍射极限，实现纳米尺度甚至原子尺度的高分辨成像，因此在材料科学、凝聚态物理、半导体器件、生物医学以及纳米技术等领域具有重要应用价值<sup>[1,2]</sup>。</p>
+<p>\(\qquad\) 电子显微技术的发展始于二十世纪初电子波动性的提出。1924年，德布罗意提出物质波理论后，人们逐渐认识到电子束可以像光束一样进行聚焦与成像。1931年，Knoll与Ruska首次研制出透射电子显微镜（TEM），标志着电子显微学的诞生<sup>[3]</sup>。随后，电子光学理论不断完善，电磁透镜技术与高真空技术快速发展，使电子显微镜的分辨率不断提高。与透射电子显微镜不同，扫描电子显微镜主要通过细聚焦电子束逐点扫描样品表面，并收集二次电子、背散射电子以及特征X射线等信号实现成像，因此更加适用于材料表面形貌与微区结构分析<sup>[4]</sup>。</p>
+<p>\(\qquad\) 现代扫描电子显微镜通常由电子枪、电磁透镜系统、扫描系统、样品室以及信号探测系统组成<sup>[5]</sup>。电子枪发射出的电子在高压电场加速后，经聚光镜和物镜聚焦形成纳米尺度电子束，并在扫描线圈作用下对样品表面进行光栅式扫描。当高能电子束入射到样品表面时，会与样品中的原子发生复杂相互作用，产生二次电子、背散射电子、俄歇电子以及特征X射线等多种信号。其中，二次电子由于主要来源于样品表面数纳米范围内，因此具有较高的表面敏感性，通常用于观察材料表面的微观形貌；而背散射电子则与样品原子序数密切相关，可用于成分衬度分析<sup>[1,2]</sup>。</p>
+<p>\(\qquad\) 相较于传统光学显微镜，SEM具有景深大、分辨率高、放大倍数范围宽以及样品制备相对简单等优点<sup>[6]</sup>。此外，随着场发射电子枪、低加速电压技术以及能谱联用技术的发展，现代SEM已不仅能够进行高分辨形貌观察，还能够结合能量色散X射线谱（EDS）实现元素分析与微区成分测量，因此已经成为现代材料研究与工业检测中的重要实验工具。</p>
+<p>\(\qquad\) 本实验通过对扫描电子显微镜结构与工作原理的学习，掌握扫描电子显微镜的基本操作方法，并观察不同实验参数条件下SEM图像质量的变化规律。通过分析加速电压、工作距离、聚光镜电流等参数对图像分辨率和景深的影响，可以进一步理解电子束与物质相互作用的物理机制以及扫描电子显微镜成像的基本特点。</p>
+<h1 id="实验原理"><a class="headerlink" href="#实验原理"></a>实验原理</h1>
+<h2 id="电子光学基础"><a class="headerlink" href="#电子光学基础"></a>电子光学基础</h2>
+<p>\(\qquad\) 扫描电子显微镜的理论基础来源于电子光学。电子光学利用电子在电磁场中的运动规律与光线在光学介质中传播规律之间的相似性，将电子束视作类似于光束的传播对象，并利用静电场和磁场实现电子束的聚焦、偏转与成像<sup>[2,5]</sup>。</p>
+<p>\(\qquad\) 1924年，德布罗意提出物质波理论，认为电子等实物粒子同样具有波粒二象性，其德布罗意波长满足</p>
+<p>\[
+\lambda=\frac{h}{p}
+\]</p>
+<p>\(\qquad\) 其中\(h\)为普朗克常数，\(p\)为粒子动量。对于经过加速电压\(U\)加速的电子，在非相对论近似下有</p>
+<p>\[
+p=\sqrt{2meU}
+\]</p>
+<p>\(\qquad\) 因此电子波长可表示为</p>
+<p>\[
+\lambda\approx\sqrt{\frac{150}{U}}\,\mathrm{\mathring{A}}
+\]</p>
+<p>\(\qquad\) 由此可见，在几十千伏加速电压条件下，电子束波长远小于可见光波长，因此电子显微镜能够突破光学显微镜的衍射极限，实现纳米尺度的高分辨成像<sup>[3,7]</sup>。</p>
+<p>\(\qquad\) 在电子光学中，应用于电子束聚焦与成像的电磁场通常具有旋转对称性。在柱坐标系\((r,\theta,z)\)下，静电势满足拉普拉斯方程</p>
+<p>\[
+\frac{\partial^2\phi}{\partial z^2}
++\frac{1}{r}\frac{\partial}{\partial r}
+\left(
+r\frac{\partial\phi}{\partial r}
+\right)=0
+\]</p>
+<p>\(\qquad\) 利用电子在电磁场中的最小作用量原理</p>
+<p>\[
+\delta\int p_s\,\mathrm{d}s=0
+\]</p>
+<p>\(\qquad\) 可建立电子束轨迹与几何光学之间的对应关系，从而形成电子光学理论基础<sup>[5]</sup>。</p>
+<h2 id="扫描电子显微镜成像原理"><a class="headerlink" href="#扫描电子显微镜成像原理"></a>扫描电子显微镜成像原理</h2>
+<p>\(\qquad\) 如图1所示，扫描电子显微镜主要由电子枪、电子光学系统、扫描系统、样品室以及信号探测系统组成<sup>[1]</sup>。电子枪发射出的电子在高压电场作用下被加速，经聚光镜和物镜聚焦后形成细电子束，并在扫描线圈作用下对样品表面进行逐点扫描。</p>
+<p><img src="https://pic.imgdd.cc/i/033yyeKGbYcylYB6v9ALGw.png" alt="图1：SEM的结构及原理示意图"></p>
+<center>图1：SEM的结构及原理示意图</center>
+<p>\(\qquad\) 当高能电子束入射样品表面时，会与样品中的原子发生复杂相互作用，产生多种信号，包括二次电子（secondary electron，SE）、背散射电子（backscattered electron，BSE）、特征X射线以及俄歇电子等<sup>[4]</sup>。其中，二次电子主要来源于样品表面数纳米范围内，因此具有较高的表面敏感性，通常用于样品表面形貌成像。</p>
+<p>\(\qquad\) SEM的成像方式属于逐点扫描成像。电子束扫描到样品某一点时，该点产生的二次电子被探测器收集，并转换为对应像素点的亮度信号。当电子束完成整片区域扫描后，即可形成样品表面的二维图像。</p>
+<p>\(\qquad\) 二次电子像的衬度主要来源于样品表面的形貌差异。当电子束以固定方向入射时，样品表面的倾斜角不同，将导致二次电子产率不同。一般而言，表面倾角越大，逸出的二次电子越容易被探测器收集，因此图像亮度更高。此外，表面凸起结构还会遮挡部分区域的二次电子，形成“阴影衬度”，从而进一步增强样品表面的立体感<sup>[2]</sup>。</p>
+<h2 id="聚光镜电流对成像的影响"><a class="headerlink" href="#聚光镜电流对成像的影响"></a>聚光镜电流对成像的影响</h2>
+<p>\(\qquad\) 聚光镜是扫描电子显微镜电子光学系统中的重要组成部分，其作用类似于光学显微镜中的聚焦透镜。通过调节聚光镜电流，可以改变电磁透镜的磁场强度，从而改变电子束的会聚能力<sup>[1,2]</sup>。</p>
+<p><img src="https://pic.imgdd.cc/i/033yyeKV7vTA8sLeYGwKhS.png" alt="图2：聚光镜电流对成像质量的影响"></p>
+<center>图2：聚光镜电流对成像质量的影响</center>
+<p>\(\qquad\) 当聚光镜电流较小时，电子束会聚能力较弱，最终形成的电子探针尺寸较大，因此图像分辨率较低；随着聚光镜电流增大，电子束逐渐被压缩为更细的束斑，电子探针尺寸减小，从而能够获得更高的空间分辨率。</p>
+<p>\(\qquad\) 然而，聚光镜电流并非越大越好。当电子束过于纤细时，束流会减弱，同时电子束发散效应以及系统噪声会逐渐增强，导致图像中出现明显噪点，使图像信噪比下降。此外，过大的聚光镜电流还可能导致景深减小以及样品局部区域亮度不均匀等问题。因此，在实际实验中需要综合考虑图像分辨率、景深以及噪声之间的平衡，选择适当的聚光镜电流参数，以获得最佳成像效果<sup>[1]</sup>。</p>
+<h1 id="实验装置"><a class="headerlink" href="#实验装置"></a>实验装置</h1>
+<p>\(\qquad\) 本实验使用的扫描电子显微镜型号为KYKY-EM3200，其主要由电子枪、电子光学系统、扫描系统、样品室、真空系统以及信号探测与显示系统组成<sup>[5]</sup>。</p>
+<p>\(\qquad\) 电子枪位于镜筒顶部，其阴极灯丝在加热后发射电子，在高压电场作用下电子被加速形成高能电子束。本实验中电子束的加速电压最高可达\(30\,\mathrm{kV}\)。电子束经过聚光镜和物镜等电磁透镜后被进一步压缩聚焦，在样品表面形成尺寸很小的电子探针，从而提高系统的空间分辨率。</p>
+<p>\(\qquad\) 在末级透镜附近安装有扫描线圈，用于控制电子束在样品表面进行逐点扫描。扫描方式采用光栅扫描模式，即电子束按照从左到右、从上到下的顺序依次扫描样品表面。当电子束入射到样品后，会与样品中的原子发生相互作用，产生二次电子、背散射电子以及特征X射线等多种信号。其中，本实验主要利用二次电子信号进行表面形貌成像。</p>
+<p>\(\qquad\) 样品室内部安装有二次电子探测器。样品产生的二次电子在探测器栅极正电场的吸引下进入闪烁体，并通过光导系统与光电倍增管转换为电信号，随后经过视频放大器放大，最终在计算机显示系统中形成样品的扫描电子显微图像。</p>
+<p>\(\qquad\) 为了减少电子束在空气中的散射并保护电子枪正常工作，SEM必须工作在高真空环境下。本实验采用机械泵与分子泵联合抽真空的方式获得工作真空。实验过程中，当系统真空度达到工作要求后，方可开启高压并进行样品观察。</p>
+<p>\(\qquad\) 实验中主要可调参数包括加速电压、聚光镜电流、工作距离、物镜电流、亮度以及对比度等。其中，聚光镜电流直接影响电子束的会聚能力，从而影响电子探针尺寸与图像分辨率，因此本实验重点研究聚光镜电流变化对SEM成像质量的影响。</p>
+<h1 id="结果与分析"><a class="headerlink" href="#结果与分析"></a>结果与分析</h1>
+<p>\(\qquad\) 根据实验手册完成样品室抽真空和扫描电镜开机，并预调相关系数后，调节电子束准直、焦距和像散等参数，使样品的像清晰。本实验在固定加速电压\(30\,\mathrm{kV}\)的条件下，改变聚光镜电流\(I=400,450,500,550,600,650\)，分别在低倍率\(\times1.5\mathrm{k}\)和高倍率\(\times11\mathrm{k}\)下观察样品表面形貌。实验结果如图3所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033yyfKVM6Hy7tv4kE7kT9.png" alt="图3：不同聚光镜电流下的SEM成像结果"></p>
+<center>图3：不同聚光镜电流下的SEM成像结果</center>
+<p>\(\qquad\) 下面将围绕衬度、分辨率和信噪比三个方面，分析聚光镜电流对成像质量的影响。</p>
+<h2 id="图像衬度"><a class="headerlink" href="#图像衬度"></a>图像衬度</h2>
+<p>\(\qquad\) 为了更加定量地分析聚光镜电流对成像质量的影响，实验中进一步利用Python对SEM图像进行了数字图像处理。处理过程中，首先将原始图像转换为灰度图像，并裁剪掉图像中的标尺、文字以及仪器参数区域，仅保留实际成像部分用于后续分析。</p>
+<p>\(\qquad\) 最初采用全局灰度衬度（global contrast）作为图像衬度的评价指标，其定义为图像灰度标准差与平均灰度之比，即</p>
+<p>\[
+C=\frac{\sigma_I}{\bar I}
+\]</p>
+<p>\(\qquad\) 其中\(\bar I\)为图像平均灰度，\(\sigma_I\)为灰度标准差。该指标能够描述整幅图像灰度分布的整体起伏程度。不同聚光镜电流下得到的全局衬度结果如图4(a)所示。</p>
+<p>\(\qquad\) 然而，从结果可以发现，全局衬度在较低聚光镜电流\(I=400\)时反而达到最大值，这与直接观察图像时得到的“低电流下图像较模糊”的现象并不一致。进一步分析认为，这是由于不同SEM图像对应的样品区域并不完全相同，不同区域中颗粒分布、亮暗结构以及整体灰度背景存在差异，因此全局灰度标准差不仅反映图像边缘信息，同时还混合了样品本身的大尺度形貌变化与亮度分布差异。对于SEM图像而言，直接利用全局灰度衬度比较不同图像的成像质量并不完全合理。</p>
+<p>\(\qquad\) 因此，为了更加准确地衡量样品边缘的清晰程度，进一步采用基于Sobel算子的边缘衬度（edge contrast）作为新的评价指标。Sobel算子通过计算图像灰度在空间中的一阶梯度来提取边缘信息，其梯度幅值定义为</p>
+<p>\[
+G=\sqrt{G_x^2+G_y^2}
+\]</p>
+<p>\(\qquad\) 其中\(G_x\)与\(G_y\)分别表示图像在\(x\)与\(y\)方向上的灰度梯度。实验中利用Sobel算子对灰度图像进行边缘检测，并取整幅图像梯度幅值的平均值作为边缘衬度指标：</p>
+<p>\[
+C_{\mathrm{edge}}=\langle G\rangle
+\]</p>
+<p>\(\qquad\) 该指标本质上反映图像灰度在局部区域内变化的剧烈程度，因此能够更加直接地描述颗粒边界是否清晰以及图像细节是否丰富。不同聚光镜电流对应的边缘衬度结果如图4(b)所示。相比于全局衬度，边缘衬度与实际观察到的图像清晰程度更加一致。</p>
+<p>\(\qquad\) 随着聚光镜电流增大，电子束会聚能力逐渐增强，电子探针尺寸减小，图像中的颗粒边缘逐渐清晰，因此边缘衬度整体呈增加趋势。当聚光镜电流达到\(I=650\)时，边缘衬度达到最大值，此时图像中大量高频细节被增强，但同时也可以观察到明显的高频噪声。这说明较大的聚光镜电流虽然能够提高图像边缘分辨能力，但同时会增强系统噪声，因此成像质量并非随聚光镜电流单调提高，而是在分辨率与信噪比之间存在一定的权衡关系。</p>
+<p><img src="https://pic.imgdd.cc/i/033yyeGVKfsWPshqq4ugpm.png" alt="图4：不同聚光镜电流下的图像衬度分析结果"></p>
+<center>图4：不同聚光镜电流下的全局灰度衬度与边缘衬度分析结果</center>
+<p>\(\qquad\) 需要指出的是，衬度这一图像质量指标对于样品位置、图像亮度和对比度等因素的依赖度较高，值得通过更进一步的定量实验考查其依赖关系。由于本次实验没有将这些数据全部记录下来，因此对于衬度的讨论只能止步于此。</p>
+<h2 id="图像分辨率"><a class="headerlink" href="#图像分辨率"></a>图像分辨率</h2>
+<p>\(\qquad\) 除了衬度之外，图像分辨率也是评价SEM成像质量的重要指标。对于扫描电子显微镜而言，分辨率本质上反映系统区分样品微小结构细节的能力。当聚光镜电流增大时，电子束的会聚能力增强，电子探针尺寸减小，因此理论上能够获得更高的空间分辨率。然而，较大的聚光镜电流同时也可能带来更强的高频噪声，因此需要进一步进行定量分析。</p>
+<p>\(\qquad\) 实验中采用Python对不同聚光镜电流下获得的高倍率（\(\times11\mathrm{k}\)）SEM图像进行了清晰度分析。处理过程中，首先将图像转换为灰度图像，并裁剪掉底部包含标尺、仪器参数以及文字标注的区域，仅保留实际SEM成像区域参与运算。随后利用Laplacian算子对图像进行二阶微分处理。Laplacian算子能够突出图像中的高频信息与边缘结构，其定义为</p>
+<p>\[
+\nabla^2I=
+\frac{\partial^2I}{\partial x^2}
++\frac{\partial^2I}{\partial y^2}
+\]</p>
+<p>\(\qquad\) 其中\(I(x,y)\)表示图像灰度分布。由于清晰图像通常具有更加明显的边缘与更丰富的高频细节，因此实验中采用Laplacian结果的方差作为图像清晰度指标：</p>
+<p>\[
+S=\mathrm{Var}(\nabla^2I)
+\]</p>
+<p>\(\qquad\) 该指标越大，说明图像中的边缘变化越剧烈，高频细节越丰富，因此对应更高的图像分辨率。</p>
+<p>\(\qquad\) 图5(a)给出了Laplacian算子作用后的典型中间处理结果。可以看到，经过二阶微分后，图像中的高频结构与边缘区域被显著增强，而较平滑区域则被抑制，因此该方法能够较好地提取样品颗粒边缘信息。</p>
+<p>\(\qquad\) 不同聚光镜电流下得到的图像清晰度分析结果如图5(b)所示。从结果可以看出，在较低聚光镜电流条件下，图像清晰度较低。当聚光镜电流由\(I=450\)增大至\(I=550\sim600\)时，Laplacian方差明显增加，说明图像中的颗粒边缘逐渐清晰，样品细节更加丰富。这与直接观察SEM图像得到的结果一致，表明较大的聚光镜电流能够增强电子束的会聚能力，从而提高空间分辨率。</p>
+<p>\(\qquad\) 当聚光镜电流进一步增大至\(I=650\)时，图像清晰度指标出现大幅提高。然而，结合原始SEM图像可以发现，此时图像中已经出现较明显的高频噪声。由于Laplacian算子对于高频分量非常敏感，因此随机噪声也有可能导致方差快速增大。所以，还需要进一步对信噪比进行分析。</p>
+<p><img src="https://pic.imgdd.cc/i/033yyeJo2S0zdXnY43PUGL.png" alt="图5：不同聚光镜电流下的图像清晰度分析结果"></p>
+<center>图5：Laplacian算子处理结果与不同聚光镜电流下的图像清晰度</center>
+<h2 id="图像信噪比"><a class="headerlink" href="#图像信噪比"></a>图像信噪比</h2>
+<p>\(\qquad\) 除了衬度与分辨率之外，信噪比（signal-to-noise ratio，SNR）同样是评价SEM成像质量的重要指标。对于扫描电子显微镜而言，较高的信噪比意味着图像中的有效形貌信息相对于随机噪声更加明显，从而能够更加准确地观察样品表面结构。</p>
+<p>\(\qquad\) 实验中采用Python对不同聚光镜电流下的高倍率（\(\times11\mathrm{k}\)）SEM图像进行了信噪比分析。处理过程中，首先将原始图像转换为灰度图像，并裁剪掉底部包含标尺与仪器参数的区域。随后利用Gaussian滤波对图像进行平滑处理，以估计图像中的低频背景：</p>
+<p>\[
+I_{\mathrm{smooth}}=G_\sigma*I
+\]</p>
+<p>\(\qquad\) 其中\(G_\sigma\)表示Gaussian核函数，本实验中取\(\sigma=3\)。平滑后的图像主要保留样品的大尺度结构，而高频部分则主要对应噪声与局部细节。</p>
+<p>\(\qquad\) 进一步利用原始图像与平滑图像之差构造高通残差：</p>
+<p>\[
+I_{\mathrm{noise}}=I-I_{\mathrm{smooth}}
+\]</p>
+<p>\(\qquad\) 该高通残差中主要包含随机噪声以及局部高频结构。为了尽可能避免样品真实边缘结构对噪声估计的影响，实验中进一步利用Sobel梯度对图像进行边缘检测，并选取梯度较低的区域作为“平坦区域（flat region）”，仅利用这些区域估计噪声强度。图6(a)(b)给出了Gaussian平滑背景以及平坦区域掩膜的中间处理结果，其中红色区域对应低梯度区域。</p>
+<p>\(\qquad\) 噪声强度定义为高通残差在平坦区域中的标准差：</p>
+<p>\[
+\sigma_{\mathrm{noise}}=\sqrt{\left\langle\left(I_{\mathrm{noise}}-\langle I_{\mathrm{noise}}\rangle\right)^2\right\rangle}
+\]</p>
+<p>\(\qquad\) 进一步定义图像信噪比为</p>
+<p>\[
+\mathrm{SNR}=\frac{\bar I}{\sigma_{\mathrm{noise}}}
+\]</p>
+<p>\(\qquad\) 其中\(\bar I\)为图像平均灰度。该定义反映了有效图像信号相对于随机噪声的强弱关系。</p>
+<p>\(\qquad\) 不同聚光镜电流下得到的信噪比分析结果如图6(c)所示。从结果可以看出，信噪比在\(I=450\)时达到最大值，随后随着聚光镜电流继续增大而逐渐下降。当聚光镜电流较大时，电子束会聚增强，虽然能够提高图像分辨率，但同时也会导致图像中的高频噪声增强，因此整体信噪比下降。</p>
+<p>\(\qquad\) 特别是在\(I=650\)时，尽管前述边缘衬度与Laplacian清晰度指标均达到较高数值，但信噪比已经明显降低。这说明此时图像中的大量高频信息实际上来源于随机噪声，而并非真实样品结构。因此，仅依据边缘增强或Laplacian方差并不能完全评价图像质量，必须同时结合信噪比进行分析。</p>
+<p>\(\qquad\) 另一方面，需要指出的是，不同聚光镜电流下的图像调焦状态可能存在一定差异。例如，在\(I=500\)与\(I=550\)时，图像可能尚未达到最佳聚焦状态，因此其清晰度与信噪比结果可能略低于理论最优值。因此，本实验结果更适合用于分析聚光镜电流变化对SEM成像趋势的影响，而并非严格给出系统的最佳工作参数。</p>
+<p>\(\qquad\) 综合衬度、分辨率以及信噪比分析结果可以看出，较大的聚光镜电流能够提高电子束会聚能力并增强边缘分辨率，但同时也会增强高频噪声，从而降低图像信噪比。因此，SEM成像质量实际上是在分辨率与噪声之间的折中。结合实验结果，本实验中较优的聚光镜电流范围约为\(I=500\sim600\)。</p>
+<p><img src="https://pic.imgdd.cc/i/033yyeHwKf1QmPg3e7g5zD.png" alt="图6：不同聚光镜电流下的信噪比分析结果"></p>
+<center>图6：信噪比分析的中间处理结果与不同聚光镜电流下的信噪比</center>
+<h1 id="总结"><a class="headerlink" href="#总结"></a>总结</h1>
+<p>\(\qquad\) 本实验通过对扫描电子显微镜结构与工作原理的学习，掌握了SEM的基本操作方法，包括样品装载、系统抽真空、电子束准直、焦距调节以及像散校正等实验步骤，并成功获得了不同聚光镜电流条件下的样品表面形貌图像。</p>
+<p>\(\qquad\) 实验结果表明，聚光镜电流会显著影响SEM的成像质量。当聚光镜电流较小时，电子束会聚能力较弱，电子探针尺寸较大，因此图像边缘较为模糊，空间分辨率较低；随着聚光镜电流增大，电子束逐渐被压缩为更细的束斑，图像中的颗粒边界逐渐清晰，细节信息更加丰富。然而，当聚光镜电流继续增大时，虽然图像边缘增强明显，但同时也伴随着高频噪声的快速增加，导致图像信噪比下降。因此，SEM成像质量实际上是在分辨率与噪声之间的平衡。</p>
+<p>\(\qquad\) 为了更加定量地分析聚光镜电流对成像质量的影响，本实验进一步利用Python对SEM图像进行了数字图像处理与分析。实验中分别采用全局灰度衬度、基于Sobel算子的边缘衬度、Laplacian方差清晰度以及基于Gaussian高通残差的信噪比等指标，对不同聚光镜电流下的图像质量进行了比较分析。结果表明，相较于简单的全局灰度衬度，边缘衬度、Laplacian方差以及信噪比能够更加有效地反映SEM图像的真实成像质量。</p>
+<p>\(\qquad\) 综合实验结果可以看出，在本实验条件下，聚光镜电流取\(I=500\sim600\)时能够较好地兼顾图像分辨率与信噪比，从而获得较优的SEM成像效果。同时，本实验也说明了数字图像处理方法在现代实验分析中的重要作用，通过程序化定量分析能够更加客观地评价实验结果，并进一步提高实验数据分析的可靠性与可重复性。</p>
+<center><b>参考文献</b></center>
+<p>[1] GOLDSTEIN J, NEWBURY D E, JOY D C, et al. Scanning electron microscopy and X-ray microanalysis[M]. 3rd ed. New York: Springer, 2003.</p>
+<p>[2] REIMER L. Scanning electron microscopy: physics of image formation and microanalysis[M]. 2nd ed. Berlin: Springer, 1998.</p>
+<p>[3] RUSKA E. The development of the electron microscope and of electron microscopy[J]. Reviews of Modern Physics, 1987, 59(3): 627-638. DOI: 10.1103/RevModPhys.59.627.</p>
+<p>[4] EVERHART T E, THORNLEY R F M. Wide-band detector for micro-microampere low-energy electron currents[J]. Journal of Scientific Instruments, 1960, 37(7): 246-248. DOI: 10.1088/0950-7671/37/7/307.</p>
+<p>[5] 吴思诚, 王祖铨. 近代物理实验[M]. 4版. 北京: 高等教育出版社, 2015.</p>
+<p>[6] ZHOU W, WANG Z L, eds. Scanning microscopy for nanotechnology: techniques and applications[M]. New York: Springer, 2006.</p>
+<p>[7] DE BROGLIE L. Recherches sur la théorie des quanta[D]. Paris: University of Paris, 1924.</p>
+<h1 id="附录A：思考题"><a class="headerlink" href="#附录A：思考题"></a>附录A：思考题</h1>
+<ol>
+<li>
+<p><strong>本实验为什么要求水冷？什么情况下轰鸣器会响？</strong></p>
+<p>扫描电子显微镜在工作过程中需要使用扩散泵维持高真空环境，同时电子枪灯丝和部分电子学系统在工作时也会产生较大的热量，因此必须采用循环水冷系统进行散热。如果冷却不足，扩散泵油温过高，不仅会降低抽真空效率，还可能导致扩散泵损坏甚至出现返油现象，从而污染镜筒真空系统并影响电子束稳定性。</p>
+<p>实验过程中，当循环冷却水流量不足、冷却系统故障或者扩散泵温度过高时，系统保护电路会触发报警，此时仪器轰鸣器会发出警报声，以提醒操作者及时关闭高压或停止实验。此外，当真空系统异常、高压系统工作不稳定等情况下，仪器也可能触发报警保护。</p>
+</li>
+<li>
+<p><strong>样品放置位置与图像方位有什么关系？</strong></p>
+<p>SEM图像中的方向与样品在样品台中的实际摆放方向直接相关。由于扫描电子束是在样品表面按照固定方向进行光栅扫描，因此当样品发生旋转时，最终获得的图像也会对应发生旋转。此外，样品台的倾斜会改变样品表面相对于电子束和探测器的位置关系，从而影响二次电子的收集效率以及图像衬度。</p>
+<p>对于具有明显方向性的样品，例如晶体台阶、裂纹或者纤维结构，样品放置方向会直接影响图像中结构的观察效果。适当调整样品方向能够增强边缘衬度，提高某些微观结构的可辨识度。</p>
+</li>
+<li>
+<p><strong>如何选择高压档？</strong></p>
+<p>SEM的加速电压会直接影响电子束能量、电子束穿透深度以及样品信号强度。一般而言，较高的加速电压能够提高电子束亮度与束流稳定性，同时减小电子束衍射效应，因此有利于提高空间分辨率；但与此同时，电子束在样品中的穿透深度也会增大，从而降低表面敏感性，并可能对绝缘样品或生物样品造成损伤。</p>
+<p>对于金属样品或需要较高分辨率观察时，通常可采用较高加速电压；而对于表面敏感测量、低维材料或绝缘样品，则更适合采用较低加速电压，以减少样品充电效应和电子束损伤。因此，高压档的选择需要综合考虑样品材料、分辨率需求以及表面敏感性等因素。</p>
+</li>
+<li>
+<p><strong>观察时如何能够获得清晰的扫描图像？</strong></p>
+<p>为了获得清晰的SEM图像，需要综合调节电子束会聚状态以及成像参数。实验中首先需要保证系统真空满足要求，并通过电子束准直使电子束稳定。随后调节焦距（focus），使电子束在样品表面形成最小束斑，并进一步利用像散校正（stigmator）消除电子束在不同方向上的聚焦差异。</p>
+<p>此外，还需要合理选择聚光镜电流、工作距离以及扫描速度等参数。适当增大聚光镜电流能够提高空间分辨率，但过大的聚光镜电流会增强高频噪声，因此需要在分辨率与信噪比之间进行平衡。实验中通常需要在较高放大倍率下进行精细聚焦，然后再切换至目标倍率进行拍摄。</p>
+</li>
+<li>
+<p><strong>如何操作才能观察到薄膜断口？</strong></p>
+<p>观察薄膜断口时，需要首先制备出具有明显断裂边缘的样品区域。实验中通常通过机械弯折、划痕或冷冻断裂等方式获得断口结构，并尽量避免断口受到污染或进一步损伤。在SEM观察时，一般需要将样品适当倾斜，使断口侧面能够直接暴露在电子束与探测器视场中，从而增强断口结构的形貌衬度。同时应适当减小工作距离并提高放大倍率，以便观察断口处的微观形貌，例如层状结构、裂纹扩展方向以及颗粒边界等细节。</p>
+</li>
+<li>
+<p><strong>拍照时如何选择亮度、对比度以保证获得满意的底片？</strong></p>
+<p>SEM图像中的亮度（brightness）主要决定图像整体灰度水平，而对比度（contrast）则决定不同区域之间灰度差异的强弱。实验中需要根据样品特征合理调节这两个参数。若亮度过低，则图像整体偏暗，细节难以分辨；若亮度过高，则容易出现局部饱和区域，导致信息丢失。因此，通常需要将图像灰度分布调整到较均匀范围内。</p>
+<p>对比度过低时图像层次不明显，而过高则可能导致部分区域灰度截断，因此应根据样品形貌适当调节，以使颗粒边界和细节结构具有较好的可辨识度。此外，在较高放大倍率下，由于图像噪声更加明显，因此还需要综合考虑扫描速度、束流强度以及图像平均等因素，以获得更加清晰稳定的SEM图像。</p>
+</li>
+<li>
+<p><strong>如何确定照片上图像的放大倍数？</strong></p>
+<p>SEM图像中的放大倍数本质上由显示系统中的图像尺寸与样品实际扫描区域大小共同决定。实验中通常可利用图像中的标尺（scale bar）进行校准。设标尺对应实际长度为\(L\)，而其在图像中的测量长度为\(l\)，则图像放大倍数可表示为\(M=l/L\)。由于现代SEM图像通常已经由系统自动标定放大倍数，因此实际测量中更常利用图中的标尺直接获得样品尺寸信息，而不是单纯依赖图像放大倍率。</p>
+</li>
+<li>
+<p><strong>如何评判一幅SEM照片的优劣？</strong></p>
+<p>实际上，本文讨论的正是这个问题。我认为需要综合考虑图像分辨率、衬度、信噪比以及样品信息完整性等多个方面。首先，高质量的SEM图像应具有较高的空间分辨率，即样品边界清晰、细节结构丰富，不存在明显失焦或像散。其次，图像应具有适当衬度，使不同结构之间能够明显区分。此外，图像中的随机噪声应尽可能低，以保证较高的信噪比。</p>
+<p>除了成像质量本身，还需要考虑图像是否真实反映样品结构，例如是否存在电子束损伤、样品充电效应、漂移模糊以及人为后处理造成的伪影等。对于科学研究而言，一幅优秀的SEM图像不仅应具有良好的视觉效果，更重要的是能够准确、可靠地反映样品真实的微观结构信息。</p>
+</li>
+</ol>
+<h1 id="附录B：有关图像质量的程序分析数据"><a class="headerlink" href="#附录B：有关图像质量的程序分析数据"></a>附录B：有关图像质量的程序分析数据</h1>
+<p>\(\qquad\) 为了更加定量地分析聚光镜电流对SEM成像质量的影响，实验中利用Python对不同聚光镜电流条件下获得的高倍率（\(\times11\mathrm{k}\)）SEM图像进行了数字图像处理与统计分析。分析指标包括全局灰度衬度、基于Sobel算子的边缘衬度、Laplacian方差清晰度以及基于Gaussian高通残差的信噪比。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">聚光镜电流\(I\)</th>
+<th style="text-align:center">放大倍率</th>
+<th style="text-align:center">平均灰度</th>
+<th style="text-align:center">灰度标准差</th>
+<th style="text-align:center">全局衬度\(\sigma/\bar I\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">400</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">113.315</td>
+<td style="text-align:center">67.331</td>
+<td style="text-align:center">0.594</td>
+</tr>
+<tr>
+<td style="text-align:center">450</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">105.664</td>
+<td style="text-align:center">34.929</td>
+<td style="text-align:center">0.331</td>
+</tr>
+<tr>
+<td style="text-align:center">500</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">129.590</td>
+<td style="text-align:center">23.637</td>
+<td style="text-align:center">0.182</td>
+</tr>
+<tr>
+<td style="text-align:center">550</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">134.138</td>
+<td style="text-align:center">23.125</td>
+<td style="text-align:center">0.172</td>
+</tr>
+<tr>
+<td style="text-align:center">600</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">118.521</td>
+<td style="text-align:center">16.222</td>
+<td style="text-align:center">0.137</td>
+</tr>
+<tr>
+<td style="text-align:center">650</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">118.878</td>
+<td style="text-align:center">28.802</td>
+<td style="text-align:center">0.242</td>
+</tr>
+</tbody>
+</table>
+<center>表1：不同聚光镜电流下的全局灰度衬度分析结果</center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">聚光镜电流\(I\)</th>
+<th style="text-align:center">放大倍率</th>
+<th style="text-align:center">平均灰度</th>
+<th style="text-align:center">边缘衬度均值</th>
+<th style="text-align:center">边缘标准差</th>
+<th style="text-align:center">边缘梯度95%分位数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">400</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">113.315</td>
+<td style="text-align:center">24.072</td>
+<td style="text-align:center">15.806</td>
+<td style="text-align:center">53.254</td>
+</tr>
+<tr>
+<td style="text-align:center">450</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">105.664</td>
+<td style="text-align:center">17.927</td>
+<td style="text-align:center">10.441</td>
+<td style="text-align:center">37.336</td>
+</tr>
+<tr>
+<td style="text-align:center">500</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">129.590</td>
+<td style="text-align:center">23.236</td>
+<td style="text-align:center">12.671</td>
+<td style="text-align:center">46.690</td>
+</tr>
+<tr>
+<td style="text-align:center">550</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">134.138</td>
+<td style="text-align:center">28.000</td>
+<td style="text-align:center">15.286</td>
+<td style="text-align:center">56.321</td>
+</tr>
+<tr>
+<td style="text-align:center">600</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">118.521</td>
+<td style="text-align:center">27.357</td>
+<td style="text-align:center">14.983</td>
+<td style="text-align:center">55.154</td>
+</tr>
+<tr>
+<td style="text-align:center">650</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">118.878</td>
+<td style="text-align:center">61.692</td>
+<td style="text-align:center">32.529</td>
+<td style="text-align:center">121.062</td>
+</tr>
+</tbody>
+</table>
+<center>表2：不同聚光镜电流下的边缘衬度分析结果</center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">聚光镜电流\(I\)</th>
+<th style="text-align:center">放大倍率</th>
+<th style="text-align:center">平均灰度</th>
+<th style="text-align:center">Laplacian标准差</th>
+<th style="text-align:center">清晰度\(\mathrm{Var}(\nabla^2I)\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">400</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">113.315</td>
+<td style="text-align:center">43.615</td>
+<td style="text-align:center">1902.311</td>
+</tr>
+<tr>
+<td style="text-align:center">450</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">105.664</td>
+<td style="text-align:center">33.295</td>
+<td style="text-align:center">1108.561</td>
+</tr>
+<tr>
+<td style="text-align:center">500</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">129.590</td>
+<td style="text-align:center">45.899</td>
+<td style="text-align:center">2106.712</td>
+</tr>
+<tr>
+<td style="text-align:center">550</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">134.138</td>
+<td style="text-align:center">56.594</td>
+<td style="text-align:center">3202.919</td>
+</tr>
+<tr>
+<td style="text-align:center">600</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">118.521</td>
+<td style="text-align:center">56.082</td>
+<td style="text-align:center">3145.237</td>
+</tr>
+<tr>
+<td style="text-align:center">650</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">118.878</td>
+<td style="text-align:center">126.315</td>
+<td style="text-align:center">15955.413</td>
+</tr>
+</tbody>
+</table>
+<center>表3：不同聚光镜电流下的图像清晰度分析结果</center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">聚光镜电流\(I\)</th>
+<th style="text-align:center">放大倍率</th>
+<th style="text-align:center">平均灰度</th>
+<th style="text-align:center">平坦区域噪声\(\sigma_{\mathrm{flat}}\)</th>
+<th style="text-align:center">\(\mathrm{SNR}_{\mathrm{flat}}\)</th>
+<th style="text-align:center">全区域噪声\(\sigma_{\mathrm{all}}\)</th>
+<th style="text-align:center">\(\mathrm{SNR}_{\mathrm{all}}\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">400</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">113.315</td>
+<td style="text-align:center">4.584</td>
+<td style="text-align:center">24.720</td>
+<td style="text-align:center">4.889</td>
+<td style="text-align:center">23.179</td>
+</tr>
+<tr>
+<td style="text-align:center">450</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">105.664</td>
+<td style="text-align:center">3.523</td>
+<td style="text-align:center">29.997</td>
+<td style="text-align:center">3.737</td>
+<td style="text-align:center">28.278</td>
+</tr>
+<tr>
+<td style="text-align:center">500</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">129.590</td>
+<td style="text-align:center">5.064</td>
+<td style="text-align:center">25.592</td>
+<td style="text-align:center">5.104</td>
+<td style="text-align:center">25.388</td>
+</tr>
+<tr>
+<td style="text-align:center">550</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">134.138</td>
+<td style="text-align:center">6.162</td>
+<td style="text-align:center">21.768</td>
+<td style="text-align:center">6.279</td>
+<td style="text-align:center">21.364</td>
+</tr>
+<tr>
+<td style="text-align:center">600</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">118.521</td>
+<td style="text-align:center">6.069</td>
+<td style="text-align:center">19.530</td>
+<td style="text-align:center">6.205</td>
+<td style="text-align:center">19.102</td>
+</tr>
+<tr>
+<td style="text-align:center">650</td>
+<td style="text-align:center">\(\times11\mathrm{k}\)</td>
+<td style="text-align:center">118.878</td>
+<td style="text-align:center">13.940</td>
+<td style="text-align:center">8.528</td>
+<td style="text-align:center">13.958</td>
+<td style="text-align:center">8.517</td>
+</tr>
+</tbody>
+</table>
+<center>表4：不同聚光镜电流下的图像信噪比分析结果</center>
+<h1 id="附录C：数据处理使用的代码"><a class="headerlink" href="#附录C：数据处理使用的代码"></a>附录C：数据处理使用的代码</h1>
+<p>\(\qquad\) 本实验的数据处理与分析主要基于Python编程语言完成，综合使用了NumPy、Matplotlib、SciPy、Pandas以及OpenCV等科学计算与图像处理库，对实验数据进行读取、处理、可视化以及拟合分析。相关代码已整理并上传至GitHub仓库，读者可通过<a target="_blank" rel="noopener" href="https://github.com/xisenal/PKU-modern-physical-experiment-code/tree/main/SEM_experiment6">SEM_experiment6</a>获取完整项目文件并复现实验数据处理过程。</p>
+<p>\(\qquad\) 本项目采用MIT开源协议，允许在非商业用途下自由查看、修改与使用。如需获取代码，可在目标目录下通过终端执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/xisenal/PKU-modern-physical-experiment-code.git</span><br></pre></td></tr></table></figure>
+<p>\(\qquad\) 项目目录中已提供基于<code>.venv</code>的虚拟环境配置，进入虚拟环境后即可直接运行相关<code>.py</code>文件完成数据处理与分析。此外，也可通过以下命令手动安装所需依赖库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy matplotlib pandas scipy opencv-python</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xisenal.github.io">Xisense WYX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/">https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xisenal.github.io" target="_blank">西瓜の驿站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%9E%E9%AA%8C/">实验</a><a class="post-meta__tags" href="/tags/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86/">近代物理</a></div><div class="post-share"><div class="social-share" data-image="/img/cover_default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/30/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91He-Ne%E6%B0%94%E4%BD%93%E6%BF%80%E5%85%89%E5%99%A8%E6%94%BE%E7%94%B5%E6%9D%A1%E4%BB%B6/" title="【实验】He-Ne气体激光器放电条件"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-30</div><div class="info-item-2">【实验】He-Ne气体激光器放电条件</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验研究了He-Ne气体激光器在不同气体配比与总压强条件下的放电特性。通过测量激光输出功率随工作电流变化的关系，发现功率随电流先增大后减小，且峰值对应的电流随总压强增加而减小。同时，氦氖配比对输出功率存在明显影响，氖比例较高时功率较大。实验结果与粒子数反转及能量转移理论相一致，为理解He-Ne激光器的工作条件及动力学机制提供了实验依据。 关键词： He-Ne激光，真空环境，配气 获取实验报告的PDF文件（仅供参考） 引言 激光（Laser）是基于受激辐射原理实现光放大的相干光源，其理论基础可以追溯到20世纪中期。1958年，Schawlow和Townes在经典论文《Infrared and Optical Masers》中提出将微波波段的maser原理推广到光学频段，从而提出了光学激射器（laser）的基本概念[1]。这一理论工作奠定了激光器发展的基础。...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用NaI(Tl)闪烁谱仪对γ射线能谱进行了测量与分析。通过测量¹³⁷Cs和⁶⁰Co标准放射源的能谱，确定了闪烁谱仪的能量刻度关系，并对谱仪的能量分辨率和线性特性进行了检验。在此基础上，利用多道分析器测量了不同几何条件及混合放射源情况下的γ能谱，对全能峰、康普顿平台及反散射峰的形成机制及其变化规律进行了分析。实验结果表明，NaI(Tl)闪烁谱仪具有良好的能量线性关系，能够较好地实现γ射线能量测量与能谱分析，加深了对γ射线与物质相互作用及闪烁探测器工作原理的理解。 关键词： NaI闪烁谱仪，光电效应，康普顿散射，放射性物质能谱 获取实验报告的PDF文件（仅供参考） 引言 闪烁探测器是最早发展起来的一类电离辐射探测器之一，在核物理、医学成像以及环境辐射监测等领域具有重要应用。自1948年发现NaI(Tl)晶体具有优良的闪烁性能以来，卤化物闪烁体得到了迅速发展，并推动了无机闪烁探测技术的进步[1]。由于NaI(Tl)晶体具有较高的发光效率和较高的有效原子序数，其对γ射线具有较高的探测效率，因此很快被应用于γ能谱测量，并成为闪烁谱仪中最常用的探测材料之一[2]。...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】体效应振荡器的工作特性和波导管的工作状态</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用体效应微波振荡器与矩形波导系统，对微波信号源的工作特性以及波导中的传播状态进行了系统研究。通过调节体效应振荡器的工作电压，测量其工作电流、输出功率及振荡频率随电压变化的关系，验证了Gunn效应导致的负微分迁移率特性及其对微波振荡形成的影响。在波导系统中，通过驻波测量线观测匹配状态、驻波状态及混波状态，并测量不同状态下的驻波比与反射系数。进一步利用驻波节点位置测量波导波长，并结合频率计测量结果计算自由空间波长、相速度与群速度，实验结果满足vpvg=c²的理论关系。此外，通过测量驻波曲线并采用半高宽法和对数拟合法确定晶体检波器的检波指数，结果表明其满足平方律检波特性。实验结果与理论分析基本一致，加深了对微波产生机制、波导传播规律及微波测量方法的理解。 关键词： 体效应振荡器，Gunn效应，波导传播，驻波比，检波律 获取实验报告的PDF文件（仅供参考） 引言 微波是频率约在300 MHz至300...</div></div></div></a><a class="pagination-related" href="/2025/01/18/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E5%88%A9%E7%94%A8CV%E6%B3%95%E6%B5%8B%E9%87%8F%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%9A%84%E6%9D%82%E8%B4%A8%E5%88%86%E5%B8%83/" title="【实验】利用CV法测量半导体的杂质分布"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-18</div><div class="info-item-2">【实验】利用CV法测量半导体的杂质分布</div></div><div class="info-2"><div class="info-item-1">摘要： 在半导体工业中，影响元件性能最重要的因素之一是掺杂浓度，因此精准地检测杂质浓度是评估元件好坏的重要环节[1]。本文章基于单边突变结的耗尽层中无自由电子的假设，模型化的计算了空间电荷区和偏压的定量关系，并将该势垒看作一个间距可变的电容。实验中通过串联标准电容并加交流电压的方法，间接测量P-N结势垒电容。通过改变直流偏置电压，得到杂质掺杂率随着交界距离的变化关系。 关键词：势垒电容，电容电压法，锁相放大，杂质测量，倍频测量 获取实验报告的pdf文件(仅供参考) 引言 1904年，Joseph Thomson在对锗和硅进行性质研究时发现这种材料并不同于一般的导体和绝缘体，这些材料有更加独特的电学性质，他将这种导电性介于导体和绝缘体之间的材料称为半导体[2]。1947年，John Bardeen，Walter Bratton和William...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】扫描隧穿显微镜</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用扫描隧道显微镜对HOPG表面进行了原子分辨成像，观察到典型的石墨三角晶格结构，并验证了量子隧穿效应。结合Python图像处理程序，对STM图像进行了尺度分析，并估算了压电扫描系统的压电系数，加深了对STM工作原理与实验方法的理解。 关键词： 扫描隧道显微镜，量子隧穿效应，HOPG，原子分辨成像，压电陶瓷，图像处理 获取实验报告的PDF文件（仅供参考） 引言 20世纪初量子力学建立之后，人们逐渐认识到微观粒子具有经典理论所无法解释的波动性质。其中，一个重要现象便是量子隧穿效应（quantum tunneling effect）：粒子即使在能量低于势垒高度的情况下，仍有一定概率穿透势垒区域。1928年，Gamow以及Gurney与Condon分别利用量子力学成功解释了α衰变过程，首次明确提出了隧穿效应的物理图像[1,2]。此后，量子隧穿逐渐成为现代凝聚态物理与量子器件中的重要基础理论。 基于量子隧穿效应，1981年，IBM苏黎世实验室的G. Binnig与H. Rohrer发明了扫描隧道显微镜（scanning tunneling...</div></div></div></a><a class="pagination-related" href="/2025/01/20/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E7%A1%85%E7%9A%84%E9%9C%8D%E5%B0%94%E7%B3%BB%E6%95%B0%E5%8F%8A%E7%94%B5%E9%98%BB%E7%8E%87%E7%9A%84%E6%B5%8B%E9%87%8F/" title="【实验】硅的霍尔系数及电阻率的测量"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-20</div><div class="info-item-2">【实验】硅的霍尔系数及电阻率的测量</div></div><div class="info-2"><div class="info-item-1">摘要： 测定半导体的电阻率和霍尔系数，可以获知其基本电磁特性，这有助于我们了解其导电机制以及验证固体物理的结论。本实验将这一办法应用到了型硅半导体的研究中，通过测定硅片样品的电阻率和霍尔系数，验证其的导电特性。具体而言，本实验利用四线范德堡法测量了从室温至约150°C范围内p型硅的电阻率和霍尔系数，获得并分析了该温度范围内电阻率和霍尔系数随温度的变化关系，并按照变化趋势的不同将p型硅半导体的导电特性划分出了几个明显区间，验证了固体物理对掺杂半导体的导电机制的预测，并进一步给出了所用硅片样品的带隙宽度Eg∼1.211eV 关键词：半导体，p型硅，能带理论，电阻率，霍尔效应 获取实验报告的pdf文件(仅供参考) 引言 半导体有别于导体和绝缘体，是一种导电性能随外界条件（如电磁场、温度等）变化强烈的电学材料。早在19世纪初，意大利物理学家Guglielmo...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Xisense WYX</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xisenal"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="weixin://contacts/profile/xisense_wyx" target="_blank" title="微信"><i class="fab fa-weixin" style="color: # 1AAD19;"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2076114280&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #FF6347;"></i></a><a class="social-icon" href="mailto:xisense_wyx@stu.pku.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://x.com/Xisense_WYX" target="_blank" title="X"><i class="fab fa-x-twitter" style="color: #BEBEBE;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">实验原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E5%85%89%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-number">2.1.</span> <span class="toc-text">电子光学基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C%E6%88%90%E5%83%8F%E5%8E%9F%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">扫描电子显微镜成像原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%85%89%E9%95%9C%E7%94%B5%E6%B5%81%E5%AF%B9%E6%88%90%E5%83%8F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">2.3.</span> <span class="toc-text">聚光镜电流对成像的影响</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%A3%85%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">实验装置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">结果与分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%A1%AC%E5%BA%A6"><span class="toc-number">4.1.</span> <span class="toc-text">图像衬度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-number">4.2.</span> <span class="toc-text">图像分辨率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E4%BF%A1%E5%99%AA%E6%AF%94"><span class="toc-number">4.3.</span> <span class="toc-text">图像信噪比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95A%EF%BC%9A%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">附录A：思考题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95B%EF%BC%9A%E6%9C%89%E5%85%B3%E5%9B%BE%E5%83%8F%E8%B4%A8%E9%87%8F%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE"><span class="toc-number">7.</span> <span class="toc-text">附录B：有关图像质量的程序分析数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95C%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">8.</span> <span class="toc-text">附录C：数据处理使用的代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】扫描电子显微镜"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜">【实验】扫描电子显微镜</a><time datetime="2026-07-31T10:33:13.000Z" title="发表于 2026-07-31 18:33:13">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】扫描隧穿显微镜"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜">【实验】扫描隧穿显微镜</a><time datetime="2026-07-31T10:00:42.000Z" title="发表于 2026-07-31 18:00:42">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】体效应振荡器的工作特性和波导管的工作状态"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态">【实验】体效应振荡器的工作特性和波导管的工作状态</a><time datetime="2026-07-31T09:48:07.000Z" title="发表于 2026-07-31 17:48:07">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/" title="【实验】通过热噪声与散粒噪声的统计特性测量物理常数"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】通过热噪声与散粒噪声的统计特性测量物理常数"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/" title="【实验】通过热噪声与散粒噪声的统计特性测量物理常数">【实验】通过热噪声与散粒噪声的统计特性测量物理常数</a><time datetime="2026-07-31T09:28:37.000Z" title="发表于 2026-07-31 17:28:37">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</a><time datetime="2026-07-31T06:45:38.000Z" title="发表于 2026-07-31 14:45:38">2026-07-31</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Xisense WYX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://www.yuanshen.com/" target="_blank" title="我真好好学习吗？">好好学习,天天向上</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script defer data-pjax src="/js/cursor.js"></script><script defer data-pjax src="/js/title.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

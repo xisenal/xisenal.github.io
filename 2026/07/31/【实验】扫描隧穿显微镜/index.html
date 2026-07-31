@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【实验】扫描隧穿显微镜 | 西瓜の驿站</title><meta name="author" content="Xisense WYX"><meta name="copyright" content="Xisense WYX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要： 本实验利用扫描隧道显微镜对HOPG表面进行了原子分辨成像，观察到典型的石墨三角晶格结构，并验证了量子隧穿效应。结合Python图像处理程序，对STM图像进行了尺度分析，并估算了压电扫描系统的压电系数，加深了对STM工作原理与实验方法的理解。  关键词： 扫描隧道显微镜，量子隧穿效应，HOPG，原子分辨成像，压电陶瓷，图像处理 获取实验报告的PDF文件（仅供参考） 引言 \(\qquad\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【实验】扫描隧穿显微镜">
+<meta property="og:url" content="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/index.html">
+<meta property="og:site_name" content="西瓜の驿站">
+<meta property="og:description" content="摘要： 本实验利用扫描隧道显微镜对HOPG表面进行了原子分辨成像，观察到典型的石墨三角晶格结构，并验证了量子隧穿效应。结合Python图像处理程序，对STM图像进行了尺度分析，并估算了压电扫描系统的压电系数，加深了对STM工作原理与实验方法的理解。  关键词： 扫描隧道显微镜，量子隧穿效应，HOPG，原子分辨成像，压电陶瓷，图像处理 获取实验报告的PDF文件（仅供参考） 引言 \(\qquad\">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xisenal.github.io/img/cover_default.jpg">
+<meta property="article:published_time" content="2026-07-31T10:00:42.000Z">
+<meta property="article:modified_time" content="2026-07-31T10:30:04.048Z">
+<meta property="article:author" content="Xisense WYX">
+<meta property="article:tag" content="实验">
+<meta property="article:tag" content="近代物理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xisenal.github.io/img/cover_default.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【实验】扫描隧穿显微镜",
+  "url": "https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/",
+  "image": "https://xisenal.github.io/img/cover_default.jpg",
+  "datePublished": "2026-07-31T10:00:42.000Z",
+  "dateModified": "2026-07-31T10:30:04.048Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Xisense WYX",
+      "url": "https://xisenal.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/watermelon.png"><link rel="canonical" href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【实验】扫描隧穿显微镜',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?1"><link rel="stylesheet" href="/css/cat.css?1"><link rel="stylesheet" href="/css/wave.css?1"><link rel="stylesheet" href="/css/cursor.css?1"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover_default.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/watermelon.png" alt="Logo"><span class="site-name">西瓜の驿站</span></a><a class="nav-page-title" href="/"><span class="site-name">【实验】扫描隧穿显微镜</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【实验】扫描隧穿显微镜</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-31T10:00:42.000Z" title="发表于 2026-07-31 18:00:42">2026-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-31T10:30:04.048Z" title="更新于 2026-07-31 18:30:04">2026-07-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C/">近代物理实验</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>21分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p><strong>摘要：</strong> 本实验利用扫描隧道显微镜对HOPG表面进行了原子分辨成像，观察到典型的石墨三角晶格结构，并验证了量子隧穿效应。结合Python图像处理程序，对STM图像进行了尺度分析，并估算了压电扫描系统的压电系数，加深了对STM工作原理与实验方法的理解。</p>
+</blockquote>
+<p><strong>关键词：</strong> 扫描隧道显微镜，量子隧穿效应，HOPG，原子分辨成像，压电陶瓷，图像处理</p>
+<p><a href='/pdf/扫描隧穿显微镜__近物实验5__发布版.pdf' target='_blank' title='扫描隧穿显微镜'>获取实验报告的PDF文件（仅供参考）</a></p>
+<h1 id="引言"><a class="headerlink" href="#引言"></a>引言</h1>
+<p>\(\qquad\) 20世纪初量子力学建立之后，人们逐渐认识到微观粒子具有经典理论所无法解释的波动性质。其中，一个重要现象便是量子隧穿效应（quantum tunneling effect）：粒子即使在能量低于势垒高度的情况下，仍有一定概率穿透势垒区域。1928年，Gamow以及Gurney与Condon分别利用量子力学成功解释了\(\alpha\)衰变过程，首次明确提出了隧穿效应的物理图像<sup>[1,2]</sup>。此后，量子隧穿逐渐成为现代凝聚态物理与量子器件中的重要基础理论。</p>
+<p>\(\qquad\) 基于量子隧穿效应，1981年，IBM苏黎世实验室的G. Binnig与H. Rohrer发明了扫描隧道显微镜（scanning tunneling microscope，STM）<sup>[3]</sup>。STM利用金属针尖与样品表面之间极小距离下产生的隧穿电流，对样品表面进行逐点扫描，从而获得表面的局域电子态与原子尺度形貌信息。由于隧穿电流对针尖与样品间距呈指数依赖关系，因此STM具有极高的空间分辨能力，可以实现原子级分辨成像。1986年，Binnig与Rohrer因STM的发明获得诺贝尔物理学奖，STM也由此成为表面科学与纳米科学发展的重要里程碑。</p>
+<p>\(\qquad\) STM的出现推动了扫描探针显微技术（scanning probe microscopy，SPM）的迅速发展，并进一步衍生出原子力显微镜（AFM）、磁力显微镜（MFM）等多种表面探测技术<sup>[4]</sup>。相比于传统电子显微镜，STM不需要复杂的电子透镜系统，而是直接利用局域隧穿电流实现实空间成像，因此特别适用于研究表面原子结构、缺陷、吸附过程以及低维材料中的局域电子性质。目前，STM已广泛应用于凝聚态物理、纳米材料、半导体器件以及表面化学等研究领域。</p>
+<p>\(\qquad\) 在STM的实际工作过程中，针尖与样品之间通常施加一定偏压。当二者距离减小至纳米量级时，电子将通过真空势垒发生隧穿。隧穿电流不仅与针尖和样品之间的距离密切相关，还受到局域态密度（local density of states，LDOS）的影响，因此STM所获得的图像本质上反映的是样品表面电子结构与形貌的综合信息。为了实现精确扫描，STM系统通常利用压电陶瓷对针尖位置进行亚埃尺度调节，从而实现对样品表面的高精度扫描。</p>
+<p>\(\qquad\) 本实验利用扫描隧道显微镜对高定向热解石墨（highly oriented pyrolytic graphite，HOPG）样品表面进行扫描测量，观察石墨表面的原子分辨图像，直观验证量子隧穿效应与STM的工作原理。同时，通过分析扫描图像中的晶格结构与扫描参数，对STM扫描系统中压电陶瓷的压电系数进行估算，从而进一步理解STM的扫描机制与实验原理。</p>
+<h1 id="实验原理"><a class="headerlink" href="#实验原理"></a>实验原理</h1>
+<p>\(\qquad\) 扫描隧道显微镜的基本工作原理建立在量子力学中的隧穿效应基础之上。在经典力学中，当粒子的能量低于势垒高度时，粒子无法穿过势垒区域；然而在量子力学中，粒子具有波动性，其波函数在势垒内部并不会严格为零，因此粒子存在一定概率穿透有限宽度势垒，这一现象即为量子隧穿效应。</p>
+<p>\(\qquad\) 对于一维势垒问题，电子的运动满足定态薛定谔方程</p>
+<p>\[
+-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi(x)}{\mathrm{d}x^2}
++V(x)\psi(x)
+=E\psi(x)
+\]</p>
+<p>\(\qquad\) 其中\(m\)为电子质量，\(V(x)\)为势垒势能，\(E\)为电子能量。当电子处于势垒区域内且满足\(V(x)>E\)时，波函数满足指数衰减形式</p>
+<p>\[
+\psi(x)\propto e^{-\kappa x}
+\]</p>
+<p>\(\qquad\) 其中</p>
+<p>\[
+\kappa=\frac{\sqrt{2m(V-E)}}{\hbar}
+\]</p>
+<p>\(\qquad\) 因此，电子穿透宽度为\(s\)的势垒时，其透射概率近似满足</p>
+<p>\[
+T\propto e^{-2\kappa s}
+\]</p>
+<p>\(\qquad\) 这一结果说明隧穿概率会随着势垒宽度的增加而呈指数衰减。</p>
+<p>\(\qquad\) STM正是利用这一性质进行工作的。在STM中，一个极其尖锐的金属针尖被移动到导电样品表面附近，并在针尖与样品之间施加偏置电压\(V_b\)。当针尖与样品之间的距离减小到纳米量级时，电子可以通过二者之间的真空势垒发生量子隧穿，从而形成隧穿电流。根据量子隧穿理论，隧穿电流与针尖和样品之间距离\(s\)的关系可近似表示为</p>
+<p>\[
+I\propto e^{-2\kappa s}
+\]</p>
+<p>\(\qquad\) 进一步写成常用形式可得</p>
+<p>\[
+I\propto
+\exp\left(
+-\frac{2\sqrt{2m\phi}}{\hbar}s
+\right)
+\]</p>
+<p>\(\qquad\) 其中\(\phi\)为针尖与样品之间的平均势垒高度，通常与材料功函数有关。</p>
+<p>\(\qquad\) 由上述关系可以看出，隧穿电流对针尖与样品间距具有极强的敏感性。当距离变化仅为\(0.1\,\mathrm{nm}\)时，隧穿电流往往就会发生一个数量级的变化。因此，通过精确测量隧穿电流的变化，可以实现对样品表面原子尺度形貌的探测，这也是STM能够达到原子分辨率的重要原因。</p>
+<p>\(\qquad\) 为了实现针尖位置的高精度控制，STM通常采用压电陶瓷作为扫描驱动元件。压电陶瓷在施加电压后会发生微小形变，其长度变化与外加电压近似满足线性关系</p>
+<p>\[
+\Delta L=cV
+\]</p>
+<p>\(\qquad\) 其中\(\Delta L\)为压电陶瓷的伸长量，\(V\)为施加电压，\(c\)为压电系数。通过对不同方向上的压电陶瓷施加扫描电压，可以实现针尖在样品表面的二维扫描以及垂直方向上的位置调节。</p>
+<p>\(\qquad\) STM最常用的工作模式为恒电流模式（constant current mode）。在扫描过程中，系统保持针尖与样品之间的隧穿电流恒定。当样品表面存在起伏时，针尖与样品间距会发生变化，从而导致隧穿电流改变。反馈系统会根据电流变化实时调节\(z\)方向压电陶瓷的伸缩，使针尖高度随表面形貌变化而变化，以维持隧穿电流恒定。记录扫描过程中\(z\)方向位移随横向位置的变化，即可获得样品表面的形貌图像。</p>
+<p>\(\qquad\) 另一种常见模式为恒高度模式（constant height mode）。在该模式下，针尖高度在扫描过程中基本保持不变，通过记录隧穿电流的变化来反映表面形貌信息。由于该模式不需要实时调节反馈系统，因此扫描速度较快，但对于表面起伏较大的样品容易造成针尖与样品接触，因此通常只适用于较平整表面的测量。</p>
+<p>\(\qquad\) 本实验中所使用的样品为高定向热解石墨。HOPG表面具有规则的六角晶格结构，并且层状结构容易解理得到洁净表面，因此是STM实验中常用的标准样品。通过STM对HOPG表面进行扫描，可以观察到石墨表面的原子级周期结构，从而验证STM的原子分辨能力以及量子隧穿效应的存在。同时，结合已知的石墨晶格常数与扫描参数，还可以进一步估算STM扫描系统中压电陶瓷的压电系数。</p>
+<h1 id="实验装置"><a class="headerlink" href="#实验装置"></a>实验装置</h1>
+<p>\(\qquad\) 本实验所使用的扫描隧道显微镜系统主要由扫描探针部分、压电扫描系统、粗逼近机构、反馈控制系统、信号放大与数据采集系统以及减震系统等组成，其整体结构与电子学控制框图如图1所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033yy6oYglL7oyk9VMyz9u.png" alt="图1：STM系统结构与电子学控制示意图"></p>
+<center>图1：STM系统结构与电子学控制示意图</center>
+<p>\(\qquad\) STM的核心部分为针尖与样品之间形成的隧穿结。实验中采用经过电化学腐蚀制备的金属针尖，并将其移动至HOPG样品表面附近。在针尖与样品之间施加偏置电压后，当二者距离减小至纳米量级时，电子将通过真空势垒发生量子隧穿，从而形成隧穿电流。由于隧穿电流对针尖与样品间距极其敏感，因此STM能够利用电流变化反映样品表面的原子级形貌。</p>
+<p>\(\qquad\) 为了实现对针尖位置的高精度控制，STM系统采用压电陶瓷作为扫描驱动元件。图中所示的\(x\)、\(y\)与\(z\)方向压电驱动器分别负责针尖在横向与垂直方向上的运动。压电陶瓷在施加电压后会产生微小形变，其位移量通常可达到亚纳米量级，从而满足STM对空间分辨率的要求。在实验中，通过对\(x\)、\(y\)方向施加扫描电压，可以实现针尖在样品表面的逐点扫描；而\(z\)方向压电陶瓷则用于调节针尖与样品之间的距离。</p>
+<p>\(\qquad\) STM系统采用恒电流反馈工作模式。针尖与样品之间产生的隧穿电流首先经过前置放大器进行放大，再送入反馈控制器。反馈系统会实时比较实际隧穿电流与设定值之间的偏差，并自动调节\(z\)方向压电陶瓷的驱动电压，使针尖与样品间距发生改变，从而保持隧穿电流恒定。当针尖扫描经过样品表面的凸起区域时，反馈系统会自动提高针尖位置；而当扫描至凹陷区域时，则会降低针尖高度。记录反馈系统输出的\(z\)向位移信息，即可重建样品表面的形貌图像。</p>
+<p>\(\qquad\) 在电子学控制部分，系统包括偏置电压源、扫描控制器、高压放大模块以及数据采集系统等。偏置电压源用于在针尖与样品之间建立稳定偏压；扫描控制器负责产生\(x\)、\(y\)扫描信号；高压放大器则用于驱动压电陶瓷运动。数据采集系统将反馈信号转换为数字信号后传输至计算机，并最终生成STM图像。</p>
+<p>\(\qquad\) 由于STM的工作依赖于亚纳米尺度下的隧穿电流变化，因此系统对机械振动极为敏感。外界微小振动都会导致针尖与样品间距发生明显变化，从而严重影响成像质量。因此，实验装置通常配备多级减震系统，包括弹簧悬挂结构、橡胶减震垫以及厚重基座等，以降低环境振动对实验的影响，提高STM成像稳定性与分辨率。</p>
+<h1 id="实验结果与分析"><a class="headerlink" href="#实验结果与分析"></a>实验结果与分析</h1>
+<h2 id="HOPG表面STM图像"><a class="headerlink" href="#HOPG表面STM图像"></a>HOPG表面STM图像</h2>
+<p>\(\qquad\) 通过调节STM系统的扫描范围、偏置电压以及隧穿电流等参数，本实验成功获得了HOPG样品表面的原子分辨图像，如图2所示。实验中不同扫描参数对应的结果如表1所示。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">图像编号</th>
+<th style="text-align:center">扫描范围（V）</th>
+<th style="text-align:center">偏压（mV）</th>
+<th style="text-align:center">隧穿电流（nA）</th>
+<th style="text-align:center">扫描时间（ms）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(a)</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">800</td>
+<td style="text-align:center">2.09</td>
+<td style="text-align:center">200</td>
+</tr>
+<tr>
+<td style="text-align:center">(b)</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">800</td>
+<td style="text-align:center">2.09</td>
+<td style="text-align:center">160</td>
+</tr>
+<tr>
+<td style="text-align:center">(c)</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">750</td>
+<td style="text-align:center">1.68</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:center">(d)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">750</td>
+<td style="text-align:center">1.68</td>
+<td style="text-align:center">50</td>
+</tr>
+</tbody>
+</table>
+<center>表1：STM扫描参数</center>
+<p><img src="https://pic.imgdd.cc/i/033yy6nSqN1I1hEa2mypVq.png" alt="图2：HOPG表面的STM原子分辨图像"></p>
+<center>图2：HOPG表面的STM原子分辨图像</center>
+<p>\(\qquad\) 从图2可以看出，在较小扫描范围下，HOPG表面呈现出明显的周期性晶格结构，说明STM已经实现了原子尺度分辨率。图像中的亮斑对应于表面电子态密度较高的位置，而暗区域则对应电子态密度较低的位置。随着扫描范围逐渐增大，图像中的晶格结构逐渐变得模糊，局域细节分辨率下降。这主要是由于扫描范围增大后单位长度对应的像素减少，同时系统振动与漂移误差对成像质量的影响更加明显。</p>
+<p>\(\qquad\) 理论上，石墨表面的碳原子排列应为无心六角晶格结构。然而，在STM图像中通常观察到的是类似“三角晶格”或“有心六角结构”的排列形式。这是由于HOPG具有AB层状堆垛结构，表层碳原子可以分为两类：一类原子正下方存在下一层碳原子，另一类原子下方为空位。由于两类原子的局域电子态密度不同，在STM成像过程中其隧穿概率存在差异，因此只有其中一类原子在图像中表现为明显亮斑，从而形成实验中观察到的三角晶格结构。</p>
+<p>\(\qquad\) 实验结果还表明，STM图像中存在一定程度的条纹与拖影现象，尤其在部分图像左侧区域较为明显。这可能来源于以下几个因素：首先，扫描过程中环境振动会导致针尖与样品间距发生微小变化，从而影响隧穿电流稳定性；其次，针尖形状若不够尖锐或者存在污染，也会导致成像出现拖尾与重复结构；此外，反馈系统响应速度有限，在扫描速度较高时也可能引入一定畸变。</p>
+<p>\(\qquad\) 在实验过程中，通过不断调整偏压、隧穿电流以及反馈参数，可以明显观察到图像质量的变化。当隧穿电流较小时，针尖距离样品较远，图像信噪比较低；而当隧穿电流过大时，针尖距离样品过近，则容易引起针尖与样品接触，导致图像失真甚至损坏针尖。因此，实验中需要在成像分辨率与系统稳定性之间进行平衡。</p>
+<h2 id="HOPG晶格识别与尺度标定"><a class="headerlink" href="#HOPG晶格识别与尺度标定"></a>HOPG晶格识别与尺度标定</h2>
+<p>\(\qquad\) 为了通过图像计算压电陶瓷的压电系数，直接观察STM图像进行定量计算会产生较大误差。因此，本文进一步利用Python程序对实验所得HOPG原子分辨图像进行定量分析。</p>
+<p>\(\qquad\) 该程序以STM图像为输入，首先读取PNG图像并将其转化为灰度强度分布；随后对图像逐行进行背景扣除，以减弱扫描过程中由于漂移、条纹和整体亮度不均匀带来的影响。在此基础上，程序对图像进行平滑处理，并通过局域极大值搜索识别图像中的亮斑位置。由于STM图像中的亮斑对应HOPG表面局域态密度较高的位置，因此这些亮斑可以近似视为原子周期结构中的特征点。</p>
+<p>\(\qquad\) 程序进一步对识别出的亮斑中心进行两两距离分析，筛选出近似水平和斜向的相邻原子矢量。由于HOPG表面晶格常数已知，可取相邻亮斑间距</p>
+<p>\[
+a=0.246\,\mathrm{nm}
+\]</p>
+<p>\(\qquad\) 作为图像尺度标定的标准。若图像中水平方向相邻原子的像素距离为\(N_x\)，则水平方向每个像素对应的实际长度可估计为</p>
+<p>\[
+s_x=\frac{a}{N_x}
+\]</p>
+<p>\(\qquad\) 类似地，结合斜向晶格矢量的投影关系，可以估计竖直方向的像素尺度\(s_y\)。于是，对于像素宽度为\(W\)、高度为\(H\)的STM图像，其实际扫描范围可写为</p>
+<p>\[
+L_x=Ws_x,\qquad L_y=Hs_y
+\]</p>
+<p>\(\qquad\) 通过这种方法，可以不依赖仪器给出的标称扫描电压，而直接根据HOPG的晶格周期对图像尺度进行反推。图3给出了程序处理后的结果图。图中红色圆圈标出了程序识别出的原子亮斑位置，黄色线段表示近似水平方向上的相邻原子间距，蓝色线段表示斜向晶格方向上的相邻原子间距。图像上方和左侧的绿色、紫色刻度线分别表示根据晶格周期换算得到的横向和纵向尺度标尺。左下角给出的\(x\)和\(y\)数值为程序最终估计得到的图像实际扫描范围。</p>
+<p><img src="https://pic.imgdd.cc/i/033yy6nosGJU6T5xqexhI0.png" alt="图3：HOPG晶格识别与尺度标定结果"></p>
+<center>图3：基于Python图像处理得到的HOPG晶格识别与尺度标定结果</center>
+<p>\(\qquad\) 从图3可以看出，程序能够较好地识别出图像中周期性较明显的亮斑，并在局部区域内给出相邻原子间距的标定结果。左图中晶格条纹相对模糊，但程序仍能根据斜向与横向周期给出大致的晶格矢量；右图中原子亮斑更加清晰，识别结果也更稳定。程序得到的扫描范围约为纳米量级，与STM原子分辨成像的尺度相符，说明实验图像确实反映了HOPG表面的原子周期结构。</p>
+<p>\(\qquad\) 需要指出的是，该方法仍存在一定误差。首先，STM图像并非单纯的几何形貌图，而同时受到局域电子态密度、针尖状态和反馈参数影响；其次，实验图像中存在横向条纹、漂移和局部畸变，这会影响亮斑中心的识别精度；此外，若针尖与样品表面不完全垂直，图像中的晶格周期也可能发生拉伸或剪切。因此，该程序给出的扫描尺度更适合作为数量级估计和辅助分析，而不能完全替代仪器标定。</p>
+<h2 id="压电系数的估计与误差分析"><a class="headerlink" href="#压电系数的估计与误差分析"></a>压电系数的估计与误差分析</h2>
+<p>\(\qquad\) 进一步结合HOPG已知的晶格常数以及程序分析得到的扫描范围，可以对STM扫描系统中压电陶瓷的压电系数进行估计。设扫描过程中在\(x\)、\(y\)方向施加的扫描电压分别为\(V_x\)与\(V_y\)，对应实际扫描长度分别为\(L_x\)与\(L_y\)，则压电系数可由</p>
+<p>\[
+c=\frac{L}{V}
+\]</p>
+<p>\(\qquad\) 进行估算。根据程序对图像的分析结果，得到</p>
+<p>\[
+c_x=0.805\,\mathrm{nm/V},\qquad
+c_y=1.384\,\mathrm{nm/V}
+\]</p>
+<p>\(\qquad\) 理论上，对于结构对称且工作正常的压电扫描系统而言，\(x\)与\(y\)方向的压电陶瓷应具有相近甚至基本相同的压电系数。因此，实验中得到的\(c_x\)与\(c_y\)存在明显差异，说明测量过程中存在较大的系统误差。</p>
+<p>\(\qquad\) 造成这一现象的原因可能有多个方面。首先，STM图像中存在较明显的横向条纹和漂移现象，这会导致程序在识别晶格周期时产生偏差，从而影响扫描长度的估计。其次，针尖与样品表面可能并未完全垂直，导致图像在某一方向上发生拉伸或压缩，使得两个方向上的像素尺度不一致。此外，压电陶瓷本身也可能存在一定各向异性，其响应并非完全线性；再加上扫描过程中反馈系统的迟滞效应与热漂移，也会进一步影响尺度测量结果。</p>
+<p>\(\qquad\) 另一方面，STM图像反映的是局域电子态密度而并非严格的几何原子位置，因此图像中的亮斑中心与真实原子位置之间也可能存在一定偏差。程序在自动识别局域极大值时，对阈值、平滑半径以及邻域大小等参数较为敏感，这也会对最终结果产生影响。</p>
+<p>\(\qquad\) 因此，本实验中得到的压电系数结果主要反映其数量级范围，而不宜视为精确测量值。不过，实验结果仍然说明STM系统能够实现亚纳米尺度的位置控制，并验证了压电扫描系统在原子分辨成像中的关键作用。</p>
+<h1 id="结论"><a class="headerlink" href="#结论"></a>结论</h1>
+<p>\(\qquad\) 本实验利用扫描隧道显微镜对HOPG样品表面进行了扫描测量，并成功获得了具有原子分辨率的STM图像。实验结果表明，STM能够利用针尖与样品之间的量子隧穿电流实现对固体表面原子尺度结构的探测，从而直观验证量子力学中的隧穿效应。</p>
+<p>\(\qquad\) 通过对HOPG表面周期性结构的观察，可以清晰看到STM图像中呈现出的三角晶格特征。这一结果与石墨AB堆垛结构中不同碳原子的局域电子态密度差异相一致，说明STM所获得的图像不仅反映样品表面的几何形貌，同时还与其电子结构密切相关。</p>
+<p>\(\qquad\) 在实验基础上，本文进一步利用Python程序对STM图像进行了自动化分析。程序通过识别图像中的原子亮斑位置，并结合HOPG已知晶格常数，对STM图像的实际扫描尺度进行了估计，同时计算得到压电扫描系统在两个方向上的压电系数\(c_x=0.805\,\mathrm{nm/V}\)和\(c_y=1.384\,\mathrm{nm/V}\)。虽然两个方向上的结果存在一定差异，但其数量级与STM压电扫描系统的典型参数基本一致。误差主要来源于图像漂移、扫描畸变、针尖状态以及图像识别过程中引入的不确定性。</p>
+<p>\(\qquad\) 总体而言，本实验不仅加深了对量子隧穿效应和STM工作原理的理解，也进一步认识到机械稳定性、反馈控制以及针尖状态对STM成像质量的重要影响。同时，通过结合图像处理与程序分析的方法，对STM实验数据进行了更进一步的定量研究，提高了实验结果分析的完整性与可靠性。</p>
+<center><b>参考文献</b></center>
+<p>[1] GAMOW G. Zur Quantentheorie des Atomkernes[J]. Zeitschrift für Physik, 1928, 51(3-4): 204-212. DOI: 10.1007/BF01343196.</p>
+<p>[2] GURNEY R W, CONDON E U. Wave mechanics and radioactive disintegration[J]. Nature, 1928, 122(3073): 439. DOI: 10.1038/122439a0.</p>
+<p>[3] BINNIG G, ROHRER H, GERBER Ch, et al. Surface studies by scanning tunneling microscopy[J]. Physical Review Letters, 1982, 49(1): 57-61. DOI: 10.1103/PhysRevLett.49.57.</p>
+<p>[4] BINNIG G, QUATE C F, GERBER Ch. Atomic force microscope[J]. Physical Review Letters, 1986, 56(9): 930-933. DOI: 10.1103/PhysRevLett.56.930.</p>
+<h1 id="附录A：思考题"><a class="headerlink" href="#附录A：思考题"></a>附录A：思考题</h1>
+<ol>
+<li>
+<p><strong>HOPG的原子排列为六角密排（无心的），为什么实验中观察到的STM原子分辨图像通常呈现为有心六角结构或三角晶格结构？</strong></p>
+<p>从晶体结构上看，HOPG表面碳原子本应构成无心六角晶格。然而，在STM实验中通常只能观察到其中一半原子对应的亮斑，从而形成类似“三角晶格”或“有心六角结构”的图像。这一现象与石墨的AB层状堆垛结构有关。在HOPG中，相邻两层石墨烯并不是完全重合排列的，而是存在交错堆垛关系。对于表面层中的碳原子，可以分为两类：一类原子正下方存在下一层碳原子，另一类原子下方则为空位区域。由于两类原子的局域电子态密度不同，其对应的隧穿概率也不同。</p>
+<p><img src="https://pic.imgdd.cc/i/033yy6qjVJms91FkaXegL4.png" alt="图4：STM探测HOPG的微观示意图"></p>
+<center>图4：STM探测HOPG的微观示意图</center>
+<p>STM所探测的并非单纯的表面几何高度，而是针尖与样品之间局域电子态密度所决定的隧穿电流。下方存在碳原子的原子，其电子云会与下一层发生较强耦合，因此局域电子态密度较低；而下方为空位的原子，其电子云更加局域于表面，能够产生更强的隧穿电流，因此在STM图像中表现为更亮的斑点。因此，STM图像中实际只突出显示了其中一类碳原子的位置，从而使原本的六角晶格看起来变成三角晶格结构。这也说明STM图像本质上反映的是电子结构，而不仅仅是原子几何排布。</p>
+</li>
+<li>
+<p><strong>为什么在金膜样品的STM图像中有时会出现形状相似的凸起（针尖像）？</strong></p>
+<p>在STM成像过程中，针尖的形状和状态会直接影响最终获得的图像质量。当针尖不够尖锐、存在污染，或者针尖顶端存在多个微观突起时，就可能在STM图像中出现重复的凸起结构，这种现象通常被称为“针尖像（tip artifact）”。</p>
+<p>理想情况下，STM针尖应只有一个最尖锐的原子参与隧穿过程，这样才能保证成像具有较高空间分辨率。然而，若针尖顶端存在多个相邻突起，则不同位置都可能与样品表面同时发生隧穿，从而导致同一个表面结构在图像中重复出现。由于这些重复结构来源于同一个针尖结构，因此其形状往往十分相似。</p>
+<p>此外，金膜表面通常不像HOPG那样具有规则且均匀的周期性电子结构，其表面粗糙度和电子态分布更复杂，因此针尖状态对成像结果的影响会更加明显。当针尖状态不理想时，图像中的局部凸起容易呈现相似形貌，从而形成针尖像。</p>
+<p>除了针尖结构本身之外，扫描过程中的机械振动、反馈系统响应不稳定以及针尖与样品发生轻微碰撞，也可能改变针尖形状并导致类似现象。因此，在STM实验中，针尖制备与维护是获得高质量图像的重要条件之一。当出现明显针尖像时，通常需要重新处理或更换针尖，并重新调整扫描参数。</p>
+</li>
+</ol>
+<h1 id="附录B：数据处理使用的代码"><a class="headerlink" href="#附录B：数据处理使用的代码"></a>附录B：数据处理使用的代码</h1>
+<p>\(\qquad\) 本实验的数据处理与分析主要基于Python编程语言完成，综合使用了NumPy、Matplotlib、SciPy以及Pandas等科学计算与数据处理库，对实验数据进行读取、处理、可视化以及拟合分析。相关代码已整理并上传至GitHub仓库，读者可通过<a target="_blank" rel="noopener" href="https://github.com/xisenal/PKU-modern-physical-experiment-code/tree/main/STM_experiment5">STM_experiment5</a>获取完整项目文件并复现实验数据处理过程。</p>
+<p>\(\qquad\) 本项目采用MIT开源协议，允许在非商业用途下自由查看、修改与使用。如需获取代码，可在目标目录下通过终端执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/xisenal/PKU-modern-physical-experiment-code.git</span><br></pre></td></tr></table></figure>
+<p>\(\qquad\) 项目目录中已提供基于<code>.venv</code>的虚拟环境配置，进入虚拟环境后即可直接运行相关<code>.py</code>文件完成数据处理与分析。此外，也可通过以下命令手动安装所需依赖库，从而在本地环境中独立运行代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy matplotlib pandas scipy</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xisenal.github.io">Xisense WYX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/">https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xisenal.github.io" target="_blank">西瓜の驿站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%9E%E9%AA%8C/">实验</a><a class="post-meta__tags" href="/tags/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86/">近代物理</a></div><div class="post-share"><div class="social-share" data-image="/img/cover_default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/30/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91He-Ne%E6%B0%94%E4%BD%93%E6%BF%80%E5%85%89%E5%99%A8%E6%94%BE%E7%94%B5%E6%9D%A1%E4%BB%B6/" title="【实验】He-Ne气体激光器放电条件"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-30</div><div class="info-item-2">【实验】He-Ne气体激光器放电条件</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验研究了He-Ne气体激光器在不同气体配比与总压强条件下的放电特性。通过测量激光输出功率随工作电流变化的关系，发现功率随电流先增大后减小，且峰值对应的电流随总压强增加而减小。同时，氦氖配比对输出功率存在明显影响，氖比例较高时功率较大。实验结果与粒子数反转及能量转移理论相一致，为理解He-Ne激光器的工作条件及动力学机制提供了实验依据。 关键词： He-Ne激光，真空环境，配气 获取实验报告的PDF文件（仅供参考） 引言 激光（Laser）是基于受激辐射原理实现光放大的相干光源，其理论基础可以追溯到20世纪中期。1958年，Schawlow和Townes在经典论文《Infrared and Optical Masers》中提出将微波波段的maser原理推广到光学频段，从而提出了光学激射器（laser）的基本概念[1]。这一理论工作奠定了激光器发展的基础。...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用NaI(Tl)闪烁谱仪对γ射线能谱进行了测量与分析。通过测量¹³⁷Cs和⁶⁰Co标准放射源的能谱，确定了闪烁谱仪的能量刻度关系，并对谱仪的能量分辨率和线性特性进行了检验。在此基础上，利用多道分析器测量了不同几何条件及混合放射源情况下的γ能谱，对全能峰、康普顿平台及反散射峰的形成机制及其变化规律进行了分析。实验结果表明，NaI(Tl)闪烁谱仪具有良好的能量线性关系，能够较好地实现γ射线能量测量与能谱分析，加深了对γ射线与物质相互作用及闪烁探测器工作原理的理解。 关键词： NaI闪烁谱仪，光电效应，康普顿散射，放射性物质能谱 获取实验报告的PDF文件（仅供参考） 引言 闪烁探测器是最早发展起来的一类电离辐射探测器之一，在核物理、医学成像以及环境辐射监测等领域具有重要应用。自1948年发现NaI(Tl)晶体具有优良的闪烁性能以来，卤化物闪烁体得到了迅速发展，并推动了无机闪烁探测技术的进步[1]。由于NaI(Tl)晶体具有较高的发光效率和较高的有效原子序数，其对γ射线具有较高的探测效率，因此很快被应用于γ能谱测量，并成为闪烁谱仪中最常用的探测材料之一[2]。...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】体效应振荡器的工作特性和波导管的工作状态</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用体效应微波振荡器与矩形波导系统，对微波信号源的工作特性以及波导中的传播状态进行了系统研究。通过调节体效应振荡器的工作电压，测量其工作电流、输出功率及振荡频率随电压变化的关系，验证了Gunn效应导致的负微分迁移率特性及其对微波振荡形成的影响。在波导系统中，通过驻波测量线观测匹配状态、驻波状态及混波状态，并测量不同状态下的驻波比与反射系数。进一步利用驻波节点位置测量波导波长，并结合频率计测量结果计算自由空间波长、相速度与群速度，实验结果满足vpvg=c²的理论关系。此外，通过测量驻波曲线并采用半高宽法和对数拟合法确定晶体检波器的检波指数，结果表明其满足平方律检波特性。实验结果与理论分析基本一致，加深了对微波产生机制、波导传播规律及微波测量方法的理解。 关键词： 体效应振荡器，Gunn效应，波导传播，驻波比，检波律 获取实验报告的PDF文件（仅供参考） 引言 微波是频率约在300 MHz至300...</div></div></div></a><a class="pagination-related" href="/2025/01/18/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E5%88%A9%E7%94%A8CV%E6%B3%95%E6%B5%8B%E9%87%8F%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%9A%84%E6%9D%82%E8%B4%A8%E5%88%86%E5%B8%83/" title="【实验】利用CV法测量半导体的杂质分布"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-18</div><div class="info-item-2">【实验】利用CV法测量半导体的杂质分布</div></div><div class="info-2"><div class="info-item-1">摘要： 在半导体工业中，影响元件性能最重要的因素之一是掺杂浓度，因此精准地检测杂质浓度是评估元件好坏的重要环节[1]。本文章基于单边突变结的耗尽层中无自由电子的假设，模型化的计算了空间电荷区和偏压的定量关系，并将该势垒看作一个间距可变的电容。实验中通过串联标准电容并加交流电压的方法，间接测量P-N结势垒电容。通过改变直流偏置电压，得到杂质掺杂率随着交界距离的变化关系。 关键词：势垒电容，电容电压法，锁相放大，杂质测量，倍频测量 获取实验报告的pdf文件(仅供参考) 引言 1904年，Joseph Thomson在对锗和硅进行性质研究时发现这种材料并不同于一般的导体和绝缘体，这些材料有更加独特的电学性质，他将这种导电性介于导体和绝缘体之间的材料称为半导体[2]。1947年，John Bardeen，Walter Bratton和William...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】扫描电子显微镜</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用KYKY-EM3200型扫描电子显微镜对样品表面形貌进行了观察，并研究了聚光镜电流对SEM成像质量的影响。实验中在固定加速电压30 kV条件下，改变聚光镜电流并分别在不同放大倍率下获取样品表面图像。通过对比不同实验参数下的成像结果，分析了聚光镜电流对图像衬度、分辨率以及信噪比的影响规律。为了更加定量地评价图像质量，实验进一步利用Python对SEM图像进行了数字图像处理，采用全局灰度衬度、基于Sobel算子的边缘衬度、Laplacian方差清晰度以及基于Gaussian高通残差的信噪比等指标，对不同聚光镜电流条件下的图像质量进行了分析。结果表明，较大的聚光镜电流能够增强电子束会聚能力，提高图像边缘分辨率，但同时也会导致高频噪声增强，从而降低图像信噪比。综合实验结果可以看出，SEM成像质量实际上是在图像分辨率与噪声之间的折中，在本实验条件下聚光镜电流取I=500sim600时能够获得较优的综合成像效果。本实验进一步说明了数字图像处理方法在现代实验分析中的重要作用。 关键词： 扫描电子显微镜，聚光镜电流，图像衬度，图像分辨率，信噪比，数字图像处理...</div></div></div></a><a class="pagination-related" href="/2025/01/20/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E7%A1%85%E7%9A%84%E9%9C%8D%E5%B0%94%E7%B3%BB%E6%95%B0%E5%8F%8A%E7%94%B5%E9%98%BB%E7%8E%87%E7%9A%84%E6%B5%8B%E9%87%8F/" title="【实验】硅的霍尔系数及电阻率的测量"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-20</div><div class="info-item-2">【实验】硅的霍尔系数及电阻率的测量</div></div><div class="info-2"><div class="info-item-1">摘要： 测定半导体的电阻率和霍尔系数，可以获知其基本电磁特性，这有助于我们了解其导电机制以及验证固体物理的结论。本实验将这一办法应用到了型硅半导体的研究中，通过测定硅片样品的电阻率和霍尔系数，验证其的导电特性。具体而言，本实验利用四线范德堡法测量了从室温至约150°C范围内p型硅的电阻率和霍尔系数，获得并分析了该温度范围内电阻率和霍尔系数随温度的变化关系，并按照变化趋势的不同将p型硅半导体的导电特性划分出了几个明显区间，验证了固体物理对掺杂半导体的导电机制的预测，并进一步给出了所用硅片样品的带隙宽度Eg∼1.211eV 关键词：半导体，p型硅，能带理论，电阻率，霍尔效应 获取实验报告的pdf文件(仅供参考) 引言 半导体有别于导体和绝缘体，是一种导电性能随外界条件（如电磁场、温度等）变化强烈的电学材料。早在19世纪初，意大利物理学家Guglielmo...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Xisense WYX</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xisenal"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="weixin://contacts/profile/xisense_wyx" target="_blank" title="微信"><i class="fab fa-weixin" style="color: # 1AAD19;"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2076114280&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #FF6347;"></i></a><a class="social-icon" href="mailto:xisense_wyx@stu.pku.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://x.com/Xisense_WYX" target="_blank" title="X"><i class="fab fa-x-twitter" style="color: #BEBEBE;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%A3%85%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">实验装置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">实验结果与分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HOPG%E8%A1%A8%E9%9D%A2STM%E5%9B%BE%E5%83%8F"><span class="toc-number">4.1.</span> <span class="toc-text">HOPG表面STM图像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HOPG%E6%99%B6%E6%A0%BC%E8%AF%86%E5%88%AB%E4%B8%8E%E5%B0%BA%E5%BA%A6%E6%A0%87%E5%AE%9A"><span class="toc-number">4.2.</span> <span class="toc-text">HOPG晶格识别与尺度标定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%94%B5%E7%B3%BB%E6%95%B0%E7%9A%84%E4%BC%B0%E8%AE%A1%E4%B8%8E%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90"><span class="toc-number">4.3.</span> <span class="toc-text">压电系数的估计与误差分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">5.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95A%EF%BC%9A%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">附录A：思考题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95B%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">7.</span> <span class="toc-text">附录B：数据处理使用的代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】扫描电子显微镜"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜">【实验】扫描电子显微镜</a><time datetime="2026-07-31T10:33:13.000Z" title="发表于 2026-07-31 18:33:13">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】扫描隧穿显微镜"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜">【实验】扫描隧穿显微镜</a><time datetime="2026-07-31T10:00:42.000Z" title="发表于 2026-07-31 18:00:42">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】体效应振荡器的工作特性和波导管的工作状态"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态">【实验】体效应振荡器的工作特性和波导管的工作状态</a><time datetime="2026-07-31T09:48:07.000Z" title="发表于 2026-07-31 17:48:07">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/" title="【实验】通过热噪声与散粒噪声的统计特性测量物理常数"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】通过热噪声与散粒噪声的统计特性测量物理常数"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/" title="【实验】通过热噪声与散粒噪声的统计特性测量物理常数">【实验】通过热噪声与散粒噪声的统计特性测量物理常数</a><time datetime="2026-07-31T09:28:37.000Z" title="发表于 2026-07-31 17:28:37">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</a><time datetime="2026-07-31T06:45:38.000Z" title="发表于 2026-07-31 14:45:38">2026-07-31</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Xisense WYX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://www.yuanshen.com/" target="_blank" title="我真好好学习吗？">好好学习,天天向上</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script defer data-pjax src="/js/cursor.js"></script><script defer data-pjax src="/js/title.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

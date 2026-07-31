@@ -1,0 +1,542 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【实验】体效应振荡器的工作特性和波导管的工作状态 | 西瓜の驿站</title><meta name="author" content="Xisense WYX"><meta name="copyright" content="Xisense WYX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要： 本实验利用体效应微波振荡器与矩形波导系统，对微波信号源的工作特性以及波导中的传播状态进行了系统研究。通过调节体效应振荡器的工作电压，测量其工作电流、输出功率及振荡频率随电压变化的关系，验证了Gunn效应导致的负微分迁移率特性及其对微波振荡形成的影响。在波导系统中，通过驻波测量线观测匹配状态、驻波状态及混波状态，并测量不同状态下的驻波比与反射系数。进一步利用驻波节点位置测量波导波长，并结合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【实验】体效应振荡器的工作特性和波导管的工作状态">
+<meta property="og:url" content="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/index.html">
+<meta property="og:site_name" content="西瓜の驿站">
+<meta property="og:description" content="摘要： 本实验利用体效应微波振荡器与矩形波导系统，对微波信号源的工作特性以及波导中的传播状态进行了系统研究。通过调节体效应振荡器的工作电压，测量其工作电流、输出功率及振荡频率随电压变化的关系，验证了Gunn效应导致的负微分迁移率特性及其对微波振荡形成的影响。在波导系统中，通过驻波测量线观测匹配状态、驻波状态及混波状态，并测量不同状态下的驻波比与反射系数。进一步利用驻波节点位置测量波导波长，并结合">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xisenal.github.io/img/cover_default.jpg">
+<meta property="article:published_time" content="2026-07-31T09:48:07.000Z">
+<meta property="article:modified_time" content="2026-07-31T10:03:22.008Z">
+<meta property="article:author" content="Xisense WYX">
+<meta property="article:tag" content="实验">
+<meta property="article:tag" content="近代物理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xisenal.github.io/img/cover_default.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【实验】体效应振荡器的工作特性和波导管的工作状态",
+  "url": "https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/",
+  "image": "https://xisenal.github.io/img/cover_default.jpg",
+  "datePublished": "2026-07-31T09:48:07.000Z",
+  "dateModified": "2026-07-31T10:03:22.008Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Xisense WYX",
+      "url": "https://xisenal.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/watermelon.png"><link rel="canonical" href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【实验】体效应振荡器的工作特性和波导管的工作状态',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?1"><link rel="stylesheet" href="/css/cat.css?1"><link rel="stylesheet" href="/css/wave.css?1"><link rel="stylesheet" href="/css/cursor.css?1"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover_default.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/watermelon.png" alt="Logo"><span class="site-name">西瓜の驿站</span></a><a class="nav-page-title" href="/"><span class="site-name">【实验】体效应振荡器的工作特性和波导管的工作状态</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【实验】体效应振荡器的工作特性和波导管的工作状态</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-31T09:48:07.000Z" title="发表于 2026-07-31 17:48:07">2026-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-31T10:03:22.008Z" title="更新于 2026-07-31 18:03:22">2026-07-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C/">近代物理实验</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">7.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>25分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p><strong>摘要：</strong> 本实验利用体效应微波振荡器与矩形波导系统，对微波信号源的工作特性以及波导中的传播状态进行了系统研究。通过调节体效应振荡器的工作电压，测量其工作电流、输出功率及振荡频率随电压变化的关系，验证了Gunn效应导致的负微分迁移率特性及其对微波振荡形成的影响。在波导系统中，通过驻波测量线观测匹配状态、驻波状态及混波状态，并测量不同状态下的驻波比与反射系数。进一步利用驻波节点位置测量波导波长，并结合频率计测量结果计算自由空间波长、相速度与群速度，实验结果满足\(v_pv_g=c^2\)的理论关系。此外，通过测量驻波曲线并采用半高宽法和对数拟合法确定晶体检波器的检波指数，结果表明其满足平方律检波特性。实验结果与理论分析基本一致，加深了对微波产生机制、波导传播规律及微波测量方法的理解。</p>
+</blockquote>
+<p><strong>关键词：</strong> 体效应振荡器，Gunn效应，波导传播，驻波比，检波律</p>
+<p><a href='/pdf/用传输式谐振腔观测铁磁共振__近物实验报告5__发布版.pdf' target='_blank' title='用传输式谐振腔观测铁磁共振'>获取实验报告的PDF文件（仅供参考）</a></p>
+<h1 id="引言"><a class="headerlink" href="#引言"></a>引言</h1>
+<p>\(\qquad\) 微波是频率约在\(300\,\mathrm{MHz}\)至\(300\,\mathrm{GHz}\)、波长从米量级到毫米量级的电磁波，在雷达、无线通信、遥感测量以及现代信息技术中具有重要应用。由于微波频率高、波长短，其产生、传输和测量过程具有区别于低频电磁波的特殊规律，因此研究微波振荡源特性及波导传播规律具有重要的理论意义和实验价值<sup>[1,2]</sup>。</p>
+<p>\(\qquad\) 体效应振荡器（Gunn oscillator）是常见的固态微波信号源，其工作基础是半导体中的Gunn效应，即具有双能谷结构的材料在高电场下产生负微分迁移率，从而形成高场畴并产生微波振荡。相较传统微波电子管器件，体效应振荡器具有体积小、结构简单、工作稳定及调谐方便等优点，在微波实验和工程系统中得到广泛应用<sup>[3,4]</sup>。研究其工作电压、电流、输出功率及振荡频率之间的关系，有助于理解微波源的工作机制及器件优化条件。</p>
+<p>\(\qquad\) 微波在波导中的传播表现出与自由空间传播不同的色散特性。矩形波导中电磁波只能以特定模式传播，波导波长、相速度与群速度之间满足特殊关系，并存在匹配、驻波及混波等不同工作状态。通过驻波比、反射系数以及波导波长等参量的测量，不仅可以分析微波传输中的反射与阻抗匹配问题，还能够进一步验证波导色散理论及电磁波传播规律<sup>[2,5]</sup>。</p>
+<p>\(\qquad\) 本实验利用体效应微波振荡器、驻波测量线及波导系统，观测体效应振荡器的工作特性以及波导管中的不同工作状态，并测量驻波比、波导波长及传播速度等参数。通过实验加深对Gunn效应、波导传播机制和微波测量方法的理解，为进一步学习微波技术和电磁场理论奠定实验基础。</p>
+<h1 id="实验原理"><a class="headerlink" href="#实验原理"></a>实验原理</h1>
+<h2 id="体效应振荡器工作原理"><a class="headerlink" href="#体效应振荡器工作原理"></a>体效应振荡器工作原理</h2>
+<p><img src="https://pic.imgdd.cc/i/033yxWtd8HH2NVMXK3PKVX.png" alt="图2：Gunn效应示意图以及振荡电流的产生"></p>
+<center>图2：Gunn效应示意图以及振荡电流的产生</center>
+<p>\(\qquad\) 本实验采用Gunn体效应振荡器作为微波信号源，其工作基础是半导体中的Gunn效应。对于具有双能谷导带结构的n-GaAs等半导体，在低电场下电子主要分布于低能谷，电子漂移速度随电场近似线性增加；而当外加电场超过阈值电场\(E_{\mathrm{th}}\)后，电子大量跃迁至高能谷。由于高能谷迁移率较低，电子平均漂移速度反而下降，出现负微分迁移率：</p>
+<p>\[
+\frac{\mathrm{d}v_d}{\mathrm{d}E}&lt;0
+\]</p>
+<p>\(\qquad\) 这一特性导致材料中形成高场畴（high-field domain），并在样品中从阴极向阳极漂移。当高场畴到达阳极后消失，同时新的高场畴重新形成，产生周期性振荡，其频率由渡越时间决定：</p>
+<p>\[
+f=\frac{1}{T_D}=\frac{v_D}{L}
+\]</p>
+<p>\(\qquad\) 其中\(L\)为有源区长度，\(v_D\)为高场畴漂移速度。</p>
+<p>\(\qquad\) 体效应二极管置于谐振腔中构成振荡器，其振荡频率同时受器件参数和外谐振腔尺寸决定。本实验通过改变工作电压，研究振荡器工作电流、输出功率及振荡频率随偏压变化的关系，从而考察体效应振荡器的工作特性。</p>
+<h2 id="波导传播与工作状态"><a class="headerlink" href="#波导传播与工作状态"></a>波导传播与工作状态</h2>
+<p>\(\qquad\) 矩形金属波导并不能像自由空间那样支持任意形式的平面电磁波传播，而只能允许满足边界条件的离散模式传播。由Maxwell方程组结合理想导体边界条件可知，矩形波导中存在横电（TE）模式和横磁（TM）模式。本实验采用标准矩形波导，工作于主模\(\mathrm{TE}_{10}\)模式，这是截止频率最低、最容易激发且传播最稳定的模式。对于\(\mathrm{TE}_{10}\)模，其截止波长仅由波导宽边尺寸\(a\)决定：</p>
+<p>\[
+\lambda_c=2a
+\]</p>
+<p>\(\qquad\) 只有当自由空间波长满足</p>
+<p>\[
+\lambda&lt;\lambda_c
+\]</p>
+<p>\(\qquad\) 时，该模式才能在波导中传播，否则电磁波将呈指数衰减而不能传输能量。</p>
+<p>\(\qquad\) 由于电磁波在波导中并非沿轴向直接传播，而可以理解为在波导壁之间以一定角度来回反射叠加形成，因此其轴向传播呈现明显的色散特征。沿波导方向的有效波长，即波导波长，大于自由空间波长，其表达式为</p>
+<p>\[
+\lambda_g=
+\frac{\lambda}
+{\sqrt{1-\left(\frac{\lambda}{\lambda_c}\right)^2}}
+\]</p>
+<p>\(\qquad\) 由此可见，当工作波长接近截止波长时，波导波长显著增大，体现出明显的模式色散效应。根据相速度定义，可得波导中的相速度</p>
+<p>\[
+v_p=f\lambda_g
+\]</p>
+<p>\(\qquad\) 由于\(\lambda_g>\lambda\)，故相速度满足\(v_p>c\)。但这并不意味着信息传播速度超过光速，因为相速度仅代表相位传播速度，而电磁能量实际以群速度传播，其大小为</p>
+<p>\[
+v_g=c\sqrt{1-\left(\frac{\lambda}{\lambda_c}\right)^2}
+\]</p>
+<p>\(\qquad\) 满足\(v_g&lt;c\)。相速度与群速度之间存在关系</p>
+<p>\[
+v_pv_g=c^2
+\]</p>
+<p>\(\qquad\) 该关系是矩形波导色散特性的直接体现，也是实验中利用波导波长测量传播速度的重要理论依据。</p>
+<p>\(\qquad\) 在实际波导传输中，由于终端负载阻抗不同，入射波与反射波叠加会形成不同工作状态。当终端负载与波导特性阻抗完全匹配时，入射波全部被吸收，不产生反射，此时波导中仅存在行波传播，称为匹配状态；若终端完全反射，则入射波与反射波叠加形成严格驻波，称为驻波状态；而一般情况下终端存在部分反射，则形成介于两者之间的混波状态。</p>
+<p>\(\qquad\) 描述反射强弱通常采用驻波比</p>
+<p>\[
+\rho=\frac{E_{\max}}{E_{\min}}
+\]</p>
+<p>\(\qquad\) 作为表征参数，其中\(E_{\max}\)和\(E_{\min}\)分别对应驻波波腹与波节处电场幅值。驻波比越大，表明反射越强；理想匹配时\(\rho=1\)。进一步可由驻波比求得反射系数</p>
+<p>\[
+|\Gamma|=\frac{\rho-1}{\rho+1}
+\]</p>
+<p>\(\qquad\) 实验中通过单螺调配器改变终端阻抗条件，可以实现匹配、驻波和混波状态之间的调节与转换，并结合驻波测量线观测场分布变化，从而验证波导传播和阻抗匹配理论。</p>
+<h2 id="驻波测量与传播速度测定"><a class="headerlink" href="#驻波测量与传播速度测定"></a>驻波测量与传播速度测定</h2>
+<p>\(\qquad\) 驻波测量线是微波实验中测量驻波比、波导波长以及检波特性的重要装置，其基本原理是利用探针耦合波导内局域电场，并通过晶体检波器将高频信号转换为可测直流信号，从而获得波导中电场分布信息。</p>
+<p>\(\qquad\) 当波导终端处于短路或接近全反射状态时，入射波与反射波叠加形成稳定驻波。沿波导轴向电场振幅呈周期性变化，波节与相邻波节之间的距离满足</p>
+<p>\[
+\Delta x=\frac{\lambda_g}{2}
+\]</p>
+<p>\(\qquad\) 其中\(\lambda_g\)为波导波长。因此，只需测量相邻波节点位置，即可得到</p>
+<p>\[
+\lambda_g=2\Delta x
+\]</p>
+<p>\(\qquad\) 实验中为提高测量精度，通常采用多个相邻波节点位置求平均的方法减小读数误差。测得波导波长后，再结合频率计测得的微波频率\(f\)，可以得到自由空间波长</p>
+<p>\[
+\lambda=\frac{c}{f}
+\]</p>
+<p>\(\qquad\) 由波导传播理论进一步可求得相速度\(v_p=f\lambda_g\)以及群速度\(v_g=c^2/v_p\)，由此不仅能够验证矩形波导色散关系，还可进一步由实验结果间接测定光速。</p>
+<p>\(\qquad\) 驻波测量线中探针检测到的是波导内电场强度变化，而输出信号需经过晶体检波器转换。由于检波晶体具有非线性响应，其输出检波电流与电场幅值通常满足经验关系</p>
+<p>\[
+I=kE^n
+\]</p>
+<p>\(\qquad\) 其中\(k\)为比例系数，\(n\)为检波指数。当\(n=1\)时对应线性检波；当\(n=2\)时对应平方律检波。实际工作状态一般介于二者之间，因此需要通过实验标定其检波特性。</p>
+<p>\(\qquad\) 对于短路终端，沿测量线电场分布满足</p>
+<p>\[
+E(l)=E_0\sin\left(\frac{2\pi l}{\lambda_g}\right)
+\]</p>
+<p>\(\qquad\) 其中\(l\)为探针位置坐标。通过测量相邻波节间的驻波曲线\(I(l)\)，并结合上述电场分布关系，可建立检波电流与电场强度的对应关系，从而绘制晶体检波特性曲线并求得检波指数。</p>
+<p>\(\qquad\) 此外，驻波幅值的测量还可进一步用于求取驻波比\(\rho=E_{\max}/E_{\min}\)以及反射系数\(|\Gamma|=(\rho-1)/(\rho+1)\)，由此定量分析波导终端匹配情况和反射程度。因此，驻波测量线不仅是测量波导波长的工具，同时也是研究微波传播、阻抗匹配以及检波规律的重要实验手段。本实验通过驻波曲线测量、传播参数计算和检波特性标定，实现对微波传输与检测基本规律的综合验证。</p>
+<h1 id="实验仪器"><a class="headerlink" href="#实验仪器"></a>实验仪器</h1>
+<p>\(\qquad\) 本实验采用厘米波导微波实验系统完成体效应振荡器工作特性及波导传播状态测量。实验装置由微波信号源、波导传输元件、频率测量装置、驻波测量系统以及终端调配器等部分组成，各器件共同构成完整的微波产生、传输与检测平台。</p>
+<p><img src="https://pic.imgdd.cc/i/033yxWrya9nvS0Wwp7Kb4g.png" alt="图1：实验装置示意图"></p>
+<center>图1：实验装置示意图</center>
+<h2 id="固态微波信号源"><a class="headerlink" href="#固态微波信号源"></a>固态微波信号源</h2>
+<p>\(\qquad\) 实验使用Gunn体效应固态信号源作为微波发生装置，其核心器件为体效应二极管及谐振腔结构。通过调节工作电压，可以改变体效应管的偏置状态，从而研究工作电流、输出功率及振荡频率随偏压变化的特性；同时通过机械调谐方式改变谐振腔有效长度，可对输出微波频率进行调节。</p>
+<p>\(\qquad\) 该信号源工作于厘米波段，具有频率数字显示、输出稳定、调节方便等特点，并具有等幅输出与调制工作模式，可满足本实验中振荡器特性测量以及波导工作状态观测需求。实验中信号源不仅承担微波产生任务，也是整个微波系统的起始激励源。</p>
+<h2 id="波导传输系统"><a class="headerlink" href="#波导传输系统"></a>波导传输系统</h2>
+<p>\(\qquad\) 微波传输采用标准矩形金属波导及配套波导元件组成传输线路。矩形波导用于支持\(\mathrm{TE}_{10}\)主模传播，并保证微波在规定模式下稳定传输。</p>
+<p>\(\qquad\) 系统中的隔离器用于抑制负载反射波返回信号源，减少源端扰动，提高振荡稳定性；衰减器用于调节系统功率水平，控制传输功率大小，并避免探测系统过载。各波导元件通过标准法兰连接组成完整微波传输链路，其结构简单、损耗低，并可方便实现微波系统各部分功能组合。</p>
+<h2 id="吸收式频率计"><a class="headerlink" href="#吸收式频率计"></a>吸收式频率计</h2>
+<p>\(\qquad\) 微波频率测量采用吸收式谐振腔频率计。该装置本质上为高品质因数谐振腔，当谐振频率与待测微波频率一致时，腔体吸收能量达到最大，对应指示器出现明显响应变化，由此确定微波频率。</p>
+<p>\(\qquad\) 吸收式频率计具有测量精度高、频率选择性好等优点，在实验中用于准确标定微波频率。由于信号源数字频率读数存在有限误差，实验中以频率计读数作为传播参数计算的主要依据。</p>
+<h2 id="驻波测量线"><a class="headerlink" href="#驻波测量线"></a>驻波测量线</h2>
+<p>\(\qquad\) 驻波测量线是本实验最重要的测量装置之一，用于观测波导内电场分布并测量驻波比和波导波长。装置内部探针能够沿波导纵向移动，通过耦合局部电场信号并送入检波系统，将电场分布转换为可测电信号。</p>
+<p>\(\qquad\) 通过移动探针，可以测量驻波波腹与波节位置，进而确定驻波比和波导波长；同时还可测量相邻波节之间的驻波曲线，用于研究检波晶体特性。驻波测量线的探针插入深度和调谐状态会直接影响测量灵敏度和精度，因此实验中需进行适当调节。</p>
+<h2 id="单螺调配器"><a class="headerlink" href="#单螺调配器"></a>单螺调配器</h2>
+<p>\(\qquad\) 单螺调配器安装于波导终端附近，用于调节负载阻抗，实现系统匹配状态、驻波状态和混波状态之间的转换。其工作原理是通过改变调配元件位置，引入可控电抗，从而调整反射条件和终端阻抗。</p>
+<p>\(\qquad\) 实验中通过单螺调配器实现最小驻波比调节、中驻波状态建立以及近全反射状态产生，是研究阻抗匹配和反射特性的关键元件，同时也是测量波导波长时获得稳定驻波的重要条件。</p>
+<h2 id="晶体检波器与指示系统"><a class="headerlink" href="#晶体检波器与指示系统"></a>晶体检波器与指示系统</h2>
+<p>\(\qquad\) 微波信号检测采用晶体检波接头与指示系统联合完成。晶体检波器利用半导体检波效应，将高频微波信号转换为直流检波电流，供后续测量和显示使用。</p>
+<p>\(\qquad\) 检波输出由光点检流计或微安表进行读出，用于记录相对微波功率变化及驻波曲线。由于检波晶体响应具有一定非线性特征，实验中还需通过测量驻波曲线标定其检波规律。检波系统是连接电磁场分布与实验数据记录的重要接口，对实验精度具有重要影响。</p>
+<h1 id="实验步骤"><a class="headerlink" href="#实验步骤"></a>实验步骤</h1>
+<p>\(\qquad\) 实验开始前，按照实验线路图连接微波系统各元件，包括固态微波信号源、隔离器、衰减器、吸收式频率计、驻波测量线、单螺调配器及晶体检波接头。检查各波导法兰连接情况，确认系统连接可靠后开启电源，将微波信号源置于等幅工作状态，调节频率至约\(9.000\,\mathrm{GHz}\)，并预热约三十分钟，使体效应振荡器达到稳定工作状态。同时调节驻波测量线探针穿伸深度与检波灵敏度，使测量系统处于正常工作状态。</p>
+<p>\(\qquad\) 首先测量体效应振荡器的工作特性。保持谐振腔调谐位置不变，通过电压调节旋钮连续改变体效应管工作电压，在规定范围内逐点记录对应的工作电流、微波输出相对功率及频率读数。测量过程中适时调节短路活塞及单螺调配器，使检波输出保持较高灵敏度并保证频率计准确工作。根据实验记录绘制工作电流、输出功率和振荡频率随工作电压变化关系曲线，分析体效应振荡器工作特性。</p>
+<p>\(\qquad\) 随后观测波导管的工作状态并测量驻波比。保持振荡器工作于标准工作点，通过调节单螺调配器改变终端负载状态，首先调节系统达到最佳匹配状态，利用驻波测量线测量小驻波比并计算反射系数；再进一步调节终端进入混波状态，测量中等驻波比并计算对应反射系数。实验过程中观察不同终端条件下驻波图形变化，比较匹配状态、混波状态及近全反射状态下波导中的场分布特征。</p>
+<p>\(\qquad\) 在接近全反射条件下进一步测量波导波长。利用驻波测量线寻找多个相邻波节点位置，并采用平均值法精确确定波节点坐标，计算相邻波节间距，从而求得波导波长。结合吸收式频率计测得的微波频率，进一步计算自由空间波长、相速度、群速度以及光速实验值，并与理论结果进行比较分析。</p>
+<p>\(\qquad\) 最后测量相邻波节之间的驻波曲线。移动探针逐点记录检波输出信号随位置变化的关系，得到完整驻波曲线数据。根据测得曲线分析晶体检波特性，并标定检波规律参数。实验结束后关闭微波信号源电源，拆除实验线路，整理实验记录并进行后续数据处理。</p>
+<h1 id="实验数据与结果讨论"><a class="headerlink" href="#实验数据与结果讨论"></a>实验数据与结果讨论</h1>
+<h2 id="测量体效应振荡器的工作特性"><a class="headerlink" href="#测量体效应振荡器的工作特性"></a>测量体效应振荡器的工作特性</h2>
+<p>\(\qquad\) 通过调节电压旋钮，使体效应振荡器工作电压在\(0\sim13.0\,\mathrm{V}\)范围内连续变化，测量不同偏置条件下的工作电流，并进一步利用频率计记录振荡频率，通过晶体检波探头测量对应的相对输出功率。根据实验数据利用Python程序绘制工作电流、输出功率及振荡频率随工作电压变化的关系曲线，结果如图3所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033yxWrO1WmqldVqHXeKuZ.png" alt="图3：体效应振荡器的工作特性曲线"></p>
+<center>图3：体效应振荡器的工作电流、输出功率及振荡频率曲线</center>
+<p>\(\qquad\) 从电流-电压关系可以看出，在较低偏压区域，工作电流随电压近似线性增加，这对应Gunn二极管处于欧姆导电区，器件尚未进入负微分迁移率工作区域。当电压升高至阈值附近后，电流增长趋势明显减缓，并出现饱和甚至略有下降，这与Gunn效应导致高场畴形成有关。当偏置超过阈值后，器件进入稳定振荡状态，高场畴周期性产生、漂移并湮灭，从而形成微波振荡，这一结果与理论预期一致。</p>
+<p>\(\qquad\) 由输出功率曲线可见，随着工作电压增加，微波输出功率整体呈上升趋势。这是因为偏压升高增强了高场畴运动过程中的微波振荡强度，使器件输出功率增大。但在高电压区域功率增长趋缓，说明器件逐渐接近最佳工作点。</p>
+<p>\(\qquad\) 振荡频率随工作电压变化则表现出单调下降趋势，即偏压增大时振荡频率略有降低。这与体效应振荡器谐振条件及器件有效电容变化有关，同时也体现出振荡频率对工作状态的敏感依赖。实验测得频率由约\(9.23\,\mathrm{GHz}\)下降至约\(8.95\,\mathrm{GHz}\)，变化趋势与体效应振荡器典型工作特性一致。</p>
+<p>\(\qquad\) 综合图3中三条特性曲线可以看出，本实验较好地验证了Gunn体效应振荡器的典型工作规律：工作电流在阈值附近出现非线性特征，输出功率随偏压增大而增强，而振荡频率随偏压增加略有降低。这些结果反映了负微分迁移率及高场畴动力学过程在微波振荡形成中的重要作用。</p>
+<h2 id="观测波导管的工作状态"><a class="headerlink" href="#观测波导管的工作状态"></a>观测波导管的工作状态</h2>
+<p>\(\qquad\) 调节单螺调配器，使系统达到最佳匹配状态。在驻波测量线上选取若干位置，记录晶体检波探头测得的电流极大值与极小值数据，如表1所示。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">\(l/\mathrm{mm}\)</th>
+<th style="text-align:center">80</th>
+<th style="text-align:center">100</th>
+<th style="text-align:center">120</th>
+<th style="text-align:center">140</th>
+<th style="text-align:center">160</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\(I\)</td>
+<td style="text-align:center">58.9</td>
+<td style="text-align:center">59.7</td>
+<td style="text-align:center">62.9</td>
+<td style="text-align:center">63.1</td>
+<td style="text-align:center">61.5</td>
+</tr>
+</tbody>
+</table>
+<center>表1：小驻波比测量数据</center>
+<p>\(\qquad\) 根据驻波比定义</p>
+<p>\[
+\rho=\frac{I_{\max}}{I_{\min}}
+\]</p>
+<p>\(\qquad\) 选取测量数据中的平均值计算小驻波比：</p>
+<p>\[
+\rho=
+\frac{\overline{I_{\max}}}{\overline{I_{\min}}}
+=\frac{63.3}{58.5}
+=1.082
+\]</p>
+<p>\(\qquad\) 进一步可得反射系数</p>
+<p>\[
+|\Gamma|=\frac{\rho-1}{\rho+1}=0.0394
+\]</p>
+<p>\(\qquad\) 在此基础上，继续调节单螺调配器，使系统进入混波状态。记录驻波测量线上的某一极大值与极小值对应位置及检波电流：</p>
+<p>\[
+\begin{aligned}
+l_{\max}&amp;=140.8\,\mathrm{mm},\qquad I_{\max}=78.5,\\
+l_{\min}&amp;=129.3\,\mathrm{mm},\qquad I_{\min}=28.0.
+\end{aligned}
+\]</p>
+<p>\(\qquad\) 由此计算中驻波比</p>
+<p>\[
+\rho=\frac{I_{\max}}{I_{\min}}=2.804
+\]</p>
+<p>\(\qquad\) 以及对应反射系数</p>
+<p>\[
+|\Gamma|=\frac{\rho-1}{\rho+1}=0.470
+\]</p>
+<p>\(\qquad\) 通过比较匹配状态与混波状态下的驻波比，可以看出系统由良好匹配逐渐偏离匹配条件，反射增强，驻波现象明显增强，从而验证了波导中不同工作状态的电场分布特征。</p>
+<h2 id="测量波导波长"><a class="headerlink" href="#测量波导波长"></a>测量波导波长</h2>
+<p>\(\qquad\) 将波导系统调节至驻波状态，在驻波测量线上选取相邻三个波节点附近位置。通过测量驻波曲线中电流计示数相同，取约10格，且位于波节两侧的两个位置，采用平均值法确定波节点位置，从而减小读数误差。测量结果如下：</p>
+<p>\[
+\begin{aligned}
+x_{11}&amp;=158.5\,\mathrm{mm},&amp;
+x_{12}&amp;=150.5\,\mathrm{mm},&amp;
+x_1&amp;=154.5\,\mathrm{mm},\\
+x_{21}&amp;=135.8\,\mathrm{mm},&amp;
+x_{22}&amp;=128.0\,\mathrm{mm},&amp;
+x_2&amp;=131.9\,\mathrm{mm},\\
+x_{31}&amp;=111.3\,\mathrm{mm},&amp;
+x_{32}&amp;=103.8\,\mathrm{mm},&amp;
+x_3&amp;=107.6\,\mathrm{mm}.
+\end{aligned}
+\]</p>
+<p>\(\qquad\) 相邻波节点间距为</p>
+<p>\[
+\Delta x=x_2-x_1,\qquad x_3-x_2
+\]</p>
+<p>\(\qquad\) 取平均值得到波导波长</p>
+<p>\[
+\lambda_g=45.95\,\mathrm{mm}
+\]</p>
+<p>\(\qquad\) 根据矩形波导传播关系，自由空间波长满足</p>
+<p>\[
+\lambda=
+\frac{\lambda_g}
+{\sqrt{1+\left(\frac{\lambda_g}{2a}\right)^2}}
+\]</p>
+<p>\(\qquad\) 其中\(a=22.86\,\mathrm{mm}\)为波导宽边尺寸。由此计算得到</p>
+<p>\[
+\lambda=33.09\,\mathrm{mm}
+\]</p>
+<p>\(\qquad\) 利用吸收式频率计测得微波频率为</p>
+<p>\[
+f=9.000\,\mathrm{GHz}
+\]</p>
+<p>\(\qquad\) 由波长与频率关系可得光速实验值</p>
+<p>\[
+c=\lambda f=2.978\times10^8\,\mathrm{m/s}
+\]</p>
+<p>\(\qquad\) 进一步根据波导传播特性，可得相速度与群速度分别为</p>
+<p>\[
+v_p=\lambda_gf=4.3\times10^8\,\mathrm{m/s}
+\]</p>
+<p>\[
+v_g=\frac{c^2}{v_p}=2.08\times10^8\,\mathrm{m/s}
+\]</p>
+<p>\(\qquad\) 实验结果表明，相速度大于光速，而群速度小于光速，且满足关系\(v_pv_g=c^2\)，与理论预期一致。</p>
+<h2 id="确定晶体的检波律"><a class="headerlink" href="#确定晶体的检波律"></a>确定晶体的检波律</h2>
+<p>\(\qquad\) 在波导处于驻波状态下，沿驻波测量线移动探针，记录晶体检波器输出电流\(I\)随探针位置\(l\)的变化关系，从而得到驻波曲线\(I(l)\)，如图4所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033yxWrO7al5Y6gNjQDZj4.png" alt="图4：驻波曲线"></p>
+<center>图4：驻波曲线</center>
+<p>\(\qquad\) 根据驻波曲线，在波腹附近选取半高位置对应的两点，测得其间距为半高宽\(\Delta l\)。实验测得</p>
+<p>\[
+\Delta l=11.54\,\mathrm{mm}
+\]</p>
+<p>\(\qquad\) 根据检波理论，当晶体检波器满足幂律关系\(I=kE^n\)，且驻波电场分布满足正弦规律时，可由半高宽确定检波指数\(n\)：</p>
+<p>\[
+n=
+-\frac{0.3010}
+{\lg\left(\cos\frac{\pi\Delta l}{\lambda_g}\right)}
+\]</p>
+<p>\(\qquad\) 代入实验测得的\(\Delta l\)及波导波长\(\lambda_g\)，计算得到</p>
+<p>\[
+n=2.015
+\]</p>
+<p>\(\qquad\) 结果表明，检波指数接近\(n=2\)，说明晶体检波器工作在平方律检波区域，即输出电流与电场强度的平方成正比关系。</p>
+<p>\(\qquad\) 为了进一步验证该结论，可对驻波曲线进行数据处理。根据驻波理论，波导中电场分布满足</p>
+<p>\[
+E(l)\propto
+\left|
+\sin\left(\frac{2\pi(l-l_0)}{\lambda_g}\right)
+\right|
+\]</p>
+<p>\(\qquad\) 其中\(l_0\)为某一参考波节点位置。由此可将测得的电流\(I(l)\)转换为电场幅值对应关系，并绘制\(\log I-\log E\)曲线，如图5所示。</p>
+<p><img src="https://pic.imgdd.cc/i/033yxWqmIkCN4jtXKHv1df.png" alt="图5：检波电流与电场强度的双对数关系"></p>
+<center>图5：检波电流与电场强度的双对数关系</center>
+<p>\(\qquad\) 对该图进行线性拟合，其斜率即为检波指数\(n\)。由拟合结果可见，斜率接近2，与半高宽法计算结果一致，从而进一步验证了晶体检波器满足平方律检波特性。</p>
+<p>\(\qquad\) 综上，通过半高宽法与对数拟合法两种独立方法得到一致结论，说明实验测得的检波规律可靠，验证了晶体检波器在本实验条件下工作于平方律区域。</p>
+<h1 id="结论"><a class="headerlink" href="#结论"></a>结论</h1>
+<p>\(\qquad\) 本实验通过对体效应振荡器及波导系统的综合测量，系统研究了微波信号的产生、传播及检测过程。</p>
+<p>\(\qquad\) 实验结果表明，在体效应振荡器中，随着工作电压的增加，工作电流在阈值附近出现明显非线性特征，输出功率随电压增加而增强，而振荡频率随电压增加呈下降趋势，验证了Gunn效应及高场畴运动对微波振荡的影响机制。</p>
+<p>\(\qquad\) 在波导传播方面，通过调节终端匹配条件，成功观测到匹配状态、驻波状态和混波状态，并测量得到相应的驻波比与反射系数。实验结果表明，系统偏离匹配状态时反射增强，驻波现象明显，与理论分析一致。</p>
+<p>\(\qquad\) 通过驻波节点位置测量波导波长，并结合频率计数据计算自由空间波长及传播速度，结果显示相速度大于光速、群速度小于光速，并满足\(v_pv_g=c^2\)，验证了矩形波导中的色散关系。</p>
+<p>\(\qquad\) 此外，通过半高宽法及对数拟合法确定晶体检波器的检波指数，结果均接近\(n=2\)，说明晶体检波器在本实验条件下工作于平方律检波区域。</p>
+<p>\(\qquad\) 总体而言，本实验结果与理论预期符合较好，加深了对微波物理过程及测量方法的理解。实验误差主要来源于探针位置读数不确定性、频率计精度限制以及检波器非理想特性等因素。</p>
+<center><b>参考文献</b></center>
+<p>[1] POZAR D M. Microwave engineering[M]. 4th ed. Hoboken: John Wiley &amp; Sons, 2012.</p>
+<p>[2] COLLIN R E. Foundations for microwave engineering[M]. 2nd ed. New York: Wiley-IEEE Press, 2001.</p>
+<p>[3] GUNN J B. Microwave oscillations of current in III-V semiconductors[J]. Solid State Communications, 1963, 1(4): 88-91. DOI: 10.1016/0038-1098(63)90041-3.</p>
+<p>[4] SHUR M. GaAs devices and circuits[M]. New York: Plenum Press, 1987.</p>
+<p>[5] CHENG D K. Field and wave electromagnetics[M]. 2nd ed. Reading: Addison-Wesley, 1989.</p>
+<h1 id="附录A：思考题"><a class="headerlink" href="#附录A：思考题"></a>附录A：思考题</h1>
+<p><strong>给定矩形波导尺寸\(a=23.0\,\mathrm{mm}\)、\(b=10.0\,\mathrm{mm}\)，分析波长\(\lambda=2\,\mathrm{cm}\)、\(3\,\mathrm{cm}\)和\(5\,\mathrm{cm}\)的微波能否传播及其传播模式。</strong></p>
+<p>\(\qquad\) 矩形波导中各模式的截止波长为</p>
+<p>\[
+\lambda_c=
+\frac{2}
+{\sqrt{\left(\frac{m}{a}\right)^2+\left(\frac{n}{b}\right)^2}}
+\]</p>
+<p>\(\qquad\) 传播条件为</p>
+<p>\[
+\lambda&lt;\lambda_c
+\]</p>
+<p>\(\qquad\) 首先计算若干低阶模式的截止波长：</p>
+<p>\[
+\begin{aligned}
+\lambda_{c,10}&amp;=2a=46.0\,\mathrm{mm},\\
+\lambda_{c,20}&amp;=a=23.0\,\mathrm{mm},\\
+\lambda_{c,01}&amp;=2b=20.0\,\mathrm{mm},\\
+\lambda_{c,11}
+&amp;=\frac{2}{\sqrt{\frac{1}{a^2}+\frac{1}{b^2}}}
+\approx18.7\,\mathrm{mm}.
+\end{aligned}
+\]</p>
+<p>\(\qquad\) 据此比较不同波长与截止波长的关系，可得传播情况如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">波长</th>
+<th style="text-align:center">能否传播</th>
+<th style="text-align:center">可传播模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\(20\,\mathrm{mm}\)</td>
+<td style="text-align:center">能</td>
+<td style="text-align:center">\(\mathrm{TE}_{10},\ \mathrm{TE}_{20}\)</td>
+</tr>
+<tr>
+<td style="text-align:center">\(30\,\mathrm{mm}\)</td>
+<td style="text-align:center">能</td>
+<td style="text-align:center">\(\mathrm{TE}_{10}\)</td>
+</tr>
+<tr>
+<td style="text-align:center">\(50\,\mathrm{mm}\)</td>
+<td style="text-align:center">不能</td>
+<td style="text-align:center">无</td>
+</tr>
+</tbody>
+</table>
+<center>表2：不同波长下的传播模式</center>
+<p>\(\qquad\) 当\(\lambda=20\,\mathrm{mm}\)时，满足\(\lambda&lt;\lambda_{c,10}\)和\(\lambda&lt;\lambda_{c,20}\)，因此\(\mathrm{TE}_{10}\)与\(\mathrm{TE}_{20}\)模均可传播；而对于\(\mathrm{TE}_{01}\)模，有\(\lambda=\lambda_c\)，处于截止状态，实际不能传输能量。</p>
+<p>\(\qquad\) 当\(\lambda=30\,\mathrm{mm}\)时，仅满足\(\lambda&lt;\lambda_{c,10}\)，因此仅主模\(\mathrm{TE}_{10}\)能够传播，此时波导工作在单模状态。</p>
+<p>\(\qquad\) 当\(\lambda=50\,\mathrm{mm}\)时，大于所有模式的截止波长，无法满足传播条件，因此微波不能在波导中传播。</p>
+<p>\(\qquad\) 综上所述，矩形波导中主模\(\mathrm{TE}_{10}\)具有最大的截止波长，因此最容易被激发并首先传播；随着波长减小，高阶模式逐渐满足传播条件，从而出现多模传播现象。</p>
+<h1 id="附录B：数据处理使用的代码"><a class="headerlink" href="#附录B：数据处理使用的代码"></a>附录B：数据处理使用的代码</h1>
+<p>\(\qquad\) 本实验的数据处理与分析主要基于Python编程语言完成，综合使用了NumPy、Matplotlib、SciPy以及Pandas等科学计算与数据处理库，对实验数据进行读取、处理、可视化以及拟合分析。相关代码已整理并上传至GitHub仓库，读者可通过<a target="_blank" rel="noopener" href="https://github.com/xisenal/PKU-modern-physical-experiment-code/tree/main/microwave_experiment4">microwave_experiment4</a>获取完整项目文件并复现实验数据处理过程。</p>
+<p>\(\qquad\) 本项目采用MIT开源协议，允许在非商业用途下自由查看、修改与使用。如需获取代码，可在目标目录下通过终端执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/xisenal/PKU-modern-physical-experiment-code.git</span><br></pre></td></tr></table></figure>
+<p>\(\qquad\) 项目目录中已提供基于<code>.venv</code>的虚拟环境配置，进入虚拟环境后即可直接运行相关<code>.py</code>文件完成数据处理与分析。此外，也可通过以下命令手动安装所需依赖库，从而在本地环境中独立运行代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy matplotlib pandas scipy</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xisenal.github.io">Xisense WYX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/">https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xisenal.github.io" target="_blank">西瓜の驿站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%9E%E9%AA%8C/">实验</a><a class="post-meta__tags" href="/tags/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86/">近代物理</a></div><div class="post-share"><div class="social-share" data-image="/img/cover_default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/30/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91He-Ne%E6%B0%94%E4%BD%93%E6%BF%80%E5%85%89%E5%99%A8%E6%94%BE%E7%94%B5%E6%9D%A1%E4%BB%B6/" title="【实验】He-Ne气体激光器放电条件"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-30</div><div class="info-item-2">【实验】He-Ne气体激光器放电条件</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验研究了He-Ne气体激光器在不同气体配比与总压强条件下的放电特性。通过测量激光输出功率随工作电流变化的关系，发现功率随电流先增大后减小，且峰值对应的电流随总压强增加而减小。同时，氦氖配比对输出功率存在明显影响，氖比例较高时功率较大。实验结果与粒子数反转及能量转移理论相一致，为理解He-Ne激光器的工作条件及动力学机制提供了实验依据。 关键词： He-Ne激光，真空环境，配气 获取实验报告的PDF文件（仅供参考） 引言 激光（Laser）是基于受激辐射原理实现光放大的相干光源，其理论基础可以追溯到20世纪中期。1958年，Schawlow和Townes在经典论文《Infrared and Optical Masers》中提出将微波波段的maser原理推广到光学频段，从而提出了光学激射器（laser）的基本概念[1]。这一理论工作奠定了激光器发展的基础。...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用NaI(Tl)闪烁谱仪对γ射线能谱进行了测量与分析。通过测量¹³⁷Cs和⁶⁰Co标准放射源的能谱，确定了闪烁谱仪的能量刻度关系，并对谱仪的能量分辨率和线性特性进行了检验。在此基础上，利用多道分析器测量了不同几何条件及混合放射源情况下的γ能谱，对全能峰、康普顿平台及反散射峰的形成机制及其变化规律进行了分析。实验结果表明，NaI(Tl)闪烁谱仪具有良好的能量线性关系，能够较好地实现γ射线能量测量与能谱分析，加深了对γ射线与物质相互作用及闪烁探测器工作原理的理解。 关键词： NaI闪烁谱仪，光电效应，康普顿散射，放射性物质能谱 获取实验报告的PDF文件（仅供参考） 引言 闪烁探测器是最早发展起来的一类电离辐射探测器之一，在核物理、医学成像以及环境辐射监测等领域具有重要应用。自1948年发现NaI(Tl)晶体具有优良的闪烁性能以来，卤化物闪烁体得到了迅速发展，并推动了无机闪烁探测技术的进步[1]。由于NaI(Tl)晶体具有较高的发光效率和较高的有效原子序数，其对γ射线具有较高的探测效率，因此很快被应用于γ能谱测量，并成为闪烁谱仪中最常用的探测材料之一[2]。...</div></div></div></a><a class="pagination-related" href="/2025/01/18/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E5%88%A9%E7%94%A8CV%E6%B3%95%E6%B5%8B%E9%87%8F%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%9A%84%E6%9D%82%E8%B4%A8%E5%88%86%E5%B8%83/" title="【实验】利用CV法测量半导体的杂质分布"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-18</div><div class="info-item-2">【实验】利用CV法测量半导体的杂质分布</div></div><div class="info-2"><div class="info-item-1">摘要： 在半导体工业中，影响元件性能最重要的因素之一是掺杂浓度，因此精准地检测杂质浓度是评估元件好坏的重要环节[1]。本文章基于单边突变结的耗尽层中无自由电子的假设，模型化的计算了空间电荷区和偏压的定量关系，并将该势垒看作一个间距可变的电容。实验中通过串联标准电容并加交流电压的方法，间接测量P-N结势垒电容。通过改变直流偏置电压，得到杂质掺杂率随着交界距离的变化关系。 关键词：势垒电容，电容电压法，锁相放大，杂质测量，倍频测量 获取实验报告的pdf文件(仅供参考) 引言 1904年，Joseph Thomson在对锗和硅进行性质研究时发现这种材料并不同于一般的导体和绝缘体，这些材料有更加独特的电学性质，他将这种导电性介于导体和绝缘体之间的材料称为半导体[2]。1947年，John Bardeen，Walter Bratton和William...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】扫描电子显微镜</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用KYKY-EM3200型扫描电子显微镜对样品表面形貌进行了观察，并研究了聚光镜电流对SEM成像质量的影响。实验中在固定加速电压30 kV条件下，改变聚光镜电流并分别在不同放大倍率下获取样品表面图像。通过对比不同实验参数下的成像结果，分析了聚光镜电流对图像衬度、分辨率以及信噪比的影响规律。为了更加定量地评价图像质量，实验进一步利用Python对SEM图像进行了数字图像处理，采用全局灰度衬度、基于Sobel算子的边缘衬度、Laplacian方差清晰度以及基于Gaussian高通残差的信噪比等指标，对不同聚光镜电流条件下的图像质量进行了分析。结果表明，较大的聚光镜电流能够增强电子束会聚能力，提高图像边缘分辨率，但同时也会导致高频噪声增强，从而降低图像信噪比。综合实验结果可以看出，SEM成像质量实际上是在图像分辨率与噪声之间的折中，在本实验条件下聚光镜电流取I=500sim600时能够获得较优的综合成像效果。本实验进一步说明了数字图像处理方法在现代实验分析中的重要作用。 关键词： 扫描电子显微镜，聚光镜电流，图像衬度，图像分辨率，信噪比，数字图像处理...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】扫描隧穿显微镜</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用扫描隧道显微镜对HOPG表面进行了原子分辨成像，观察到典型的石墨三角晶格结构，并验证了量子隧穿效应。结合Python图像处理程序，对STM图像进行了尺度分析，并估算了压电扫描系统的压电系数，加深了对STM工作原理与实验方法的理解。 关键词： 扫描隧道显微镜，量子隧穿效应，HOPG，原子分辨成像，压电陶瓷，图像处理 获取实验报告的PDF文件（仅供参考） 引言 20世纪初量子力学建立之后，人们逐渐认识到微观粒子具有经典理论所无法解释的波动性质。其中，一个重要现象便是量子隧穿效应（quantum tunneling effect）：粒子即使在能量低于势垒高度的情况下，仍有一定概率穿透势垒区域。1928年，Gamow以及Gurney与Condon分别利用量子力学成功解释了α衰变过程，首次明确提出了隧穿效应的物理图像[1,2]。此后，量子隧穿逐渐成为现代凝聚态物理与量子器件中的重要基础理论。 基于量子隧穿效应，1981年，IBM苏黎世实验室的G. Binnig与H. Rohrer发明了扫描隧道显微镜（scanning tunneling...</div></div></div></a><a class="pagination-related" href="/2025/01/20/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E7%A1%85%E7%9A%84%E9%9C%8D%E5%B0%94%E7%B3%BB%E6%95%B0%E5%8F%8A%E7%94%B5%E9%98%BB%E7%8E%87%E7%9A%84%E6%B5%8B%E9%87%8F/" title="【实验】硅的霍尔系数及电阻率的测量"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-20</div><div class="info-item-2">【实验】硅的霍尔系数及电阻率的测量</div></div><div class="info-2"><div class="info-item-1">摘要： 测定半导体的电阻率和霍尔系数，可以获知其基本电磁特性，这有助于我们了解其导电机制以及验证固体物理的结论。本实验将这一办法应用到了型硅半导体的研究中，通过测定硅片样品的电阻率和霍尔系数，验证其的导电特性。具体而言，本实验利用四线范德堡法测量了从室温至约150°C范围内p型硅的电阻率和霍尔系数，获得并分析了该温度范围内电阻率和霍尔系数随温度的变化关系，并按照变化趋势的不同将p型硅半导体的导电特性划分出了几个明显区间，验证了固体物理对掺杂半导体的导电机制的预测，并进一步给出了所用硅片样品的带隙宽度Eg∼1.211eV 关键词：半导体，p型硅，能带理论，电阻率，霍尔效应 获取实验报告的pdf文件(仅供参考) 引言 半导体有别于导体和绝缘体，是一种导电性能随外界条件（如电磁场、温度等）变化强烈的电学材料。早在19世纪初，意大利物理学家Guglielmo...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Xisense WYX</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xisenal"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="weixin://contacts/profile/xisense_wyx" target="_blank" title="微信"><i class="fab fa-weixin" style="color: # 1AAD19;"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2076114280&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #FF6347;"></i></a><a class="social-icon" href="mailto:xisense_wyx@stu.pku.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://x.com/Xisense_WYX" target="_blank" title="X"><i class="fab fa-x-twitter" style="color: #BEBEBE;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">实验原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">体效应振荡器工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A2%E5%AF%BC%E4%BC%A0%E6%92%AD%E4%B8%8E%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.</span> <span class="toc-text">波导传播与工作状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%BB%E6%B3%A2%E6%B5%8B%E9%87%8F%E4%B8%8E%E4%BC%A0%E6%92%AD%E9%80%9F%E5%BA%A6%E6%B5%8B%E5%AE%9A"><span class="toc-number">2.3.</span> <span class="toc-text">驻波测量与传播速度测定</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BB%AA%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">实验仪器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BA%E6%80%81%E5%BE%AE%E6%B3%A2%E4%BF%A1%E5%8F%B7%E6%BA%90"><span class="toc-number">3.1.</span> <span class="toc-text">固态微波信号源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A2%E5%AF%BC%E4%BC%A0%E8%BE%93%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.2.</span> <span class="toc-text">波导传输系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%B8%E6%94%B6%E5%BC%8F%E9%A2%91%E7%8E%87%E8%AE%A1"><span class="toc-number">3.3.</span> <span class="toc-text">吸收式频率计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%BB%E6%B3%A2%E6%B5%8B%E9%87%8F%E7%BA%BF"><span class="toc-number">3.4.</span> <span class="toc-text">驻波测量线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E8%9E%BA%E8%B0%83%E9%85%8D%E5%99%A8"><span class="toc-number">3.5.</span> <span class="toc-text">单螺调配器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%B6%E4%BD%93%E6%A3%80%E6%B3%A2%E5%99%A8%E4%B8%8E%E6%8C%87%E7%A4%BA%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.6.</span> <span class="toc-text">晶体检波器与指示系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.</span> <span class="toc-text">实验步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BB%93%E6%9E%9C%E8%AE%A8%E8%AE%BA"><span class="toc-number">5.</span> <span class="toc-text">实验数据与结果讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%87%8F%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7"><span class="toc-number">5.1.</span> <span class="toc-text">测量体效应振荡器的工作特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%82%E6%B5%8B%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81"><span class="toc-number">5.2.</span> <span class="toc-text">观测波导管的工作状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%87%8F%E6%B3%A2%E5%AF%BC%E6%B3%A2%E9%95%BF"><span class="toc-number">5.3.</span> <span class="toc-text">测量波导波长</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E6%99%B6%E4%BD%93%E7%9A%84%E6%A3%80%E6%B3%A2%E5%BE%8B"><span class="toc-number">5.4.</span> <span class="toc-text">确定晶体的检波律</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">6.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95A%EF%BC%9A%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">附录A：思考题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95B%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">8.</span> <span class="toc-text">附录B：数据处理使用的代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】扫描电子显微镜"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜">【实验】扫描电子显微镜</a><time datetime="2026-07-31T10:33:13.000Z" title="发表于 2026-07-31 18:33:13">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】扫描隧穿显微镜"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜">【实验】扫描隧穿显微镜</a><time datetime="2026-07-31T10:00:42.000Z" title="发表于 2026-07-31 18:00:42">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】体效应振荡器的工作特性和波导管的工作状态"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态">【实验】体效应振荡器的工作特性和波导管的工作状态</a><time datetime="2026-07-31T09:48:07.000Z" title="发表于 2026-07-31 17:48:07">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/" title="【实验】通过热噪声与散粒噪声的统计特性测量物理常数"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】通过热噪声与散粒噪声的统计特性测量物理常数"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/" title="【实验】通过热噪声与散粒噪声的统计特性测量物理常数">【实验】通过热噪声与散粒噪声的统计特性测量物理常数</a><time datetime="2026-07-31T09:28:37.000Z" title="发表于 2026-07-31 17:28:37">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</a><time datetime="2026-07-31T06:45:38.000Z" title="发表于 2026-07-31 14:45:38">2026-07-31</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Xisense WYX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://www.yuanshen.com/" target="_blank" title="我真好好学习吗？">好好学习,天天向上</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script defer data-pjax src="/js/cursor.js"></script><script defer data-pjax src="/js/title.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

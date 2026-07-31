@@ -1,0 +1,575 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【实验】通过热噪声与散粒噪声的统计特性测量物理常数 | 西瓜の驿站</title><meta name="author" content="Xisense WYX"><meta name="copyright" content="Xisense WYX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要： 本实验基于热噪声与散粒噪声的统计特性，通过频域分析与交叉相关方法，从随机涨落信号中提取有效物理信息。实验首先测量不同电阻条件下的热噪声功率谱密度，并验证其与电阻及温度之间满足\(\langle V^2\rangle&#x3D;4k_BTR\)的线性关系，从而估算玻尔兹曼常数\(k_B\)。随后，通过光电二极管产生的散粒噪声，研究噪声强度与电流之间的依赖关系，并尝试测量元电荷\(e\)。在数据处理过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【实验】通过热噪声与散粒噪声的统计特性测量物理常数">
+<meta property="og:url" content="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/index.html">
+<meta property="og:site_name" content="西瓜の驿站">
+<meta property="og:description" content="摘要： 本实验基于热噪声与散粒噪声的统计特性，通过频域分析与交叉相关方法，从随机涨落信号中提取有效物理信息。实验首先测量不同电阻条件下的热噪声功率谱密度，并验证其与电阻及温度之间满足\(\langle V^2\rangle&#x3D;4k_BTR\)的线性关系，从而估算玻尔兹曼常数\(k_B\)。随后，通过光电二极管产生的散粒噪声，研究噪声强度与电流之间的依赖关系，并尝试测量元电荷\(e\)。在数据处理过">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xisenal.github.io/img/cover_default.jpg">
+<meta property="article:published_time" content="2026-07-31T09:28:37.000Z">
+<meta property="article:modified_time" content="2026-07-31T09:43:02.048Z">
+<meta property="article:author" content="Xisense WYX">
+<meta property="article:tag" content="实验">
+<meta property="article:tag" content="近代物理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xisenal.github.io/img/cover_default.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【实验】通过热噪声与散粒噪声的统计特性测量物理常数",
+  "url": "https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/",
+  "image": "https://xisenal.github.io/img/cover_default.jpg",
+  "datePublished": "2026-07-31T09:28:37.000Z",
+  "dateModified": "2026-07-31T09:43:02.048Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Xisense WYX",
+      "url": "https://xisenal.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/watermelon.png"><link rel="canonical" href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【实验】通过热噪声与散粒噪声的统计特性测量物理常数',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css?1"><link rel="stylesheet" href="/css/cat.css?1"><link rel="stylesheet" href="/css/wave.css?1"><link rel="stylesheet" href="/css/cursor.css?1"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/cover_default.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/watermelon.png" alt="Logo"><span class="site-name">西瓜の驿站</span></a><a class="nav-page-title" href="/"><span class="site-name">【实验】通过热噪声与散粒噪声的统计特性测量物理常数</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/picture/"><i class="fa-fw far fa-images"></i><span> Picture</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【实验】通过热噪声与散粒噪声的统计特性测量物理常数</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-31T09:28:37.000Z" title="发表于 2026-07-31 17:28:37">2026-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-31T09:43:02.048Z" title="更新于 2026-07-31 17:43:02">2026-07-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C/">近代物理实验</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">10.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>33分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p><strong>摘要：</strong> 本实验基于热噪声与散粒噪声的统计特性，通过频域分析与交叉相关方法，从随机涨落信号中提取有效物理信息。实验首先测量不同电阻条件下的热噪声功率谱密度，并验证其与电阻及温度之间满足\(\langle V^2\rangle=4k_BTR\)的线性关系，从而估算玻尔兹曼常数\(k_B\)。随后，通过光电二极管产生的散粒噪声，研究噪声强度与电流之间的依赖关系，并尝试测量元电荷\(e\)。在数据处理过程中，引入基于鲁棒统计的迭代加权方法，有效抑制了频谱中的窄带干扰与异常点，提高了对白噪声统计量的估计精度。实验结果表明，该方法能够显著改善热噪声测量的准确性，而散粒噪声测量受限于系统误差与器件特性，精度相对较低。本实验展示了利用噪声统计特性反推出基本物理常数的可行性，并体现了现代实验中信号处理方法的重要作用。</p>
+</blockquote>
+<p><strong>关键词：</strong> 热噪声，散粒噪声，功率谱密度，交叉相关，傅里叶变换</p>
+<p><a href='/pdf/热噪声与散粒噪声实验__近物实验3__发布版.pdf' target='_blank' title='通过热噪声与散粒噪声的统计特性测量物理常数'>获取实验报告的PDF文件（仅供参考）</a></p>
+<h1 id="引言"><a class="headerlink" href="#引言"></a>引言</h1>
+<p>\(\qquad\) 在经典实验中，噪声通常被视为测量精度的限制因素。然而，随着统计物理与电子学的发展，人们逐渐认识到，随机涨落本身蕴含着重要的物理信息。热噪声与散粒噪声作为两类最基本的电学噪声，不仅反映了体系的微观统计性质，还可以用于测量基本物理常数。这一思想最早可以追溯到20世纪初对导体中电荷热涨落的研究。Nyquist和Johnson在1928年的工作中建立了电阻热噪声与温度之间的定量关系，为后续的噪声测量奠定了基础<sup>[1,2]</sup>。热噪声可以看作能量均分定理在电学系统中的体现，其均方电压满足\(\langle V^2\rangle=4k_BTR\)<sup>[3]</sup>。</p>
+<p>\(\qquad\) 除了热噪声之外，散粒噪声（shot noise）揭示了电荷的离散性，其起源可以追溯到Schottky在1918年对真空管中电流涨落的研究<sup>[4]</sup>。当载流子通过势垒时，由于其粒子性，电流涨落服从泊松统计，其噪声强度与平均电流成正比。在经典极限下，散粒噪声的功率谱密度满足\(S_I=2eI\)，这一关系直接包含了电子电荷这一基本常数。因此，通过测量散粒噪声可以实现对电子电荷的实验估算，这一方法在介观物理和低温电子学中具有重要应用<sup>[5]</sup>。</p>
+<p>\(\qquad\) 从更深层次来看，热噪声与散粒噪声分别对应于两种不同的物理极限：前者由热平衡涨落决定，与温度相关；后者则来源于载流子的离散输运，与外加偏压相关<sup>[3]</sup>。这两类噪声可以统一地纳入涨落-耗散定理的理论框架之中，从而揭示系统响应与涨落之间的内在联系。北京大学量子材料科学中心Jian Wei课题组改进了实际测量方法。由于噪声信号极其微弱，该课题组借助低噪声放大与交叉相关（cross-correlation）等技术手段，从背景噪声中提取有效信号，这也构成了现代精密测量的重要方法之一。</p>
+<p>\(\qquad\) 本实验正是基于上述理论背景，通过测量不同电阻上的热噪声来估算玻尔兹曼常数\(k_B\)，并通过测量光电二极管中的散粒噪声来估算电子电荷\(e\)。实验不仅加深了对统计物理基本原理的理解，也展示了如何利用随机涨落这一“噪声信号”反推出微观物理常数，从而体现现代实验物理中“从涨落中获取信息”的重要思想。</p>
+<h1 id="实验原理"><a class="headerlink" href="#实验原理"></a>实验原理</h1>
+<h2 id="热噪声与散粒噪声的理论基础及物理意义"><a class="headerlink" href="#热噪声与散粒噪声的理论基础及物理意义"></a>热噪声与散粒噪声的理论基础及物理意义</h2>
+<p><img src="https://pic.imgdd.cc/i/033yx7wkLiRnJ9QjjCMewJ.png" alt="图1：热噪声与散粒噪声示意图"></p>
+<center>图1：上图为电阻中的热涨落导致连续电压噪声；下图为电荷离散性导致散粒噪声</center>
+<h3 id="电阻热噪声的推导"><a class="headerlink" href="#电阻热噪声的推导"></a>电阻热噪声的推导</h3>
+<p>\(\qquad\) 热噪声（Johnson-Nyquist noise）来源于导体中载流子的热运动，其本质可以从统计物理中的能量均分定理以及涨落-耗散定理出发进行严格推导。考虑一个电阻\(R\)与外界处于热平衡状态，其两端的电压涨落可以等效为一个随机电压源。根据Nyquist的理论分析，可以将该系统等效为一个频带宽度为\(\Delta f\)的线性系统，并考虑其与匹配负载之间的能量交换。</p>
+<p>\(\qquad\) 在热平衡条件下，每一个自由度平均具有能量\(\frac{1}{2}k_BT\)。对于电磁模式而言，在单位频带内的平均能量为\(k_BT\)。若将电阻视为一个耗散元件，其在频率区间\(\Delta f\)内向外输出的平均功率为</p>
+<p>\[
+P=k_BT\Delta f
+\]</p>
+<p>\(\qquad\) 另一方面，若电阻两端存在均方电压涨落\(\langle V^2\rangle\)，则在匹配负载条件下输出功率为</p>
+<p>\[
+P=\frac{\langle V^2\rangle}{4R}
+\]</p>
+<p>\(\qquad\) 令两者相等，可得</p>
+<p>\[
+\frac{\langle V^2\rangle}{4R}=k_BT\Delta f
+\]</p>
+<p>\(\qquad\) 从而得到热噪声的基本表达式：</p>
+<p>\[
+\langle V^2\rangle=4k_BTR\Delta f
+\]</p>
+<p>\(\qquad\) 该公式表明热噪声仅由温度\(T\)和电阻\(R\)决定，而与材料的微观细节无关，这是热平衡涨落的普适性体现。其深层理论基础是涨落-耗散定理，即系统的耗散性质（电阻）与其涨落强度之间存在内在联系<sup>[1,3]</sup>。热噪声反映了体系在热平衡状态下不可避免的能量涨落，其本质是微观自由度随机运动的宏观体现。该噪声为白噪声，在一定频率范围内具有平坦的功率谱密度。</p>
+<h3 id="散粒噪声的推导"><a class="headerlink" href="#散粒噪声的推导"></a>散粒噪声的推导</h3>
+<p>\(\qquad\) 散粒噪声（shot noise）来源于电荷的离散性。当电流由独立电子组成时，其传输过程服从泊松统计。设单位时间内通过某截面的电子数为\(N\)，则电流为</p>
+<p>\[
+I=eN
+\]</p>
+<p>\(\qquad\) 由于泊松过程的方差满足</p>
+<p>\[
+\langle(\Delta N)^2\rangle=N
+\]</p>
+<p>\(\qquad\) 因此电流涨落为</p>
+<p>\[
+\langle(\Delta I)^2\rangle=e^2\langle(\Delta N)^2\rangle=e^2N
+\]</p>
+<p>\(\qquad\) 代入\(I=eN\)得</p>
+<p>\[
+\langle(\Delta I)^2\rangle=eI
+\]</p>
+<p>\(\qquad\) 进一步考虑频谱密度定义，即单位带宽内的涨落，可得到著名的散粒噪声公式：</p>
+<p>\[
+S_I=2eI
+\]</p>
+<p>\(\qquad\) 在实验中测量的是电压信号，若电流通过等效电阻\(R\)，则电压噪声满足</p>
+<p>\[
+\langle V^2\rangle=S_IR^2\Delta f=2eIR^2\Delta f
+\]</p>
+<p>\(\qquad\) 若进一步考虑光电二极管中\(I\propto V\)的关系，则可写为</p>
+<p>\[
+\langle V^2\rangle\propto eRV
+\]</p>
+<p>\(\qquad\) 散粒噪声直接来源于电荷的粒子性，是量子离散性的宏观体现。当\(eV\gg k_BT\)时，系统远离热平衡，噪声主要由散粒噪声主导<sup>[4,5]</sup>。</p>
+<p>\(\qquad\) 热噪声与散粒噪声分别对应于两种极限：前者由热涨落主导，后者由粒子离散性主导，两者共同体现了统计物理与量子效应在输运过程中的作用。</p>
+<h2 id="Cross-correlation测量方法及其降噪原理"><a class="headerlink" href="#Cross-correlation测量方法及其降噪原理"></a>Cross-correlation测量方法及其降噪原理</h2>
+<h3 id="噪声测量的困难与必要性"><a class="headerlink" href="#噪声测量的困难与必要性"></a>噪声测量的困难与必要性</h3>
+<p>\(\qquad\) 在实际测量中，热噪声和散粒噪声的信号极其微弱。例如，在室温下\(100\,\Omega\)电阻的热噪声约为\(1\,\mathrm{nV}/\sqrt{\mathrm{Hz}}\)，而前置放大器本身的噪声往往更大。因此，直接测量会被仪器噪声淹没，无法获得可靠结果<sup>[3]</sup>，必须采用有效方法抑制测量系统本身的噪声。</p>
+<h3 id="Cross-correlation基本原理"><a class="headerlink" href="#Cross-correlation基本原理"></a>Cross-correlation基本原理</h3>
+<p>\(\qquad\) 实验中采用双通道测量，并利用交叉相关（cross-correlation）方法提取信号。设两个测量通道输出分别为</p>
+<p>\[
+v_1=s+n_1,\qquad v_2=s+n_2
+\]</p>
+<p>\(\qquad\) 其中\(s\)为真实信号（热噪声或散粒噪声），\(n_1,n_2\)为两个通道各自独立的噪声。计算两信号的相关函数或频域交叉谱：</p>
+<p>\[
+\langle v_1v_2\rangle=\langle(s+n_1)(s+n_2)\rangle
+\]</p>
+<p>\(\qquad\) 展开得</p>
+<p>\[
+\langle v_1v_2\rangle
+=\langle s^2\rangle+\langle sn_1\rangle+\langle sn_2\rangle+\langle n_1n_2\rangle
+\]</p>
+<p>\(\qquad\) 由于信号与噪声不相关，即\(\langle sn_1\rangle=\langle sn_2\rangle=0\)；两通道噪声相互独立，即\(\langle n_1n_2\rangle=0\)，因此得到</p>
+<p>\[
+\langle v_1v_2\rangle=\langle s^2\rangle
+\]</p>
+<p>\(\qquad\) 即交叉相关操作可以消除不相关噪声，仅保留两个通道共有的真实信号。</p>
+<h3 id="平均过程与噪声抑制效率"><a class="headerlink" href="#平均过程与噪声抑制效率"></a>平均过程与噪声抑制效率</h3>
+<p>\(\qquad\) 在实际测量中，由于采样时间有限，噪声项不会完全为零，但可以通过多次平均降低其影响。对于随机噪声，其方差随平均次数\(N\)的增加而降低：</p>
+<p>\[
+\sigma\propto\frac{1}{\sqrt{N}}
+\]</p>
+<p>\(\qquad\) 因此，通过长时间采样和频域平均可以显著提高信噪比<sup>[6]</sup>。</p>
+<h3 id="方法的必要性与物理本质"><a class="headerlink" href="#方法的必要性与物理本质"></a>方法的必要性与物理本质</h3>
+<p>\(\qquad\) Cross-correlation方法的核心思想是利用“相关性”区分信号与噪声：真实信号在两个通道中完全相关，仪器噪声在两个通道中统计独立。因此，该方法本质上是一种基于统计独立性的滤波技术。对于本实验而言，如果不采用该方法，则难以从强背景噪声中提取纳伏量级的信号，从而无法实现对\(k_B\)和\(e\)的测量。</p>
+<p>\(\qquad\) 此外，由于热噪声和散粒噪声在频域上为白噪声，可以在多个频率点上同时进行平均，相当于显著增加采样次数，从而进一步提高测量精度。这也是现代低噪声测量技术中的重要思想。</p>
+<h1 id="实验步骤"><a class="headerlink" href="#实验步骤"></a>实验步骤</h1>
+<h2 id="电阻热噪声的测量步骤"><a class="headerlink" href="#电阻热噪声的测量步骤"></a>电阻热噪声的测量步骤</h2>
+<p>\(\qquad\) 在热噪声测量实验中，首先将装有不同阻值电阻的电阻盒置于金属屏蔽盒中，以减小外界电磁干扰对微弱噪声信号的影响。选择待测电阻后，通过同轴电缆将电阻两端引出，并使用一个“T”型接头将信号分为两路，分别接入两台低噪声差分前置放大器的输入端。此时电阻上的热噪声信号将同时进入两个独立测量通道，从而为后续的交叉相关分析提供条件。</p>
+<p>\(\qquad\) 另外值得注意的是，如果导线任意放置，外界环境中的电磁扰动可能会对其造成影响，而这种共有扰动不能通过上述cross-correlation方法消除。因此，需要将导线环绕在一起，以减小这种效应的影响。</p>
+<p>\(\qquad\) 在完成电路连接后，开启放大器并设置合适的增益和带宽范围，使信号处于放大器的低噪声工作区间。随后，将两路放大后的模拟信号输入数据采集卡，通过计算机进行同步采样。在数据采集过程中，需要保证采样时间足够长，以获得良好的统计平均效果，并尽可能覆盖多个频率点。</p>
+<p>\(\qquad\) 采集到的时间序列信号随后通过程序进行傅里叶变换，得到频域中的噪声功率谱密度。通过对两个通道信号进行交叉相关处理，可以有效去除放大器本身的不相关噪声，仅保留电阻上的热噪声信号。最终，在选定的频率范围内对谱密度进行平均，得到噪声均方值，并通过改变电阻阻值，测量不同\(R\)对应的噪声强度，从而验证\(\langle V^2\rangle\propto R\)的线性关系，并进一步拟合得到玻尔兹曼常数。</p>
+<p><img src="https://pic.imgdd.cc/i/033yx7xceAn6EYJKQPfPmE.png" alt="图2：电阻热噪声的测量电路"></p>
+<center>图2：电阻热噪声的测量电路</center>
+<p>\(\qquad\) 在整个实验过程中，需要特别注意放大器本身的噪声特性以及环境干扰的影响，应尽量选择外界噪声较小且放大器性能稳定的频段进行分析。同时，通过多次重复测量与长时间平均，可以进一步提高测量结果的可靠性。</p>
+<h2 id="光电二极管散粒噪声的测量步骤"><a class="headerlink" href="#光电二极管散粒噪声的测量步骤"></a>光电二极管散粒噪声的测量步骤</h2>
+<p><img src="https://pic.imgdd.cc/i/033yx7zPHnIOHjv8AlXmaS.png" alt="图3：光电二极管散粒噪声测量电路"></p>
+<center>图3：光电二极管散粒噪声测量的电路图与实际黑盒的电路连接图</center>
+<p>\(\qquad\) 在散粒噪声测量实验中，首先搭建光电二极管与光源的实验系统。将小灯泡作为光源放置在屏蔽盒内部，并通过电池供电，使其发出稳定光照。光电二极管置于灯泡附近，使其能够接收光照并产生光电流。通过调节灯泡回路中的可变电阻，可以改变入射光强，从而控制光电二极管中的平均电流大小。</p>
+<p>\(\qquad\) 光电二极管与外接电阻构成电流测量回路，其输出信号通过适当的电路结构分为两路，并分别接入两个低噪声放大通道。类似于热噪声测量，两个通道的信号同时输入数据采集系统进行同步采样。在连接电路时，应尽量减小寄生电容与外界耦合噪声，并确保光电二极管工作在稳定的偏置条件下，以保证测量结果的准确性。</p>
+<p>\(\qquad\) 完成信号采集后，同样对两路数据进行傅里叶变换，并计算其交叉相关谱，从而提取出与光电流相关的噪声分量。由于散粒噪声来源于电荷的离散输运，其强度与平均电流成正比，因此可以通过改变光强，即改变电流，测量不同工作点下的噪声大小。</p>
+<p>\(\qquad\) 在数据处理过程中，通过对多个频率点和多次采样结果进行平均，可以显著降低随机误差。最终，将测得的噪声均方值与对应的电流或电压进行拟合，可以验证散粒噪声满足\(\langle V^2\rangle\propto eRV\)的关系，并由拟合斜率估算电子电荷\(e\)的数值。</p>
+<p>\(\qquad\) 需要注意的是，在散粒噪声测量中，应尽量保证系统处于\(eV\gg k_BT\)的条件，以使散粒噪声占主导地位。同时，应避免电源引入额外噪声，通常优先采用电池供电方式，并通过合理接地与屏蔽措施提高信噪比。</p>
+<h1 id="实验结果与分析"><a class="headerlink" href="#实验结果与分析"></a>实验结果与分析</h1>
+<h2 id="通过电阻热噪声的统计规律测量玻尔兹曼常数"><a class="headerlink" href="#通过电阻热噪声的统计规律测量玻尔兹曼常数"></a>通过电阻热噪声的统计规律测量玻尔兹曼常数</h2>
+<p>\(\qquad\) 基于上述实验步骤完成电路连接后，即可利用LabVIEW程序对系统噪声进行测量。实验中将测量循环次数（loop）设置为10，并在较大阻值条件下对放大器增益及带宽等参数进行优化调节，使测得的频谱中尽可能呈现宽频范围内的白噪声平台，以便于后续数据分析。在此基础上，逐步改变电阻阻值，并选取频谱中受外界干扰较小且噪声分布较为平坦的频率区间，对该区间内的电压涨落进行统计分析，通过计算其标准差来表征噪声强度，最终得到表1所示的实验数据。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">电阻阻值</th>
+<th style="text-align:center">\(100\,\mathrm{k\Omega}\)</th>
+<th style="text-align:center">\(50\,\mathrm{k\Omega}\)</th>
+<th style="text-align:center">\(20\,\mathrm{k\Omega}\)</th>
+<th style="text-align:center">\(10\,\mathrm{k\Omega}\)</th>
+<th style="text-align:center">\(1\,\mathrm{k\Omega}\)</th>
+<th style="text-align:center">\(500\,\Omega\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">标准差</td>
+<td style="text-align:center">\(3.47\times10^{-5}\)</td>
+<td style="text-align:center">\(2.72\times10^{-5}\)</td>
+<td style="text-align:center">\(1.77\times10^{-5}\)</td>
+<td style="text-align:center">\(1.24\times10^{-5}\)</td>
+<td style="text-align:center">\(4.03\times10^{-6}\)</td>
+<td style="text-align:center">\(2.83\times10^{-6}\)</td>
+</tr>
+<tr>
+<td style="text-align:center">电阻阻值</td>
+<td style="text-align:center">\(200\,\Omega\)</td>
+<td style="text-align:center">\(100\,\Omega\)</td>
+<td style="text-align:center">\(50\,\Omega\)</td>
+<td style="text-align:center">\(20\,\Omega\)</td>
+<td style="text-align:center">\(10\,\Omega\)</td>
+<td style="text-align:center">\(5\,\Omega\)</td>
+</tr>
+<tr>
+<td style="text-align:center">标准差</td>
+<td style="text-align:center">\(2.09\times10^{-6}\)</td>
+<td style="text-align:center">\(2.01\times10^{-6}\)</td>
+<td style="text-align:center">\(1.01\times10^{-6}\)</td>
+<td style="text-align:center">\(5.91\times10^{-7}\)</td>
+<td style="text-align:center">\(4.13\times10^{-7}\)</td>
+<td style="text-align:center">\(2.99\times10^{-7}\)</td>
+</tr>
+</tbody>
+</table>
+<center>表1：不同电阻对应的电压热噪声标准差测量数据</center>
+<p>\(\qquad\) 需要指出的是，本实验中前置放大器的电压增益设定为\(1000\)倍，因此表1中所列数据为放大后的结果，在后续数据处理及物理量计算时需要修正该增益因子。对测量数据进行初步筛选后，剔除个别明显偏离整体趋势的数据点，并对剩余数据进行线性拟合分析。利用Python对\(V_n^2\)与电阻\(R\)之间的关系进行拟合，得到图4所示的结果。</p>
+<p>\(\qquad\) 拟合结果表明，数据点在双对数坐标下呈现良好的线性关系，程序给出的拟合参数为斜率\(a=9.971\times10^{-1}\)、截距\(b=-31.66\)、相关系数\(r=0.999772\)，说明实验数据与理论模型符合较好。由于采用对数形式进行拟合，对应的理论关系可写为</p>
+<p>\[
+\log(V_n^2)=\log(R)+\log(4k_BT)
+\]</p>
+<p>\(\qquad\) 由此可以通过拟合截距求得玻尔兹曼常数：</p>
+<p>\[
+\begin{aligned}
+k_B
+&amp;=\frac{e^b}{4T\times1000^2}\\
+&amp;=\frac{e^{-31.66}}{4\times300\times1000^2}\\
+&amp;=1.487996\times10^{-23}\,\mathrm{J/K}
+\end{aligned}
+\]</p>
+<p><img src="https://pic.imgdd.cc/i/033yx7xRRKKUx5YfYUPIZp.png" alt="图4：噪声电压平方与电阻阻值的线性拟合"></p>
+<center>图4：噪声电压平方与电阻阻值的线性拟合</center>
+<p>\(\qquad\) 其中分母中的\(1000^2\)来源于电压信号经过两次放大所引入的增益修正。从结果上看，实验测得的玻尔兹曼常数与公认值\(k_B=1.38\times10^{-23}\,\mathrm{J/K}\)在量级上保持一致，相对误差约为数个百分点，说明通过热噪声测量基本物理常数的方法具有较好的可行性和准确性。</p>
+<p>\(\qquad\) 进一步分析误差来源可以发现，实验结果与理论值之间的偏差主要来源于以下几个方面。首先，放大器本身存在固有噪声，其频率响应并非完全平坦，尤其是在低频区域容易受到\(1/f\)噪声的影响，这可能导致对白噪声区间的选择存在一定误差。其次，实验中选取的频率区间虽然尽量避开了明显的干扰峰，但环境电磁噪声仍不可完全消除，从而对测量结果产生一定影响。</p>
+<p>\(\qquad\) 此外，数据处理中对异常点的剔除以及有限采样带来的统计误差，也会在一定程度上影响拟合精度。另一方面，电阻的实际温度可能与设定的室温存在偏差，同时电阻本身的阻值误差以及接触电阻等因素也会引入系统误差。放大器增益标定的不确定性同样会直接影响最终计算结果，因此在精密测量中需要对增益进行更严格的校准。</p>
+<p>\(\qquad\) 总体而言，本实验通过测量电阻热噪声并结合统计分析方法成功估算了玻尔兹曼常数，验证了热噪声与电阻及温度之间的理论关系。实验不仅加深了对涨落现象及其统计规律的理解，也展示了利用噪声这一“随机信号”提取基本物理信息的有效途径。</p>
+<h2 id="通过光电二极管散粒噪声的统计规律测量元电荷"><a class="headerlink" href="#通过光电二极管散粒噪声的统计规律测量元电荷"></a>通过光电二极管散粒噪声的统计规律测量元电荷</h2>
+<p>\(\qquad\) 这部分实验的基本思路与前述热噪声测量类似，但其物理机制来源于载流子的离散性。实验中通过调节小灯泡的亮度改变入射到光电二极管上的光强，从而调节光生电流的大小。由于散粒噪声的强度与平均电流成正比，因此可以通过测量噪声强度随电流变化的关系来反推出元电荷的数值。在具体实现中，通过测量图3中定值电阻\(R_1\)两端的电压来间接获得电路中的电流大小，从而建立噪声强度与电流之间的对应关系。实验测得的数据如表2所示。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">电压</th>
+<th style="text-align:center">\(1.1835\,\mathrm{V}\)</th>
+<th style="text-align:center">\(1.0656\,\mathrm{V}\)</th>
+<th style="text-align:center">\(0.9019\,\mathrm{V}\)</th>
+<th style="text-align:center">\(0.8304\,\mathrm{V}\)</th>
+<th style="text-align:center">\(0.7368\,\mathrm{V}\)</th>
+<th style="text-align:center">\(0.6201\,\mathrm{V}\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">标准差</td>
+<td style="text-align:center">\(1.52\times10^{-4}\)</td>
+<td style="text-align:center">\(1.48\times10^{-4}\)</td>
+<td style="text-align:center">\(1.42\times10^{-4}\)</td>
+<td style="text-align:center">\(1.36\times10^{-4}\)</td>
+<td style="text-align:center">\(1.27\times10^{-4}\)</td>
+<td style="text-align:center">\(1.18\times10^{-4}\)</td>
+</tr>
+<tr>
+<td style="text-align:center">电压</td>
+<td style="text-align:center">\(0.5375\,\mathrm{V}\)</td>
+<td style="text-align:center">\(0.4121\,\mathrm{V}\)</td>
+<td style="text-align:center">\(0.3241\,\mathrm{V}\)</td>
+<td style="text-align:center">\(0.2142\,\mathrm{V}\)</td>
+<td style="text-align:center">\(0.1489\,\mathrm{V}\)</td>
+<td style="text-align:center">\(0.0496\,\mathrm{V}\)</td>
+</tr>
+<tr>
+<td style="text-align:center">标准差</td>
+<td style="text-align:center">\(1.09\times10^{-4}\)</td>
+<td style="text-align:center">\(9.59\times10^{-5}\)</td>
+<td style="text-align:center">\(8.58\times10^{-5}\)</td>
+<td style="text-align:center">\(6.95\times10^{-5}\)</td>
+<td style="text-align:center">\(5.77\times10^{-5}\)</td>
+<td style="text-align:center">\(3.26\times10^{-5}\)</td>
+</tr>
+</tbody>
+</table>
+<center>表2：不同光电二极管电流所对应的噪声标准差测量数据</center>
+<p>\(\qquad\) 在数据处理过程中，同样对明显偏离整体趋势的数据点进行剔除，并对剩余数据进行线性拟合分析。将噪声电压平方\(V_n^2\)作为因变量，与定值电阻两端电压\(V\)建立关系，利用Python程序进行拟合，得到图5所示的结果。</p>
+<p><img src="https://pic.imgdd.cc/i/033yx7xQx8AWncGzRfqV8Z.png" alt="图5：噪声电压平方与定值电阻电压的线性拟合"></p>
+<center>图5：噪声电压平方与定值电阻电压的线性拟合</center>
+<p>\(\qquad\) 拟合结果表明，实验数据呈现出良好的线性关系，程序给出的拟合参数为斜率\(a=2.0911\times10^{-8}\)、截距\(b=4.2924\times10^{-10}\)、相关系数\(r=0.9996\)，说明实验数据与理论模型符合较好。根据散粒噪声的理论关系</p>
+<p>\[
+V_n^2=eRV
+\]</p>
+<p>\(\qquad\) 可以通过拟合斜率提取元电荷\(e\)的数值：</p>
+<p>\[
+e=\frac{a}{R}=2.0911\times10^{-13}\,\mathrm{C}
+\]</p>
+<p>\(\qquad\) 从实验结果来看，测得的元电荷数量级明显偏大，与公认值\(e=1.60\times10^{-19}\,\mathrm{C}\)相比存在较大偏差。这表明散粒噪声测量相较于热噪声测量对实验条件更加敏感，系统误差的影响更为显著。</p>
+<p>\(\qquad\) 造成该偏差的主要原因可以从多个方面进行分析。首先，散粒噪声测量依赖于电流的准确获取，而实验中通过测量定值电阻两端电压间接得到电流，这一过程中若电阻值存在误差或接触电阻不可忽略，则会直接影响电流的计算精度。其次，光电二极管的实际工作状态可能未完全满足理想散粒噪声条件，即\(eV\gg k_BT\)的假设未严格成立，此时热噪声仍可能对测量结果产生一定影响，从而导致测得噪声偏大。</p>
+<p>\(\qquad\) 此外，光电二极管本身的内部噪声机制较为复杂，包括复合噪声、暗电流噪声等，这些因素都会叠加在散粒噪声之上，使得实验中测得的噪声并非纯粹的泊松涨落。同时，放大器噪声、环境电磁干扰以及电源稳定性等因素，也可能在较低电流区域占据主导，从而破坏理想的线性关系。</p>
+<p>\(\qquad\) 最后，实验设备也存在一定的局限性，尤其是小灯泡的发光稳定性会对实验结果产生很大影响。实验中经常出现测量噪声前后的电压值不相同的情况，这对于一个需要长时间平均测量的实验而言是不严谨的。在数据处理方面，由于散粒噪声信号较弱，有限采样时间和频率分辨率会引入较大的统计误差，尤其是在低电压区域，信噪比较低，容易导致拟合结果出现偏差。因此，在后续实验中可以通过延长采样时间、优化频段选择以及提高系统屏蔽性能等方式进一步提高测量精度。</p>
+<p>\(\qquad\) 总体而言，本实验通过测量光电二极管中的噪声涨落，验证了散粒噪声与电流之间的线性关系，并尝试利用该关系估算元电荷的数值。尽管实验结果与理论值存在较大偏差，但仍反映了电荷离散性对电流涨落的影响，体现了散粒噪声作为研究微观输运过程的重要手段。</p>
+<h2 id="实验误差的进一步处理"><a class="headerlink" href="#实验误差的进一步处理"></a>实验误差的进一步处理</h2>
+<p>\(\qquad\) 前述实验数据与误差分析已经较为清晰地揭示了实验方案的主要局限性。对于第二部分散粒噪声的测量而言，其拟合结果对实验条件具有较高敏感性，尤其是光电二极管中除散粒噪声之外的其他噪声源，如暗电流噪声、复合噪声等，会显著影响测量结果。从实验现象来看，多次测量中所得结果普遍相较理论值呈现偏大的趋势，这一“向上偏移”正是额外噪声叠加所导致的。</p>
+<p>\(\qquad\) 因此，若希望进一步提高测量精度，仅依赖数据处理手段难以完全克服这一问题，更根本的改进方向应集中在优化实验设计，例如选用噪声特性更优的光电材料或改进探测器结构。然而，从整体上看，将散粒噪声测量发展为高精度测量元电荷的方法仍然具有一定困难。</p>
+<p><img src="https://pic.imgdd.cc/i/033yx7xqgUK7fKpTBFP8K1.png" alt="图6：100 kΩ电阻阻值下热噪声的频谱曲线"></p>
+<center>图6：100 kΩ电阻阻值下热噪声的频谱曲线</center>
+<p>\(\qquad\) 相比之下，第一个热噪声实验的误差来源更加明确且具有可控性。在误差分析中可以看出，主要误差来源于电阻标称值的不确定性以及频谱选取区间中存在的非白噪声干扰。如图6所示，在实际测量的频谱中仍然存在若干窄带“尖峰”结构，这些局部异常信号会对标准差或功率谱平均值等统计结果产生显著影响，从而降低最终测量精度。</p>
+<p>\(\qquad\) 需要指出的是，电阻值的不准确性属于器件本身的误差来源，通过选用高精度标准电阻可以有效降低；而频谱中的干扰信号则来源于环境电磁噪声或测量系统本身，这一问题具有更强的系统性，但同时也为数据处理方法的优化提供了空间。</p>
+<p>\(\qquad\) 在获得频谱数据后，可以尝试通过引入合理的信号处理算法来削弱这些干扰成分，从而提取更加接近理想白噪声的统计量。若上述两个主要误差来源能够得到有效控制，则该实验方案完全有潜力发展为一种较为精确的玻尔兹曼常数测量方法。因此，进一步探索合适的数据处理方法以优化频谱特性具有重要意义。</p>
+<p>\(\qquad\) 在工程实践中，针对频谱数据中的随机波动与局部异常，常采用平滑处理方法来提高信号的稳定性。其中，Savitzky-Golay平滑是一种常用且有效的方法，其基本思想是在滑动窗口内对数据进行低阶多项式拟合，并以拟合结果替代原始数据点，从而在保留信号整体趋势的同时抑制高频噪声。</p>
+<p>\(\qquad\) 具体而言，对于给定的离散数据序列\(\{y_i\}\)，在以\(i\)为中心的窗口内选取\(2m+1\)个点，通过最小二乘法拟合一个\(k\)次多项式</p>
+<p>\[
+y(x)=a_0+a_1x+a_2x^2+\cdots+a_kx^k
+\]</p>
+<p>\(\qquad\) 并将该多项式在中心点处的取值作为平滑后的结果。该过程等价于对原始数据进行一次加权卷积：</p>
+<p>\[
+\tilde{y}_i=\sum_{j=-m}^{m}c_jy_{i+j}
+\]</p>
+<p>\(\qquad\) 其中系数\(c_j\)由多项式拟合唯一确定。与简单移动平均方法相比，Savitzky-Golay平滑能够在有效降低随机噪声的同时较好地保持信号的峰值位置与整体形状，因此特别适用于频谱数据的预处理。在本实验中，通过对功率谱密度数据应用该方法，可以减弱局部尖峰对统计量的影响，从而得到更加稳定的白噪声估计结果。这为后续物理量的精确提取提供了有力支持。</p>
+<p><img src="https://pic.imgdd.cc/i/033yx7y8KaRhRGjBdSDpFB.png" alt="图7：使用鲁棒正则化系数方法提取白噪声后的电阻热噪声拟合图"></p>
+<center>图7：使用鲁棒正则化系数方法提取白噪声后的电阻热噪声拟合图</center>
+<p>\(\qquad\) 除此之外，还可以采用一种更有效的方法。在频谱数据处理中，我们关注的并非信号的局部结构，而是白噪声的统计特性。理想白噪声在频域中应围绕某一平均值作随机涨落，因此其关键特征可以通过统计平均来刻画。然而，实际测量中频谱往往叠加了窄带干扰信号或异常峰值，这些偏离平均水平较大的点会对直接求平均的结果产生显著影响。</p>
+<p>\(\qquad\) 基于上述考虑，本实验采用一种基于鲁棒统计思想的迭代加权方法来提取白噪声的有效平均值。具体而言，首先对选定频率区间内的数据\(\{x_i\}\)计算初始平均值</p>
+<p>\[
+\mu^{(0)}=\frac{1}{N}\sum_{i=1}^{N}x_i
+\]</p>
+<p>\(\qquad\) 随后，根据各数据点相对于当前平均值的偏离程度，引入权重函数，对偏离较大的点进行“惩罚”，例如可以选取如下形式的权重：</p>
+<p>\[
+w_i^{(k)}=
+\frac{1}{1+\left(\frac{x_i-\mu^{(k)}}{\sigma^{(k)}}\right)^2}
+\]</p>
+<p>\(\qquad\) 其中\(\sigma^{(k)}\)表示当前数据的离散程度。利用该权重对数据进行加权平均，得到更新后的均值：</p>
+<p>\[
+\mu^{(k+1)}=
+\frac{\sum_iw_i^{(k)}x_i}{\sum_iw_i^{(k)}}
+\]</p>
+<p>\(\qquad\) 通过不断迭代上述过程，可以逐步减弱异常点对平均值的影响，使结果收敛于代表白噪声本征强度的稳定值。与传统的简单平均或平滑方法相比，该方法不依赖于对频谱形状的假设，而是直接针对统计量进行优化，因此更适用于本实验中白噪声水平的提取。</p>
+<p>\(\qquad\) 最终，将收敛后的均值\(\mu\)作为噪声功率谱密度的估计值，并进一步计算对应的均方电压或标准差，用于后续物理量的拟合分析。这种方法能够在保留白噪声统计特性的同时，有效抑制窄带干扰与随机异常点对实验结果的影响，从而提高测量精度。</p>
+<p>\(\qquad\) 基于上述算法，重新对实验一中电阻热噪声的数据进行了处理与分析，得到的拟合结果如图7所示。对应的线性拟合关系为</p>
+<p>\[
+\log(V_n^2)
+=9.597421\times10^{-1}\log(R)-31.746432,
+\qquad r=0.999973
+\]</p>
+<p>\(\qquad\) 可以看到，相较于初始拟合结果，该方法在抑制异常频谱点影响方面取得了明显效果，使得拟合结果更加稳定且接近理论预期。根据前述理论关系，可以进一步计算玻尔兹曼常数\(k_B\)：</p>
+<p>\[
+k_B=
+\frac{e^{-31.746432}}{4\times300\,\mathrm{K}\times10^6}
+=1.35994\times10^{-23}\,\mathrm{J/K}
+\]</p>
+<p>\(\qquad\) 该结果与公认值\(1.38\times10^{-23}\,\mathrm{J/K}\)已较为接近，相较于未经优化处理的数据分析结果有了显著改善。这表明基于鲁棒统计的迭代加权方法能够有效减弱频谱中窄带干扰与异常点对统计结果的影响，从而提升对白噪声水平的估计精度。</p>
+<p>\(\qquad\) 进一步来看，该方法的有效性来源于其对异常值的自适应抑制能力，使得最终结果更多地反映白噪声的本征统计特性，而非受限于个别频点的偶然偏差。由此可以预见，若在实验条件上进一步优化，例如采用更高精度的标准电阻、增加采样点数以及提高测量循环次数，尽管这会带来时间成本的增加，结合该数据处理方法仍有望获得更加精确的玻尔兹曼常数测量结果。</p>
+<h1 id="总结"><a class="headerlink" href="#总结"></a>总结</h1>
+<p>\(\qquad\) 本实验通过对热噪声与散粒噪声的测量与分析，验证了两类噪声的基本统计规律，并分别实现了对玻尔兹曼常数\(k_B\)与元电荷\(e\)的实验估算。实验结果表明，热噪声测量与理论符合较好，通过引入鲁棒统计方法对频谱数据进行处理后，所得到的\(k_B\)数值与公认值接近，说明该方法在抑制干扰与提高测量精度方面具有明显优势。相比之下，散粒噪声测量受到器件特性与系统噪声的显著影响，所得结果偏离理论值较大，表明其对实验条件更加敏感。</p>
+<p>\(\qquad\) 从整体来看，本实验不仅加深了对涨落现象及其统计物理本质的理解，也展示了通过频域分析与交叉相关方法提取微弱信号的有效手段。进一步结合优化实验设计与改进数据处理方法，有望将该类噪声测量发展为更加精确的基本物理常数测量手段。</p>
+<center><b>参考文献</b></center>
+<p>[1] NYQUIST H. Thermal agitation of electric charge in conductors[J]. Physical Review, 1928, 32(1): 110-113. DOI: 10.1103/PhysRev.32.110.</p>
+<p>[2] JOHNSON J B. Thermal agitation of electricity in conductors[J]. Physical Review, 1928, 32(1): 97-109. DOI: 10.1103/PhysRev.32.97.</p>
+<p>[3] WEI J. Fast convergence of white noise cross-correlation measurement archived by vector average in both frequency and time domain[EB/OL]. arXiv:physics/0405041, 2004.</p>
+<p>[4] SCHOTTKY W. Über spontane Stromschwankungen in verschiedenen Elektrizitätsleitern[J]. Annalen der Physik, 1918, 362(23): 541-567. DOI: 10.1002/andp.19183622304.</p>
+<p>[5] BLANTER Y M, BÜTTIKER M. Shot noise in mesoscopic conductors[J]. Physics Reports, 2000, 336(1-2): 1-166. DOI: 10.1016/S0370-1573(99)00123-4.</p>
+<p>[6] OPPENHEIM A V, SCHAFER R W. Digital signal processing[M]. Englewood Cliffs: Prentice-Hall, 1975.</p>
+<h1 id="附录A：开放问题"><a class="headerlink" href="#附录A：开放问题"></a>附录A：开放问题</h1>
+<p>\(\qquad\) 撰写实验报告时才发现，这部分还有需要测量的内容。由于实验中没有完成相应测量，下面仅对理论上或计算上可以分析的问题进行解答。</p>
+<p><img src="https://pic.imgdd.cc/i/033yx7z0clkDycBAzBnE2E.png" alt="图8：真空管噪声测量电路示意图"></p>
+<center>图8：真空管噪声测量电路示意图</center>
+<ol>
+<li>
+<p><strong>真空管的噪声测量电路</strong></p>
+<p>利用真空二极管或三极管作为载流子发射源，在阴极加热产生热电子，通过外加高压形成稳定电流。将管中电流通过负载电阻转换为电压信号，并采用双通道低噪声放大器进行放大，结合交叉相关技术提取散粒噪声。电源部分采用电池供电并进行良好屏蔽，以减小外界干扰，同时调节阳极电压以满足\(eV\gg k_BT\)条件，从而实现接近理想的散粒噪声测量。电路示意图如图8所示。</p>
+</li>
+<li>
+<p><strong>考虑在其他体系中实现散粒噪声的测量，例如不测量电子电荷，而是测量磁通线携带的磁通量子等颗粒性参量</strong></p>
+<p>在其他物理体系中，同样可以利用“散粒噪声”的思想来测量离散参量，其核心在于载流子的颗粒性所引起的统计涨落。例如，在超导体系中，磁通并非连续变化，而是以磁通量子\(\Phi_0=h/(2e)\)的形式存在。当磁通子，如超导涡旋，在外加驱动下随机通过某一截面时，其输运过程同样可以视为泊松过程，从而产生类似于电流散粒噪声的涨落。其噪声强度满足\(S\propto q_{\mathrm{eff}}I\)的关系，其中有效“电荷”可以由磁通量子\(\Phi_0\)替代。通过测量约瑟夫森结、超导薄膜中的涡旋流或SQUID器件中的磁通涨落，并结合频谱分析与相关测量方法，可以反推出磁通量子的大小或其他离散物理量。</p>
+</li>
+<li>
+<p><strong>一般测量的是噪声二阶谱，是否能够测量更高阶的噪声谱？对热噪声和散粒噪声是否会有不同？</strong></p>
+<p>一般实验中测量的噪声谱主要为二阶相关函数对应的功率谱密度，其本质仅反映涨落的方差信息。然而，从统计物理角度来看，完整刻画随机过程还需要更高阶相关函数，例如三阶、四阶累积量（cumulants）所对应的高阶噪声谱。实验上，通过多通道采样与高阶相关函数计算，或利用实时数字信号处理技术，可以在一定条件下测量这些高阶噪声特征。</p>
+<p>对于热噪声而言，由于其来源于大量独立自由度的平衡涨落，符合高斯分布，根据中心极限定理，其高阶累积量，即高于二阶的累积量，理论上为零，因此更高阶噪声谱不包含新的信息。而对于散粒噪声，由于其本质是离散粒子输运过程，通常服从泊松统计，其高阶累积量均不为零。例如，三阶谱（偏度）可以反映电流涨落的非对称性。因此，通过测量高阶噪声谱，可以区分高斯型热噪声与非高斯型散粒噪声，并进一步提取关于载流子统计性质与输运机制的更丰富信息。</p>
+</li>
+<li>
+<p><strong>有时样品阻抗太大，测量线路上的杂散电容会使频率较高的信号漏走，能否考虑通过共振电路测量较高频率的噪声？</strong></p>
+<p>当样品阻抗较大时，测量线路中的杂散电容会与其形成低通效应，使高频噪声信号被旁路而难以测量。在这种情况下，可以引入谐振电路，如LC谐振回路，对特定频率范围内的噪声进行选择性增强。具体而言，将样品与电感元件构成并联或串联谐振结构，在谐振频率\(\omega_0=1/\sqrt{LC}\)附近，电路阻抗或响应达到极值，从而对该频率附近的噪声信号产生“带通”放大作用。</p>
+<p>这样不仅可以补偿杂散电容对高频信号的衰减，还可以将测量带宽限制在较窄范围内，从而提高信噪比。需要注意的是，此时测得的噪声谱不再是宽带白噪声，而是经过谐振电路滤波后的谱分布，因此在数据分析中需要结合电路的传输函数进行修正。</p>
+</li>
+<li>
+<p><strong>电容是否有热噪声？应当如何测量？</strong></p>
+<p>从本质上讲，理想电容本身不产生热噪声，因为热噪声来源于耗散过程，而纯电容只储存能量、不消耗能量，因此其阻抗为纯虚数，不对应能量耗散。然而，根据涨落-耗散定理，任何存在耗散的实际元件都会伴随噪声。因此，真实电容由于介质损耗，即等效串联电阻（ESR），仍然会产生热噪声，其噪声可以等效为该损耗电阻产生的Johnson噪声。</p>
+<p>在测量上，可以将电容等效为串联一个小电阻的模型，通过构建高输入阻抗的放大测量电路，或将电容接入已知阻抗网络中，在频域分析其噪声谱，并结合电路的传输函数反推出等效噪声水平。此外，也可以利用谐振电路放大特定频率处的响应，从而间接测量电容相关的热噪声。总体而言，电容的热噪声并非源于其理想储能行为，而是来源于实际材料中的微弱耗散机制。</p>
+</li>
+<li>
+<p><strong>如果不受仪器限制，热噪声最高能够测量到什么频率？</strong></p>
+<p>从经典结果出发，电阻热噪声的功率谱密度为</p>
+<p>\[
+S_V(f)=4k_BTR
+\]</p>
+<p>该表达式与频率无关，表明热噪声在经典极限下为白噪声。然而，这一结论隐含了一个前提，即\(hf\ll k_BT\)。当频率升高至量子尺度时，需要采用量子统计修正，其完整表达式为</p>
+<p>\[
+S_V(f)=4R\cdot\frac{hf}{e^{hf/(k_BT)}-1}
+\]</p>
+<p>在低频极限\(hf\ll k_BT\)下，有</p>
+<p>\[
+e^{hf/(k_BT)}\approx1+\frac{hf}{k_BT}
+\]</p>
+<p>代入可恢复经典结果\(S_V(f)\approx4k_BTR\)；而在高频极限\(hf\gg k_BT\)时，</p>
+<p>\[
+S_V(f)\approx4R\cdot hf\,e^{-hf/(k_BT)}
+\]</p>
+<p>此时噪声迅速指数衰减。因此，热噪声保持“白噪声”特性的最高频率可由条件</p>
+<p>\[
+hf\sim k_BT
+\]</p>
+<p>估算，得到截止频率</p>
+<p>\[
+f_{\max}\sim\frac{k_BT}{h}
+\]</p>
+<p>在室温\(T=300\,\mathrm{K}\)下，</p>
+<p>\[
+f_{\max}
+\approx\frac{1.38\times10^{-23}\times300}{6.63\times10^{-34}}
+\approx6\times10^{12}\,\mathrm{Hz}
+\]</p>
+<p>即热噪声在约THz量级以下可以近似视为白噪声。因此，在不受仪器限制的理想情况下，热噪声的有效测量频率上限约为\(10^{12}\sim10^{13}\,\mathrm{Hz}\)。</p>
+</li>
+</ol>
+<h1 id="附录B：数据处理使用的代码"><a class="headerlink" href="#附录B：数据处理使用的代码"></a>附录B：数据处理使用的代码</h1>
+<p>\(\qquad\) 本实验的数据处理与分析主要基于Python编程语言完成，综合使用了NumPy、Matplotlib、SciPy以及Pandas等科学计算与数据处理库，对实验测得的时间序列与频谱数据进行读取、处理、可视化以及拟合分析。相关代码已统一整理并上传至GitHub仓库，读者可通过<a target="_blank" rel="noopener" href="https://github.com/xisenal/PKU-modern-physical-experiment-code/tree/main/noise_experiment3">noise_experiment3</a>获取完整项目文件并复现实验数据处理过程。本项目采用MIT开源协议，允许在非商业用途下自由查看、修改与使用。</p>
+<p>\(\qquad\) 如需获取代码，可在目标目录下通过终端执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/xisenal/PKU-modern-physical-experiment-code.git</span><br></pre></td></tr></table></figure>
+<p>\(\qquad\) 项目目录中已提供基于<code>.venv</code>的虚拟环境配置，进入虚拟环境后即可直接运行相关<code>.py</code>文件完成数据处理与分析。此外，也可通过以下命令手动安装所需依赖库，从而在本地环境中独立运行代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy matplotlib pandas scipy</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xisenal.github.io">Xisense WYX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/">https://xisenal.github.io/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xisenal.github.io" target="_blank">西瓜の驿站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%9E%E9%AA%8C/">实验</a><a class="post-meta__tags" href="/tags/%E8%BF%91%E4%BB%A3%E7%89%A9%E7%90%86/">近代物理</a></div><div class="post-share"><div class="social-share" data-image="/img/cover_default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/30/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91He-Ne%E6%B0%94%E4%BD%93%E6%BF%80%E5%85%89%E5%99%A8%E6%94%BE%E7%94%B5%E6%9D%A1%E4%BB%B6/" title="【实验】He-Ne气体激光器放电条件"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-30</div><div class="info-item-2">【实验】He-Ne气体激光器放电条件</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验研究了He-Ne气体激光器在不同气体配比与总压强条件下的放电特性。通过测量激光输出功率随工作电流变化的关系，发现功率随电流先增大后减小，且峰值对应的电流随总压强增加而减小。同时，氦氖配比对输出功率存在明显影响，氖比例较高时功率较大。实验结果与粒子数反转及能量转移理论相一致，为理解He-Ne激光器的工作条件及动力学机制提供了实验依据。 关键词： He-Ne激光，真空环境，配气 获取实验报告的PDF文件（仅供参考） 引言 激光（Laser）是基于受激辐射原理实现光放大的相干光源，其理论基础可以追溯到20世纪中期。1958年，Schawlow和Townes在经典论文《Infrared and Optical Masers》中提出将微波波段的maser原理推广到光学频段，从而提出了光学激射器（laser）的基本概念[1]。这一理论工作奠定了激光器发展的基础。...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用NaI(Tl)闪烁谱仪对γ射线能谱进行了测量与分析。通过测量¹³⁷Cs和⁶⁰Co标准放射源的能谱，确定了闪烁谱仪的能量刻度关系，并对谱仪的能量分辨率和线性特性进行了检验。在此基础上，利用多道分析器测量了不同几何条件及混合放射源情况下的γ能谱，对全能峰、康普顿平台及反散射峰的形成机制及其变化规律进行了分析。实验结果表明，NaI(Tl)闪烁谱仪具有良好的能量线性关系，能够较好地实现γ射线能量测量与能谱分析，加深了对γ射线与物质相互作用及闪烁探测器工作原理的理解。 关键词： NaI闪烁谱仪，光电效应，康普顿散射，放射性物质能谱 获取实验报告的PDF文件（仅供参考） 引言 闪烁探测器是最早发展起来的一类电离辐射探测器之一，在核物理、医学成像以及环境辐射监测等领域具有重要应用。自1948年发现NaI(Tl)晶体具有优良的闪烁性能以来，卤化物闪烁体得到了迅速发展，并推动了无机闪烁探测技术的进步[1]。由于NaI(Tl)晶体具有较高的发光效率和较高的有效原子序数，其对γ射线具有较高的探测效率，因此很快被应用于γ能谱测量，并成为闪烁谱仪中最常用的探测材料之一[2]。...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】体效应振荡器的工作特性和波导管的工作状态</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用体效应微波振荡器与矩形波导系统，对微波信号源的工作特性以及波导中的传播状态进行了系统研究。通过调节体效应振荡器的工作电压，测量其工作电流、输出功率及振荡频率随电压变化的关系，验证了Gunn效应导致的负微分迁移率特性及其对微波振荡形成的影响。在波导系统中，通过驻波测量线观测匹配状态、驻波状态及混波状态，并测量不同状态下的驻波比与反射系数。进一步利用驻波节点位置测量波导波长，并结合频率计测量结果计算自由空间波长、相速度与群速度，实验结果满足vpvg=c²的理论关系。此外，通过测量驻波曲线并采用半高宽法和对数拟合法确定晶体检波器的检波指数，结果表明其满足平方律检波特性。实验结果与理论分析基本一致，加深了对微波产生机制、波导传播规律及微波测量方法的理解。 关键词： 体效应振荡器，Gunn效应，波导传播，驻波比，检波律 获取实验报告的PDF文件（仅供参考） 引言 微波是频率约在300 MHz至300...</div></div></div></a><a class="pagination-related" href="/2025/01/18/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E5%88%A9%E7%94%A8CV%E6%B3%95%E6%B5%8B%E9%87%8F%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%9A%84%E6%9D%82%E8%B4%A8%E5%88%86%E5%B8%83/" title="【实验】利用CV法测量半导体的杂质分布"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-18</div><div class="info-item-2">【实验】利用CV法测量半导体的杂质分布</div></div><div class="info-2"><div class="info-item-1">摘要： 在半导体工业中，影响元件性能最重要的因素之一是掺杂浓度，因此精准地检测杂质浓度是评估元件好坏的重要环节[1]。本文章基于单边突变结的耗尽层中无自由电子的假设，模型化的计算了空间电荷区和偏压的定量关系，并将该势垒看作一个间距可变的电容。实验中通过串联标准电容并加交流电压的方法，间接测量P-N结势垒电容。通过改变直流偏置电压，得到杂质掺杂率随着交界距离的变化关系。 关键词：势垒电容，电容电压法，锁相放大，杂质测量，倍频测量 获取实验报告的pdf文件(仅供参考) 引言 1904年，Joseph Thomson在对锗和硅进行性质研究时发现这种材料并不同于一般的导体和绝缘体，这些材料有更加独特的电学性质，他将这种导电性介于导体和绝缘体之间的材料称为半导体[2]。1947年，John Bardeen，Walter Bratton和William...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】扫描电子显微镜</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用KYKY-EM3200型扫描电子显微镜对样品表面形貌进行了观察，并研究了聚光镜电流对SEM成像质量的影响。实验中在固定加速电压30 kV条件下，改变聚光镜电流并分别在不同放大倍率下获取样品表面图像。通过对比不同实验参数下的成像结果，分析了聚光镜电流对图像衬度、分辨率以及信噪比的影响规律。为了更加定量地评价图像质量，实验进一步利用Python对SEM图像进行了数字图像处理，采用全局灰度衬度、基于Sobel算子的边缘衬度、Laplacian方差清晰度以及基于Gaussian高通残差的信噪比等指标，对不同聚光镜电流条件下的图像质量进行了分析。结果表明，较大的聚光镜电流能够增强电子束会聚能力，提高图像边缘分辨率，但同时也会导致高频噪声增强，从而降低图像信噪比。综合实验结果可以看出，SEM成像质量实际上是在图像分辨率与噪声之间的折中，在本实验条件下聚光镜电流取I=500sim600时能够获得较优的综合成像效果。本实验进一步说明了数字图像处理方法在现代实验分析中的重要作用。 关键词： 扫描电子显微镜，聚光镜电流，图像衬度，图像分辨率，信噪比，数字图像处理...</div></div></div></a><a class="pagination-related" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜"><img class="cover" src="/img/cover_default.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-31</div><div class="info-item-2">【实验】扫描隧穿显微镜</div></div><div class="info-2"><div class="info-item-1">摘要： 本实验利用扫描隧道显微镜对HOPG表面进行了原子分辨成像，观察到典型的石墨三角晶格结构，并验证了量子隧穿效应。结合Python图像处理程序，对STM图像进行了尺度分析，并估算了压电扫描系统的压电系数，加深了对STM工作原理与实验方法的理解。 关键词： 扫描隧道显微镜，量子隧穿效应，HOPG，原子分辨成像，压电陶瓷，图像处理 获取实验报告的PDF文件（仅供参考） 引言 20世纪初量子力学建立之后，人们逐渐认识到微观粒子具有经典理论所无法解释的波动性质。其中，一个重要现象便是量子隧穿效应（quantum tunneling effect）：粒子即使在能量低于势垒高度的情况下，仍有一定概率穿透势垒区域。1928年，Gamow以及Gurney与Condon分别利用量子力学成功解释了α衰变过程，首次明确提出了隧穿效应的物理图像[1,2]。此后，量子隧穿逐渐成为现代凝聚态物理与量子器件中的重要基础理论。 基于量子隧穿效应，1981年，IBM苏黎世实验室的G. Binnig与H. Rohrer发明了扫描隧道显微镜（scanning tunneling...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Xisense WYX</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xisenal"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="weixin://contacts/profile/xisense_wyx" target="_blank" title="微信"><i class="fab fa-weixin" style="color: # 1AAD19;"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2076114280&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #FF6347;"></i></a><a class="social-icon" href="mailto:xisense_wyx@stu.pku.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://x.com/Xisense_WYX" target="_blank" title="X"><i class="fab fa-x-twitter" style="color: #BEBEBE;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">实验原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80%E5%8F%8A%E7%89%A9%E7%90%86%E6%84%8F%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">热噪声与散粒噪声的理论基础及物理意义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E9%98%BB%E7%83%AD%E5%99%AA%E5%A3%B0%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.1.1.</span> <span class="toc-text">电阻热噪声的推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.1.2.</span> <span class="toc-text">散粒噪声的推导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cross-correlation%E6%B5%8B%E9%87%8F%E6%96%B9%E6%B3%95%E5%8F%8A%E5%85%B6%E9%99%8D%E5%99%AA%E5%8E%9F%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">Cross-correlation测量方法及其降噪原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%99%AA%E5%A3%B0%E6%B5%8B%E9%87%8F%E7%9A%84%E5%9B%B0%E9%9A%BE%E4%B8%8E%E5%BF%85%E8%A6%81%E6%80%A7"><span class="toc-number">2.2.1.</span> <span class="toc-text">噪声测量的困难与必要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cross-correlation%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.2.2.</span> <span class="toc-text">Cross-correlation基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E5%9D%87%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%99%AA%E5%A3%B0%E6%8A%91%E5%88%B6%E6%95%88%E7%8E%87"><span class="toc-number">2.2.3.</span> <span class="toc-text">平均过程与噪声抑制效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7%E4%B8%8E%E7%89%A9%E7%90%86%E6%9C%AC%E8%B4%A8"><span class="toc-number">2.2.4.</span> <span class="toc-text">方法的必要性与物理本质</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E9%98%BB%E7%83%AD%E5%99%AA%E5%A3%B0%E7%9A%84%E6%B5%8B%E9%87%8F%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.1.</span> <span class="toc-text">电阻热噪声的测量步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%89%E7%94%B5%E4%BA%8C%E6%9E%81%E7%AE%A1%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E6%B5%8B%E9%87%8F%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.2.</span> <span class="toc-text">光电二极管散粒噪声的测量步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">实验结果与分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%94%B5%E9%98%BB%E7%83%AD%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E8%A7%84%E5%BE%8B%E6%B5%8B%E9%87%8F%E7%8E%BB%E5%B0%94%E5%85%B9%E6%9B%BC%E5%B8%B8%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">通过电阻热噪声的统计规律测量玻尔兹曼常数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%85%89%E7%94%B5%E4%BA%8C%E6%9E%81%E7%AE%A1%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E8%A7%84%E5%BE%8B%E6%B5%8B%E9%87%8F%E5%85%83%E7%94%B5%E8%8D%B7"><span class="toc-number">4.2.</span> <span class="toc-text">通过光电二极管散粒噪声的统计规律测量元电荷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AF%AF%E5%B7%AE%E7%9A%84%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%A4%84%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">实验误差的进一步处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95A%EF%BC%9A%E5%BC%80%E6%94%BE%E9%97%AE%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">附录A：开放问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95B%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">7.</span> <span class="toc-text">附录B：数据处理使用的代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】扫描电子显微镜"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E7%94%B5%E5%AD%90%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描电子显微镜">【实验】扫描电子显微镜</a><time datetime="2026-07-31T10:33:13.000Z" title="发表于 2026-07-31 18:33:13">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】扫描隧穿显微镜"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E6%89%AB%E6%8F%8F%E9%9A%A7%E7%A9%BF%E6%98%BE%E5%BE%AE%E9%95%9C/" title="【实验】扫描隧穿显微镜">【实验】扫描隧穿显微镜</a><time datetime="2026-07-31T10:00:42.000Z" title="发表于 2026-07-31 18:00:42">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】体效应振荡器的工作特性和波导管的工作状态"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E4%BD%93%E6%95%88%E5%BA%94%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%89%B9%E6%80%A7%E5%92%8C%E6%B3%A2%E5%AF%BC%E7%AE%A1%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81/" title="【实验】体效应振荡器的工作特性和波导管的工作状态">【实验】体效应振荡器的工作特性和波导管的工作状态</a><time datetime="2026-07-31T09:48:07.000Z" title="发表于 2026-07-31 17:48:07">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/" title="【实验】通过热噪声与散粒噪声的统计特性测量物理常数"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】通过热噪声与散粒噪声的统计特性测量物理常数"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91%E9%80%9A%E8%BF%87%E7%83%AD%E5%99%AA%E5%A3%B0%E4%B8%8E%E6%95%A3%E7%B2%92%E5%99%AA%E5%A3%B0%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7%E6%B5%8B%E9%87%8F%E7%89%A9%E7%90%86%E5%B8%B8%E6%95%B0/" title="【实验】通过热噪声与散粒噪声的统计特性测量物理常数">【实验】通过热噪声与散粒噪声的统计特性测量物理常数</a><time datetime="2026-07-31T09:28:37.000Z" title="发表于 2026-07-31 17:28:37">2026-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"><img src="/img/cover_default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱"/></a><div class="content"><a class="title" href="/2026/07/31/%E3%80%90%E5%AE%9E%E9%AA%8C%E3%80%91NaI(Tl)%E9%97%AA%E7%83%81%E8%B0%B1%E4%BB%AA%E6%B5%8B%E5%AE%9A%CE%B3%E5%B0%84%E7%BA%BF%E7%9A%84%E8%83%BD%E8%B0%B1/" title="【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱">【实验】NaI(Tl)闪烁谱仪测定γ射线的能谱</a><time datetime="2026-07-31T06:45:38.000Z" title="发表于 2026-07-31 14:45:38">2026-07-31</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Xisense WYX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://www.yuanshen.com/" target="_blank" title="我真好好学习吗？">好好学习,天天向上</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script defer data-pjax src="/js/cursor.js"></script><script defer data-pjax src="/js/title.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
